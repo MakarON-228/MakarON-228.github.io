@@ -1,0 +1,56 @@
+<button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">
+  <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18">
+    <circle cx="9" cy="9" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+    <path d="M9 1.75a7.25 7.25 0 0 1 0 14.5z" fill="currentColor"></path>
+  </svg>
+  <span class="visually-hidden">Dark theme</span>
+</button>
+
+<style>
+  .theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--ink);
+  }
+
+  .theme-toggle[aria-pressed='true'] svg {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  import { nextTheme, readStored, resolveTheme, writeStored, type Theme } from '../lib/theme';
+
+  const root = document.documentElement;
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+
+  const current = (): Theme => resolveTheme(readStored() ?? root.dataset['theme'], media.matches);
+
+  const sync = () => {
+    const dark = current() === 'dark';
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(dark)));
+  };
+
+  buttons.forEach((b) =>
+    b.addEventListener('click', () => {
+      const theme = nextTheme(current());
+      root.dataset['theme'] = theme;
+      writeStored(theme);
+      sync();
+    }),
+  );
+
+  media.addEventListener('change', sync);
+  sync();
+</script>

@@ -1,0 +1,79 @@
+/* Дизайн-токены — SPEC.md §4. Светлая тема в :root, тёмная — переопределения ниже.
+   Каждый токен сначала объявлен здесь; в тёмных блоках только переопределения. */
+
+:root {
+  color-scheme: light;
+
+  /* Палитра */
+  --paper: #edf0f2;
+  --surface: #f8fafb;
+  --ink: #0e1b26;
+  --muted: #56697a;
+  --rule: #c7d1d9;
+  --line-science: #134f78;
+  --line-rail: #c8372d;
+  --line-agents: #1f8a5b;
+  --line-craft: #c98a0e; /* только заливки и линии, не текст */
+
+  /* Гарнитуры */
+  --font-display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif-condensed, sans-serif;
+  --font-body: 'Overpass Variable', 'Overpass', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Overpass Mono Variable', 'Overpass Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  /* Шкала */
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-22: 1.375rem;
+  --fs-28: 1.75rem;
+  --fs-40: 2.5rem;
+  --fs-64: 4rem;
+  --fs-name: clamp(56px, 9vw, 120px);
+
+  --lh-tight: 1.05;
+  --lh-body: 1.55;
+  --measure: 68ch;
+
+  /* Отступы */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --gutter: clamp(16px, 4vw, 40px);
+  --page-max: 72rem;
+
+  --radius: 6px;
+  --focus-ring: var(--line-science);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --paper: #0b131a;
+    --surface: #111d26;
+    --ink: #e4ecf1;
+    --muted: #8ea2b1;
+    --rule: #243644;
+    --line-science: #5ba3d9;
+    --line-rail: #f0604f;
+    --line-agents: #3cc486;
+    --line-craft: #f2b53a;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #0b131a;
+  --surface: #111d26;
+  --ink: #e4ecf1;
+  --muted: #8ea2b1;
+  --rule: #243644;
+  --line-science: #5ba3d9;
+  --line-rail: #f0604f;
+  --line-agents: #3cc486;
+  --line-craft: #f2b53a;
+}

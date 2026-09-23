@@ -1,0 +1,43 @@
+---
+import '@fontsource/barlow-condensed/latin-700.css';
+import '@fontsource/barlow-condensed/latin-800.css';
+import '@fontsource-variable/overpass/wght.css';
+import '@fontsource-variable/overpass-mono/wght.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import displayFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>
+      // Тема до первой отрисовки, чтобы не мигало. Без сохранённого выбора решает prefers-color-scheme.
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#EDF0F2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B131A" media="(prefers-color-scheme: dark)" />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <slot />
+  </body>
+</html>
