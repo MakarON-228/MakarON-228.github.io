@@ -5,6 +5,7 @@ import '@fontsource-variable/overpass/wght.css';
 import '@fontsource-variable/overpass-mono/wght.css';
 import '../styles/tokens.css';
 import '../styles/global.css';
+import { ui } from '../data/resume';
 import displayFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-800-normal.woff2?url';
 
 interface Props {
@@ -31,13 +32,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#EDF0F2" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0B131A" media="(prefers-color-scheme: dark)" />
     <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
   </head>
   <body>
-    <a class="skip-link" href="#content">Skip to content</a>
+    <a class="skip-link" href="#content">{ui.skip}</a>
     <slot />
   </body>
 </html>

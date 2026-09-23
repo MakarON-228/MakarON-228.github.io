@@ -1,0 +1,204 @@
+---
+import { sections, ui } from '../data/resume';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="nav">
+  <nav aria-label={ui.navLabel}>
+    <ol class="line">
+      {
+        sections.map((s) => (
+          <li>
+            <a href={`#${s.id}`}>
+              <span class="stop" aria-hidden="true" />
+              {s.label}
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+    <details class="menu">
+      <summary>
+        <span class="glyph" aria-hidden="true"><span></span><span></span><span></span></span>
+        {ui.sectionsMenu}
+      </summary>
+      <ol>
+        {
+          sections.map((s) => (
+            <li>
+              <a href={`#${s.id}`}>{s.label}</a>
+            </li>
+          ))
+        }
+      </ol>
+    </details>
+  </nav>
+  <ThemeToggle />
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    height: var(--nav-h);
+    /* Выравнивание по колонке контента */
+    padding-inline: max(var(--gutter), calc((100% - var(--page-max)) / 2 + var(--gutter)));
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  nav {
+    position: relative;
+    min-width: 0;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Широкий экран: секции — станции на одной линии */
+  .line {
+    position: relative;
+    display: none;
+    gap: var(--space-6);
+  }
+
+  .line::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0.4rem;
+    right: 0.4rem;
+    height: 4px;
+    margin-top: -2px;
+    background: var(--line-science);
+    border-radius: 2px;
+  }
+
+  .line a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1) var(--space-2) var(--space-1) 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: var(--fs-18);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+
+  .stop {
+    width: 0.85rem;
+    height: 0.85rem;
+    background: var(--surface);
+    border: 3px solid var(--line-science);
+    border-radius: 50%;
+  }
+
+  .line a:hover .stop {
+    background: var(--line-science);
+  }
+
+  .line a:hover {
+    color: var(--line-science);
+  }
+
+  /* Узкий экран: компактная полоса, список по тапу */
+  summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 2.75rem;
+    padding-inline: var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--fs-18);
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .glyph {
+    position: relative;
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+  }
+
+  .glyph::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--line-science);
+  }
+
+  .glyph span {
+    position: relative;
+    width: 0.55rem;
+    height: 0.55rem;
+    background: var(--surface);
+    border: 2px solid var(--line-science);
+    border-radius: 50%;
+  }
+
+  .menu ol {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    left: 0;
+    min-width: 12rem;
+    padding: var(--space-2);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+  }
+
+  .menu a {
+    display: block;
+    padding: var(--space-3) var(--space-3);
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .menu a:hover {
+    color: var(--line-science);
+  }
+
+  @media (min-width: 720px) {
+    .line {
+      display: flex;
+    }
+
+    .menu {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Закрывать список после выбора секции (без JS он просто остаётся открытым).
+  document.querySelectorAll<HTMLDetailsElement>('.menu').forEach((menu) =>
+    menu.addEventListener('click', (e) => {
+      if ((e.target as Element).closest('a')) menu.open = false;
+    }),
+  );
+</script>

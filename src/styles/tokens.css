@@ -46,6 +46,7 @@
   --gutter: clamp(16px, 4vw, 40px);
   --page-max: 72rem;
 
+  --nav-h: 3.5rem;
   --radius: 6px;
   --focus-ring: var(--line-science);
 }

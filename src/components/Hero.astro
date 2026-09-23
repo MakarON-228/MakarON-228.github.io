@@ -1,0 +1,159 @@
+---
+import { header, ui } from '../data/resume';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <h1 id="hero-title">{header.name}</h1>
+  <p class="role">{header.role}</p>
+  <p class="summary">{header.summary}</p>
+
+  <ul class="contacts">
+    <li class="email">
+      <span class="label">{ui.email}</span>
+      <a href={`mailto:${header.email}`}>{header.email}</a>
+      <button type="button" class="copy" data-copy={header.email} hidden>{ui.copy}</button>
+      <span class="status" role="status" aria-live="polite" data-copied={ui.copied} data-failed={ui.copyFailed}></span>
+    </li>
+    <li>
+      <span class="label">{ui.telegram}</span>
+      <a href={header.telegram.href}>{header.telegram.label}</a>
+    </li>
+    <li>
+      <span class="label">{ui.github}</span>
+      <a href={header.github.href}>{header.github.label}</a>
+    </li>
+  </ul>
+
+  <p class="where">{[header.location, ...header.languages].map((part) => <span class="dot-sep">{part}</span>)}</p>
+
+  <a class="cv" href={header.cv} download>{ui.downloadCv} <span aria-hidden="true">↓</span></a>
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: start;
+    padding-block: var(--space-12) var(--space-8);
+  }
+
+  h1 {
+    font-size: var(--fs-name);
+    font-weight: 800;
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+  }
+
+  /* Акцентный брусок под именем, как в CV */
+  h1::after {
+    content: '';
+    display: block;
+    width: 4.5rem;
+    height: 6px;
+    margin-top: var(--space-4);
+    background: var(--line-science);
+  }
+
+  .role {
+    font-family: var(--font-display);
+    font-size: var(--fs-28);
+    font-weight: 700;
+    color: var(--line-science);
+  }
+
+  .summary {
+    font-size: var(--fs-18);
+    max-width: 52ch;
+  }
+
+  .contacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-8);
+    margin: var(--space-2) 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: var(--fs-14);
+  }
+
+  .contacts li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-1) var(--space-2);
+    min-width: 0;
+  }
+
+  .contacts a {
+    overflow-wrap: anywhere;
+  }
+
+  .label {
+    color: var(--muted);
+  }
+
+  .copy {
+    padding: 0.1rem var(--space-2);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    font-size: var(--fs-14);
+    cursor: pointer;
+  }
+
+  .copy:hover {
+    border-color: var(--ink);
+  }
+
+  .status:empty {
+    display: none;
+  }
+
+  .status {
+    color: var(--muted);
+  }
+
+  .where {
+    color: var(--muted);
+  }
+
+  .cv {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-6);
+    background: var(--line-science);
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-size: var(--fs-22);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: var(--radius);
+  }
+
+  .cv:hover {
+    background: var(--ink);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
+    if (!navigator.clipboard) return;
+    const status = button.parentElement?.querySelector<HTMLElement>('.status');
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      if (!status) return;
+      try {
+        await navigator.clipboard.writeText(button.dataset['copy'] ?? '');
+        status.textContent = status.dataset['copied'] ?? '';
+      } catch {
+        status.textContent = status.dataset['failed'] ?? '';
+      }
+    });
+  });
+</script>

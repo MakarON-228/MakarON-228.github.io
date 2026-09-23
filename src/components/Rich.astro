@@ -1,0 +1,18 @@
+---
+import { parseRich } from '../lib/rich';
+
+interface Props {
+  text: string;
+}
+
+const segments = parseRich(Astro.props.text);
+---
+
+{segments.map((s) => (s.kind === 'strong' ? <strong class="figure">{s.text}</strong> : s.kind === 'em' ? <em>{s.text}</em> : s.text))}
+
+<style>
+  .figure {
+    color: var(--line-science);
+    font-weight: 700;
+  }
+</style>

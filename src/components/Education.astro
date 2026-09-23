@@ -1,0 +1,86 @@
+---
+import { education } from '../data/resume';
+
+const lines = ['rail', 'science', 'agents', 'craft'] as const;
+---
+
+<div class="education">
+  <!-- Sirius — пересадочный узел: через него проходят все линии (SPEC.md §4) -->
+  <svg class="hub" viewBox="0 0 240 96" aria-hidden="true" focusable="false">
+    {lines.map((l, i) => <line x1="0" x2="240" y1={21 + i * 18} y2={21 + i * 18} style={`stroke: var(--line-${l})`} />)}
+    <rect x="96" y="8" width="48" height="80" rx="24" />
+  </svg>
+  <div class="text">
+    <h3>{education.institution}</h3>
+    <p class="when"><time>{education.date}</time></p>
+    <p class="programme">
+      <strong>{education.programme}</strong> — {education.programmeNote}
+    </p>
+    <ul>
+      {education.bullets.map((b) => <li>{b}</li>)}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .education {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .hub {
+    width: 100%;
+    max-width: 15rem;
+    height: auto;
+  }
+
+  .hub line {
+    stroke-width: 6;
+    stroke-linecap: round;
+  }
+
+  .hub rect {
+    fill: var(--surface);
+    stroke: var(--ink);
+    stroke-width: 4;
+  }
+
+  .text {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  h3 {
+    font-size: var(--fs-28);
+  }
+
+  .when {
+    font-family: var(--font-mono);
+    font-size: var(--fs-14);
+    color: var(--muted);
+  }
+
+  .programme strong {
+    font-weight: 700;
+  }
+
+  ul {
+    display: grid;
+    gap: var(--space-2);
+    max-width: var(--measure);
+    margin: 0;
+    padding-left: 1.1em;
+  }
+
+  li::marker {
+    color: var(--muted);
+  }
+
+  @media (min-width: 960px) {
+    .education {
+      grid-template-columns: 15rem minmax(0, 1fr);
+      align-items: start;
+      gap: var(--space-8);
+    }
+  }
+</style>
