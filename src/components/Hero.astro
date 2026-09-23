@@ -1,40 +1,73 @@
 ---
 import { header, ui } from '../data/resume';
+import TransitMap from '../islands/TransitMap/TransitMap.astro';
 ---
 
 <section class="hero" aria-labelledby="hero-title">
   <h1 id="hero-title">{header.name}</h1>
-  <p class="role">{header.role}</p>
-  <p class="summary">{header.summary}</p>
+  <div class="intro">
+    <p class="role">{header.role}</p>
+    <p class="summary">{header.summary}</p>
 
-  <ul class="contacts">
-    <li class="email">
-      <span class="label">{ui.email}</span>
-      <a href={`mailto:${header.email}`}>{header.email}</a>
-      <button type="button" class="copy" data-copy={header.email} hidden>{ui.copy}</button>
-      <span class="status" role="status" aria-live="polite" data-copied={ui.copied} data-failed={ui.copyFailed}></span>
-    </li>
-    <li>
-      <span class="label">{ui.telegram}</span>
-      <a href={header.telegram.href}>{header.telegram.label}</a>
-    </li>
-    <li>
-      <span class="label">{ui.github}</span>
-      <a href={header.github.href}>{header.github.label}</a>
-    </li>
-  </ul>
+    <ul class="contacts">
+      <li class="email">
+        <span class="label">{ui.email}</span>
+        <a href={`mailto:${header.email}`}>{header.email}</a>
+        <button type="button" class="copy" data-copy={header.email} hidden>{ui.copy}</button>
+        <span class="status" role="status" aria-live="polite" data-copied={ui.copied} data-failed={ui.copyFailed}></span>
+      </li>
+      <li>
+        <span class="label">{ui.telegram}</span>
+        <a href={header.telegram.href}>{header.telegram.label}</a>
+      </li>
+      <li>
+        <span class="label">{ui.github}</span>
+        <a href={header.github.href}>{header.github.label}</a>
+      </li>
+    </ul>
 
-  <p class="where">{[header.location, ...header.languages].map((part) => <span class="dot-sep">{part}</span>)}</p>
+    <p class="where">{[header.location, ...header.languages].map((part) => <span class="dot-sep">{part}</span>)}</p>
 
-  <a class="cv" href={header.cv} download>{ui.downloadCv} <span aria-hidden="true">↓</span></a>
+    <a class="cv" href={header.cv} download>{ui.downloadCv} <span aria-hidden="true">↓</span></a>
+  </div>
+  <div class="map">
+    <TransitMap />
+  </div>
 </section>
 
 <style>
   .hero {
     display: grid;
     gap: var(--space-4);
-    justify-items: start;
     padding-block: var(--space-12) var(--space-8);
+  }
+
+  .map {
+    margin-top: var(--space-6);
+  }
+
+  .intro {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: start;
+    align-content: start;
+  }
+
+  /* Широкий экран: имя во всю ширину, ниже текст слева и карта справа — всё на первом экране */
+  @media (min-width: 1024px) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      column-gap: var(--space-12);
+    }
+
+    h1 {
+      grid-column: 1 / -1;
+    }
+
+    .map {
+      align-self: center;
+      margin-top: 0;
+    }
   }
 
   h1 {

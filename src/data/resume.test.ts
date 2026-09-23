@@ -41,8 +41,31 @@ describe('resume content rules', () => {
     expect(all.filter((s) => plainText(s).includes('*'))).toEqual([]);
   });
 
-  it('has unique section anchors', () => {
-    const ids = resume.sections.map((s) => s.id);
+  it('has unique section and entry anchors', () => {
+    const ids = [...resume.sections.map((s) => s.id), ...resume.entries.map((e) => e.id), 'content', 'board'];
     expect(new Set(ids).size).toBe(ids.length);
+  });
+});
+
+describe('departure board (SPEC §7.2)', () => {
+  it('shows exactly the seven figures from the spec', () => {
+    expect(resume.board.map((r) => `${r.value} ${r.label}`)).toEqual([
+      '4,400 line ETL pipeline',
+      '16 Parquet tables',
+      '209,638 row search index',
+      '407,669 wear records',
+      '0.12 MSE',
+      '194,849 researchers served',
+      '16 AI agents',
+    ]);
+  });
+
+  it('takes every figure from the text of its entry', () => {
+    for (const row of resume.board) {
+      const entry = resume.entries.find((e) => e.id === row.entry);
+      expect(entry, row.entry).toBeDefined();
+      const text = plainText([entry?.intro, entry?.body, ...(entry?.bullets ?? [])].join(' '));
+      expect(text, `${row.value} ${row.label}`).toMatch(new RegExp(`(^|[^\\d.,])${row.value.replace(/[.,]/g, '\\$&')}([^\\d]|$)`));
+    }
   });
 });

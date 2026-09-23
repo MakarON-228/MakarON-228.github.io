@@ -5,28 +5,38 @@ import ThemeToggle from './ThemeToggle.astro';
 
 <header class="nav">
   <nav aria-label={ui.navLabel}>
-    <ol class="line">
-      {
-        sections.map((s) => (
-          <li>
-            <a href={`#${s.id}`}>
-              <span class="stop" aria-hidden="true" />
-              {s.label}
-            </a>
-          </li>
-        ))
-      }
-    </ol>
+    <!-- Широкий экран: секции — станции линии, поезд едет по мере прокрутки (SPEC.md §5) -->
+    <div class="track wide" data-track>
+      <ol class="line">
+        {
+          sections.map((s) => (
+            <li>
+              <a href={`#${s.id}`} data-section={s.id}>
+                <span class="stop" aria-hidden="true" />
+                {s.label}
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+      <span class="train" aria-hidden="true"></span>
+    </div>
     <details class="menu">
       <summary>
-        <span class="glyph" aria-hidden="true"><span></span><span></span><span></span></span>
-        {ui.sectionsMenu}
+        <span class="track mini" data-track aria-hidden="true">
+          {sections.map(() => <span class="stop" />)}
+          <span class="train"></span>
+        </span>
+        <span class="visually-hidden">{ui.sectionsMenu}</span>
+        <span class="chevron" aria-hidden="true"></span>
       </summary>
       <ol>
         {
           sections.map((s) => (
             <li>
-              <a href={`#${s.id}`}>{s.label}</a>
+              <a href={`#${s.id}`} data-section={s.id}>
+                {s.label}
+              </a>
             </li>
           ))
         }
@@ -63,23 +73,47 @@ import ThemeToggle from './ThemeToggle.astro';
     list-style: none;
   }
 
-  /* Широкий экран: секции — станции на одной линии */
-  .line {
+  .track {
     position: relative;
-    display: none;
-    gap: var(--space-6);
   }
 
-  .line::before {
+  /* Линия от «депо» слева до последней станции */
+  .track::before {
     content: '';
     position: absolute;
     top: 50%;
-    left: 0.4rem;
+    left: 0;
     right: 0.4rem;
     height: 4px;
     margin-top: -2px;
     background: var(--line-science);
     border-radius: 2px;
+  }
+
+  .train {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+    width: 1.3rem;
+    height: 0.6rem;
+    margin-top: -0.3rem;
+    background: var(--ink);
+    border: 2px solid var(--paper);
+    border-radius: 999px;
+    pointer-events: none;
+  }
+
+  /* Широкий экран */
+  .wide {
+    display: none;
+    padding-left: 1.75rem;
+  }
+
+  .line {
+    position: relative;
+    display: flex;
+    gap: var(--space-6);
   }
 
   .line a {
@@ -106,25 +140,23 @@ import ThemeToggle from './ThemeToggle.astro';
     border-radius: 50%;
   }
 
-  .line a:hover .stop {
+  .line a:hover .stop,
+  .line a[aria-current] .stop {
     background: var(--line-science);
   }
 
-  .line a:hover {
+  .line a:hover,
+  .line a[aria-current] {
     color: var(--line-science);
   }
 
-  /* Узкий экран: компактная полоса, список по тапу */
+  /* Узкий экран: мини-линия без подписей, список по тапу */
   summary {
     display: flex;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--space-3);
     min-height: 2.75rem;
     padding-inline: var(--space-3);
-    font-family: var(--font-display);
-    font-size: var(--fs-18);
-    font-weight: 700;
-    text-transform: uppercase;
     border: 1px solid var(--rule);
     border-radius: var(--radius);
     cursor: pointer;
@@ -135,29 +167,38 @@ import ThemeToggle from './ThemeToggle.astro';
     display: none;
   }
 
-  .glyph {
-    position: relative;
+  .mini {
     display: flex;
-    gap: 0.3rem;
     align-items: center;
+    gap: 0.8rem;
+    padding-left: 1.1rem;
   }
 
-  .glyph::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--line-science);
-  }
-
-  .glyph span {
+  .mini .stop {
     position: relative;
-    width: 0.55rem;
-    height: 0.55rem;
-    background: var(--surface);
-    border: 2px solid var(--line-science);
-    border-radius: 50%;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-width: 2px;
+  }
+
+  .mini .train {
+    width: 0.9rem;
+    height: 0.5rem;
+    margin-top: -0.25rem;
+  }
+
+  .chevron {
+    width: 0.45rem;
+    height: 0.45rem;
+    margin-top: -0.2rem;
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    transform: rotate(45deg);
+  }
+
+  .menu[open] .chevron {
+    margin-top: 0.2rem;
+    transform: rotate(-135deg);
   }
 
   .menu ol {
@@ -179,13 +220,15 @@ import ThemeToggle from './ThemeToggle.astro';
     text-decoration: none;
   }
 
-  .menu a:hover {
+  .menu a:hover,
+  .menu a[aria-current] {
     color: var(--line-science);
   }
 
-  @media (min-width: 720px) {
-    .line {
-      display: flex;
+  /* Полная линия с подписями помещается рядом с кнопкой темы только с 900px */
+  @media (min-width: 900px) {
+    .wide {
+      display: block;
     }
 
     .menu {
@@ -195,10 +238,76 @@ import ThemeToggle from './ThemeToggle.astro';
 </style>
 
 <script>
+  import { activeIndex, arrivals, trainX } from '../lib/nav-progress';
+
   // Закрывать список после выбора секции (без JS он просто остаётся открытым).
   document.querySelectorAll<HTMLDetailsElement>('.menu').forEach((menu) =>
     menu.addEventListener('click', (e) => {
       if ((e.target as Element).closest('a')) menu.open = false;
     }),
   );
+
+  // Поезд прогресса: координаты станций и секций меряются при изменении раскладки, кадр — по прокрутке.
+  const header = document.querySelector<HTMLElement>('.nav');
+  const ids = Array.from(document.querySelectorAll<HTMLAnchorElement>('.line a')).map((a) => a.dataset['section'] ?? '');
+  const sectionEls = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => el !== null);
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('nav a[data-section]'));
+  const tracks = Array.from(document.querySelectorAll<HTMLElement>('[data-track]')).map((el) => ({
+    el,
+    stops: Array.from(el.querySelectorAll<HTMLElement>('.stop')),
+    train: el.querySelector<HTMLElement>('.train'),
+    xs: [] as number[],
+    start: 0,
+  }));
+
+  let arrive: number[] = [];
+  let current = -2;
+  let pending = 0;
+
+  const measure = () => {
+    const navH = header?.offsetHeight ?? 0;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    arrive = arrivals(
+      sectionEls.map((el) => el.getBoundingClientRect().top + window.scrollY - navH),
+      maxScroll,
+    );
+    for (const t of tracks) {
+      const box = t.el.getBoundingClientRect();
+      t.xs = t.stops.map((s) => {
+        const r = s.getBoundingClientRect();
+        return r.left + r.width / 2 - box.left;
+      });
+      t.start = (t.train?.offsetWidth ?? 0) / 2;
+    }
+  };
+
+  const draw = () => {
+    pending = 0;
+    const y = window.scrollY;
+    for (const t of tracks) {
+      if (!t.train || t.el.offsetParent === null) continue;
+      t.train.style.transform = `translateX(${(trainX(y, arrive, t.xs, t.start) - t.start).toFixed(1)}px)`;
+    }
+    const index = activeIndex(y, arrive);
+    if (index === current) return;
+    current = index;
+    for (const a of links) {
+      if (a.dataset['section'] === ids[index]) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    }
+  };
+
+  const schedule = () => {
+    if (!pending) pending = requestAnimationFrame(draw);
+  };
+  const remeasure = () => {
+    measure();
+    schedule();
+  };
+
+  window.addEventListener('scroll', schedule, { passive: true });
+  new ResizeObserver(remeasure).observe(document.body);
+  tracks.forEach((t) => new ResizeObserver(remeasure).observe(t.el));
+  document.fonts?.ready.then(remeasure);
+  remeasure();
 </script>

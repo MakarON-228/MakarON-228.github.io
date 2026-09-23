@@ -15,6 +15,14 @@
   --line-agents: #1f8a5b;
   --line-craft: #c98a0e; /* только заливки и линии, не текст */
 
+  /* Табло (§7.2) — тёмное в обеих темах */
+  --board-bg: #0e1b26;
+  --board-cell: #182b3b;
+  --board-seam: #0a141c;
+  --board-ink: #e4ecf1;
+  --board-muted: #8ea2b1;
+  --board-accent: #5ba3d9;
+
   /* Гарнитуры */
   --font-display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif-condensed, sans-serif;
   --font-body: 'Overpass Variable', 'Overpass', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -63,6 +71,9 @@
     --line-rail: #f0604f;
     --line-agents: #3cc486;
     --line-craft: #f2b53a;
+    --board-bg: #132230;
+    --board-cell: #1b2e3f;
+    --board-seam: #0b131a;
   }
 }
 
@@ -77,4 +88,7 @@
   --line-rail: #f0604f;
   --line-agents: #3cc486;
   --line-craft: #f2b53a;
+  --board-bg: #132230;
+  --board-cell: #1b2e3f;
+  --board-seam: #0b131a;
 }

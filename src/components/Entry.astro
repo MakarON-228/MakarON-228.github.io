@@ -11,7 +11,7 @@ const { entry } = Astro.props;
 const meta = [entry.role, entry.place, ...(entry.stack ?? [])].filter((m): m is string => Boolean(m));
 ---
 
-<article class="entry" style={`--line: var(--line-${entry.line})`}>
+<article class="entry" id={entry.id} style={`--line: var(--line-${entry.line})`}>
   <div class="rail" aria-hidden="true"><span class="stop"></span></div>
   <div class="when">
     <time>{entry.date}</time>

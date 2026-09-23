@@ -1,0 +1,331 @@
+---
+// Карта линий в hero (SPEC.md §7.1). SVG собирается при сборке — без JS видна та же карта, поезда стоят на станциях.
+// Скрипт только оживляет поезда и показывает подсказки.
+import { education, entries, ui, type Entry } from '../../data/resume';
+import { LINE_ORDER, buildMap } from './layout';
+
+const byId = new Map(entries.map((e) => [e.id, e]));
+const input = entries.map((e) => ({ id: e.id, line: e.line, name: e.station, date: e.date }));
+const views = (['horizontal', 'vertical'] as const).map((o) => buildMap(input, o, ui.map.hub));
+
+/** Строка подсказки — результат и роль из resume.ts, без цифр и описаний. */
+const role = (e: Entry) => [e.result, e.role].filter(Boolean).join(' — ');
+/** Доступное имя начинается с видимой подписи станции (WCAG 2.5.3). */
+const spoken = (e: Entry) =>
+  [e.title.toLowerCase().startsWith(e.station.toLowerCase()) ? e.title : `${e.station} — ${e.title}`, e.date, role(e)].join(' — ');
+const entryOf = (id: string) => byId.get(id)!;
+const hubRole = education.programme;
+---
+
+<figure class="transit" data-transit>
+  {
+    views.map((map) => (
+      <svg
+        class={`map ${map.orientation}`}
+        viewBox={`0 0 ${map.width} ${map.height}`}
+        style={`aspect-ratio: ${map.width} / ${map.height}`}
+        role="group"
+        aria-labelledby={`map-${map.orientation}-title`}
+        aria-describedby={`map-${map.orientation}-desc`}
+      >
+        <title id={`map-${map.orientation}-title`}>{ui.map.title}</title>
+        <desc id={`map-${map.orientation}-desc`}>{ui.map.desc}</desc>
+
+        <g class="ticks" aria-hidden="true">
+          {map.ticks.map((t) => (
+            <>
+              <line x1={t.from.x} y1={t.from.y} x2={t.to.x} y2={t.to.y} />
+              <text x={t.label.x} y={t.label.y}>
+                {t.year}
+              </text>
+            </>
+          ))}
+        </g>
+
+        {map.orientation === 'vertical' && (
+          <g class="leaders" aria-hidden="true">
+            {map.stations.map((s) => (
+              <polyline data-line={s.line} points={(s.leader ?? []).map((p) => `${p.x},${p.y}`).join(' ')} />
+            ))}
+          </g>
+        )}
+
+        <g class="tracks" aria-hidden="true">
+          {map.lines.map((l) => (
+            <path class="track" data-line={l.line} d={l.d} style={`--c: var(--line-${l.line})`} />
+          ))}
+        </g>
+
+        <a
+          class="hub"
+          href="#education"
+          aria-label={`${education.institution} — ${education.date} — ${hubRole}`}
+          data-tip-title={education.institution}
+          data-tip-date={education.date}
+          data-tip-role={hubRole}
+        >
+          <rect
+            class="focus"
+            x={map.hub.x - 5}
+            y={map.hub.y - 5}
+            width={map.hub.width + 10}
+            height={map.hub.height + 10}
+            rx={Math.min(map.hub.width, map.hub.height) / 2 + 5}
+          />
+          <rect
+            class="capsule"
+            x={map.hub.x}
+            y={map.hub.y}
+            width={map.hub.width}
+            height={map.hub.height}
+            rx={Math.min(map.hub.width, map.hub.height) / 2}
+          />
+          <text x={map.hub.label.x} y={map.hub.label.y} text-anchor={map.hub.label.anchor}>
+            {map.hub.label.text.toUpperCase()}
+          </text>
+        </a>
+
+        {map.stations.map((s) => {
+          const e = entryOf(s.id);
+          return (
+            <a
+              class="station"
+              href={`#${s.id}`}
+              data-line={s.line}
+              style={`--c: var(--line-${s.line})`}
+              aria-label={spoken(e)}
+              data-tip-title={e.title}
+              data-tip-date={e.date}
+              data-tip-role={role(e)}
+            >
+              <circle class="focus" cx={s.x} cy={s.y} r="11" />
+              <circle class="dot" cx={s.x} cy={s.y} r="6.5" />
+              <text x={s.label.x} y={s.label.y} text-anchor={s.label.anchor}>
+                {s.label.text.toUpperCase()}
+              </text>
+            </a>
+          );
+        })}
+
+        <g class="trains" aria-hidden="true">
+          {map.stations.map((s) => (
+            <circle class="train" data-line={s.line} cx={s.x} cy={s.y} r="3.2" />
+          ))}
+        </g>
+      </svg>
+    ))
+  }
+
+  <ul class="legend" aria-label={ui.map.legend}>
+    {
+      LINE_ORDER.map((line) => (
+        <li>
+          <span class="swatch" style={`background: var(--line-${line})`} />
+          {ui.map.lines[line]}
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="tip" aria-hidden="true" hidden>
+    <strong data-tip="title"></strong>
+    <span data-tip="date"></span>
+    <span data-tip="role"></span>
+  </div>
+</figure>
+
+<style>
+  .transit {
+    position: relative;
+    display: grid;
+    gap: var(--space-3);
+    margin: 0;
+  }
+
+  .map {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .horizontal {
+    display: none;
+    max-width: 40rem;
+  }
+
+  .vertical {
+    max-width: 26rem;
+  }
+
+  @media (min-width: 720px) {
+    .horizontal {
+      display: block;
+    }
+
+    .vertical {
+      display: none;
+    }
+  }
+
+  .ticks line {
+    stroke: var(--rule);
+    stroke-width: 1;
+    stroke-dasharray: 3 4;
+  }
+
+  .ticks text {
+    fill: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+
+  .leaders polyline {
+    fill: none;
+    stroke: var(--rule);
+    stroke-width: 1.5;
+  }
+
+  .track {
+    fill: none;
+    stroke: var(--c);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  text {
+    font-family: var(--font-display);
+    font-size: 15px; /* = FONT в layout.ts: по нему считаются наложения подписей */
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .station text,
+  .hub text {
+    fill: var(--ink);
+    /* Ореол цветом фона: подпись читается поверх линий и сетки */
+    paint-order: stroke;
+    stroke: var(--paper);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+  }
+
+  .dot {
+    fill: var(--surface);
+    stroke: var(--c);
+    stroke-width: 3.5;
+  }
+
+  .capsule {
+    fill: var(--surface);
+    stroke: var(--ink);
+    stroke-width: 3.5;
+  }
+
+  .focus {
+    fill: none;
+    stroke: var(--focus-ring);
+    stroke-width: 2;
+    opacity: 0;
+  }
+
+  .station,
+  .hub {
+    cursor: pointer;
+    outline: none;
+  }
+
+  .station:focus-visible .focus,
+  .hub:focus-visible .focus {
+    opacity: 1;
+  }
+
+  .station:hover .dot,
+  .station:focus-visible .dot {
+    fill: var(--c);
+  }
+
+  .station:hover text,
+  .hub:hover text {
+    fill: var(--line-science);
+  }
+
+  .train,
+  .trains :global(.trail) {
+    fill: var(--ink);
+    pointer-events: none;
+  }
+
+  /* Наведение на станцию выделяет её линию — работает и без JS */
+  [data-line] {
+    transition: opacity 150ms ease;
+  }
+
+  .transit:has(.station[data-line='rail']:is(:hover, :focus-visible)) [data-line]:not([data-line='rail']),
+  .transit:has(.station[data-line='science']:is(:hover, :focus-visible)) [data-line]:not([data-line='science']),
+  .transit:has(.station[data-line='agents']:is(:hover, :focus-visible)) [data-line]:not([data-line='agents']),
+  .transit:has(.station[data-line='craft']:is(:hover, :focus-visible)) [data-line]:not([data-line='craft']) {
+    opacity: 0.25;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-14);
+  }
+
+  .legend li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .swatch {
+    width: 1.25rem;
+    height: 5px;
+    border-radius: 3px;
+  }
+
+  .tip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    display: grid;
+    gap: 0.1rem;
+    max-width: 17rem;
+    padding: var(--space-2) var(--space-3);
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: var(--radius);
+    font-size: var(--fs-14);
+    line-height: 1.35;
+    pointer-events: none;
+  }
+
+  .tip[hidden] {
+    display: none;
+  }
+
+  .tip strong {
+    font-weight: 600;
+  }
+
+  .tip [data-tip='date'] {
+    font-family: var(--font-mono);
+    opacity: 0.8;
+  }
+</style>
+
+<script>
+  import { initTransitMap } from './client';
+
+  document.querySelectorAll<HTMLElement>('[data-transit]').forEach(initTransitMap);
+</script>

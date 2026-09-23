@@ -10,6 +10,12 @@ html {
   scroll-padding-top: var(--nav-h);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   margin: 0;
   min-height: 100vh;
