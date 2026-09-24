@@ -15,8 +15,8 @@ CSS custom properties (`src/styles/tokens.css`) · vitest · деплой на G
 ## Правила контента — не нарушать
 1. Весь текст сайта — только из `src/data/resume.ts`, который повторяет SPEC.md §6. Не придумывать факты,
    цифры, даты, роли. Нужен новый факт — сначала спросить.
-2. Авторство (SPEC.md §6.1): на TMH Hackathon Makar — ML engineer, сделал модель; проверка гипотез и
-   Kruskal–Wallis — не его. В Academic Profile он сделал бэкенд и обслуживал **готовую** модель рекомендаций
+2. Авторство (SPEC.md §6.1): на TMH Hackathon Makar — ML engineer, сделал модель на базовых гипотезах; ансамбль по
+   сериям — сокомандника, смесь 0.6 / 0.4 с весами, выбранными вручную; проверка гипотез и Kruskal–Wallis — не его. В Academic Profile он сделал бэкенд и обслуживал **готовую** модель рекомендаций
    команды — обучение модели не его.
 3. Локация — Sirius, никогда не Sochi. Проект называется Score Editor, ссылка — `github.com/MakarON-228/Note_redactor`.
 4. Игрушечные данные в демках всегда помечены «Illustrative data» / «Synthetic data» / «Simulation» и

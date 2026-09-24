@@ -97,7 +97,7 @@ export const hackathons = {
       result: 'Winner',
       role: 'ML engineer, team Ascent',
       date: 'Feb 2026',
-      body: "Wheel-life track, one of three contested by **14 teams**. Owned the prediction model: CatBoostRegressor over **407,669 wheel-wear records** in two variants — baseline hypotheses and the team's full feature set — blended with fitted weights, as per-decile error showed neither held the full range. **MSE 0.12**, served over a REST API.",
+      body: "Wheel-life track, one of three contested by **14 teams**. Built the baseline-hypotheses model — a CatBoostRegressor over **407,669 wheel-wear records** — and blended it 0.6 / 0.4 with a teammate's per-series ensemble on the team's full feature set, weights picked by hand, as per-decile error showed neither held the full range. **MSE 0.12**, served over a REST API.",
       repo: gh('Astal2307/TMHackathon_Ascent'),
     },
     {

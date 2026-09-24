@@ -218,7 +218,7 @@ HTML без JavaScript и подгружает JS только для конкр
 
 | Проект | Можно утверждать | Нельзя утверждать |
 |---|---|---|
-| TMH Hackathon | ML engineer в команде Ascent; сам сделал прогнозную модель: CatBoostRegressor, 407,669 записей износа, две версии (базовые гипотезы / полный набор признаков команды), смешивание с подобранными весами по анализу ошибки по децилям, MSE 0.12, выдача через REST API | проверку гипотез, Kruskal–Wallis, Dunn, признаки кривизны/энтропии/климата — это работа аналитика команды |
+| TMH Hackathon | ML engineer в команде Ascent; сам сделал модель на базовых гипотезах: CatBoostRegressor, 407,669 записей износа; итог — смесь 0.6 × его модель + 0.4 × ансамбль сокомандника (модели по сериям на полном наборе признаков команды), веса подобраны вручную по ошибке по децилям; MSE 0.12, выдача через REST API | ансамбль по сериям и модель на полном наборе признаков — не его; «подобранные/fitted веса» в смысле автоматического подбора — веса выбраны вручную; проверку гипотез, Kruskal–Wallis, Dunn, признаки кривизны/энтропии/климата — это работа аналитика команды |
 | Young Scientists | единственный бэкенд-разработчик: FastAPI, 15 эндпоинтов, JWT, SQLAlchemy; **обслуживал** готовую модель рекомендаций команды | обучение модели TF-IDF + KNN |
 | Yandex | капитан команды «AI Болид» из трёх человек и **единственный разработчик** — всю платформу написал сам, команда вместе готовила презентацию; платформа ведёт заявку от подачи до публичной витрины; 16 агентов (5 оценки, 9 deep research, 2 MCP-экспорта) — структура в `src/data/demo/yandex-agents.ts`, взята из кода | «все семь стадий жизненного цикла» — выделения ресурсов в Yandex Cloud в решении нет; не выпячивать MCP-интеграцию как сильную сторону |
 | Score Editor | отображаемое имя **Score Editor**, ссылка — `github.com/MakarON-228/Note_redactor` | — |
@@ -269,9 +269,10 @@ chain through architecture, roadmap, staffing and risk, and two MCP agents turni
 SourceCraft work.
 
 **TMH Hackathon, Sirius — Winner — ML engineer, team Ascent** · Feb 2026
-Wheel-life track, one of three contested by **14 teams**. Owned the prediction model: CatBoostRegressor over
-**407,669 wheel-wear records** in two variants — baseline hypotheses and the team's full feature set — blended with
-fitted weights, as per-decile error showed neither held the full range. **MSE 0.12**, served over a REST API.
+Wheel-life track, one of three contested by **14 teams**. Built the baseline-hypotheses model — a CatBoostRegressor
+over **407,669 wheel-wear records** — and blended it 0.6 / 0.4 with a teammate's per-series ensemble on the team's full
+feature set, weights picked by hand, as per-decile error showed neither held the full range. **MSE 0.12**, served over
+a REST API.
 Repo: `github.com/Astal2307/TMHackathon_Ascent`
 
 **Young Scientists Hackathon, Sirius — Winner, international field** · Nov 2025
