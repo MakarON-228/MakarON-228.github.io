@@ -46,7 +46,9 @@
   const outcome = $derived(run(applied.target, applied.mass, applied.bounds));
   const routes = $derived([...outcome.ranked, ...outcome.dropped]);
   const shown = $derived(routes.find((r) => key(r) === (preview ?? selected)) ?? outcome.ranked[0] ?? null);
-  // Лучший маршрут раскрыт сразу — и до гидратации, и без JS виден полный результат.
+  // Список свёрнут, чтобы демо не растягивало страницу: итог виден в строке над ним и на графе. Лучший маршрут внутри
+  // раскрыт сразу — кто развернёт список, и до гидратации, и без JS увидит его смесь партий.
+  let listOpen = $state(false);
   let open = $state.raw(new Set(outcome.ranked[0] ? [key(outcome.ranked[0])] : []));
 
   const summary = $derived(
@@ -173,21 +175,23 @@
   <p class="summary">{summary}</p>
 
   {#if outcome.ranked.length}
-    <div class="list-head">
-      <h4>{t.ranked}</h4>
-      <span>{t.complexity}</span>
-    </div>
-    <ol class="routes">
-      {#each outcome.ranked as r, i (key(r))}
-        {@const k = key(r)}
-        <li class:shown={shown === r}>
-          {@render routeRow(r, i + 1, k)}
-          {#if open.has(k)}
-            {@render details(r, k)}
-          {/if}
-        </li>
-      {/each}
-    </ol>
+    <details class="ranked" bind:open={listOpen}>
+      <summary>
+        <h4>{t.ranked(outcome.ranked.length)}</h4>
+        <span class="col">{t.complexity}</span>
+      </summary>
+      <ol class="routes">
+        {#each outcome.ranked as r, i (key(r))}
+          {@const k = key(r)}
+          <li class:shown={shown === r}>
+            {@render routeRow(r, i + 1, k)}
+            {#if open.has(k)}
+              {@render details(r, k)}
+            {/if}
+          </li>
+        {/each}
+      </ol>
+    </details>
   {:else}
     <p class="empty">{t.noRoutes}</p>
   {/if}
@@ -407,13 +411,51 @@
     color: var(--muted);
   }
 
-  .list-head {
+  summary {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: var(--space-4);
-    font-size: var(--fs-14);
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    list-style: none;
+    cursor: pointer;
     color: var(--muted);
+    font-size: var(--fs-14);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Шеврон вместо стандартного треугольника: flex на summary его убирает */
+  summary::before {
+    content: '';
+    flex: none;
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0 0.2rem 0 0.1rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+    transition: transform 0.15s;
+  }
+
+  details[open] > summary::before {
+    transform: rotate(45deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    summary::before {
+      transition: none;
+    }
+  }
+
+  .ranked .col {
+    margin-left: auto;
+  }
+
+  /* Свёрнутому заголовку — вся ширина: на 360px он встаёт в одну строку */
+  .ranked:not([open]) .col {
+    display: none;
   }
 
   h4 {
@@ -577,16 +619,7 @@
     color: var(--muted);
   }
 
-  .dropped summary {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: var(--muted);
-    font-size: var(--fs-14);
-  }
-
-  .dropped .routes {
+  details .routes {
     margin-top: var(--space-2);
   }
 

@@ -281,7 +281,7 @@ export const ui = {
     graph: 'Reaction graph',
     legendStock: 'raw material in stock',
     legendTarget: 'target',
-    ranked: 'Routes, easiest first',
+    ranked: (n: number) => `Routes, easiest first (${n})`,
     complexity: 'Complexity',
     complexityNote: 'CatBoost score per reaction, summed over the route',
     mix: (kg: string, target: string) => `Batch mix for ${kg} kg of ${target}`,
