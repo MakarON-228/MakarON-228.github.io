@@ -1,0 +1,162 @@
+{
+  "extracted": "2026-09-22T08:45:51Z",
+  "groups": [
+    {
+      "id": "oktyabrskaya",
+      "name": "Октябрьская железная дорога",
+      "nameEn": "Oktyabrskaya Railway",
+      "wikidata": "Q1327441",
+      "stations": 730,
+      "halts": 833
+    },
+    {
+      "id": "kaliningrad",
+      "name": "Калининградская железная дорога",
+      "nameEn": "Kaliningrad Railway",
+      "wikidata": "Q1552725",
+      "stations": 41,
+      "halts": 66
+    },
+    {
+      "id": "moscow",
+      "name": "Московская железная дорога",
+      "nameEn": "Moscow Railway",
+      "wikidata": "Q1765011",
+      "stations": 578,
+      "halts": 1053
+    },
+    {
+      "id": "gorky",
+      "name": "Горьковская железная дорога",
+      "nameEn": "Gorky Railway",
+      "wikidata": "Q1351775",
+      "stations": 402,
+      "halts": 555
+    },
+    {
+      "id": "northern",
+      "name": "Северная железная дорога",
+      "nameEn": "Northern Railway",
+      "wikidata": "Q1946844",
+      "stations": 427,
+      "halts": 382
+    },
+    {
+      "id": "north-caucasus",
+      "name": "Северо-Кавказская железная дорога",
+      "nameEn": "North Caucasus Railway",
+      "wikidata": "Q1666874",
+      "stations": 409,
+      "halts": 436
+    },
+    {
+      "id": "south-eastern",
+      "name": "Юго-Восточная железная дорога",
+      "nameEn": "South Eastern Railway",
+      "wikidata": "Q1529921",
+      "stations": 283,
+      "halts": 421
+    },
+    {
+      "id": "privolzhskaya",
+      "name": "Приволжская железная дорога",
+      "nameEn": "Privolzhskaya Railway",
+      "wikidata": "Q1542016",
+      "stations": 246,
+      "halts": 202
+    },
+    {
+      "id": "kuybyshev",
+      "name": "Куйбышевская железная дорога",
+      "nameEn": "Kuybyshev Railway",
+      "wikidata": "Q1791315",
+      "stations": 368,
+      "halts": 374
+    },
+    {
+      "id": "sverdlovsk",
+      "name": "Свердловская железная дорога",
+      "nameEn": "Sverdlovsk Railway",
+      "wikidata": "Q2095427",
+      "stations": 457,
+      "halts": 415
+    },
+    {
+      "id": "south-urals",
+      "name": "Южно-Уральская железная дорога",
+      "nameEn": "South Urals Railway",
+      "wikidata": "Q1567889",
+      "stations": 311,
+      "halts": 287
+    },
+    {
+      "id": "west-siberian",
+      "name": "Западно-Сибирская железная дорога",
+      "nameEn": "West Siberian Railway",
+      "wikidata": "Q595308",
+      "stations": 326,
+      "halts": 466
+    },
+    {
+      "id": "krasnoyarsk",
+      "name": "Красноярская железная дорога",
+      "nameEn": "Krasnoyarsk Railway",
+      "wikidata": "Q1573850",
+      "stations": 190,
+      "halts": 235
+    },
+    {
+      "id": "east-siberian",
+      "name": "Восточно-Сибирская железная дорога",
+      "nameEn": "East Siberian Railway",
+      "wikidata": "Q143784",
+      "stations": 242,
+      "halts": 247
+    },
+    {
+      "id": "trans-baikal",
+      "name": "Забайкальская железная дорога",
+      "nameEn": "Trans-Baikal Railway",
+      "wikidata": "Q1573855",
+      "stations": 183,
+      "halts": 125
+    },
+    {
+      "id": "far-eastern",
+      "name": "Дальневосточная железная дорога",
+      "nameEn": "Far Eastern Railway",
+      "wikidata": "Q1158067",
+      "stations": 461,
+      "halts": 143
+    },
+    {
+      "id": "other",
+      "name": "Другие железные дороги",
+      "nameEn": "Other railways",
+      "stations": 335,
+      "halts": 44
+    },
+    {
+      "id": "unassigned",
+      "name": "Дорога не определена",
+      "nameEn": "Unassigned",
+      "stations": 84,
+      "halts": 18
+    }
+  ],
+  "coverage": {
+    "override": 5,
+    "tags": 11670,
+    "wikidata": 35,
+    "nearest": 563,
+    "none": 102
+  },
+  "unassignedShare": 0.0082,
+  "nearest": {
+    "k": 3,
+    "radiusKm": 50,
+    "checked": 11291,
+    "answered": 11227,
+    "correct": 11166
+  }
+}

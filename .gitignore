@@ -9,3 +9,6 @@ dist/
 .DS_Store
 
 coverage/
+
+# сырые ответы Overpass и Wikidata для scripts/build-stations.ts
+.cache/
