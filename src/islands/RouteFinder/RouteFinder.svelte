@@ -88,6 +88,13 @@
     open = next;
   }
 
+  /** Клик по раскрытой карточке сворачивает её, как клик по строке, — если только в ней не выделяют текст. */
+  function collapse(e: MouseEvent, r: Route) {
+    const selection = window.getSelection();
+    if (selection && !selection.isCollapsed && (e.currentTarget as Node).contains(selection.anchorNode)) return;
+    toggle(r);
+  }
+
   const samePreset = (p: Spec) => COMPONENTS.every((c) => p[c] === spec[c]);
 </script>
 
@@ -235,7 +242,9 @@
 {/snippet}
 
 {#snippet details(r: Route, k: string)}
-  <div class="details" id="{uid}-{k}">
+  <!-- С клавиатуры карточку сворачивает кнопка строки; здесь — только щелчок мышью или тап по всей карточке -->
+  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+  <div class="details" id="{uid}-{k}" onclick={(e) => collapse(e, r)}>
     <section>
       <h5>{t.complexityNote}</h5>
       <table>
@@ -527,6 +536,7 @@
     gap: var(--space-4);
     padding: 0 var(--space-3) var(--space-3) calc(1.5rem + 2 * var(--space-3));
     font-size: var(--fs-14);
+    cursor: pointer;
   }
 
   h5 {
