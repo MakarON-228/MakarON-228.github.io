@@ -1,0 +1,73 @@
+---
+// Рамка демки под записью (SPEC.md §7): заголовок, бейдж, сама демка в слоте, подпись.
+interface Props {
+  /** Префикс id заголовка. */
+  id: string;
+  title: string;
+  badge: string;
+  caption: string;
+  class?: string;
+}
+
+const { id, title, badge, caption, class: className } = Astro.props;
+---
+
+<figure class:list={['demo', className]} aria-labelledby={`${id}-title`}>
+  <div class="head">
+    <p class="title" id={`${id}-title`}>{title}</p>
+    <span class="badge">{badge}</span>
+  </div>
+  <slot />
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  .demo {
+    display: grid;
+    gap: var(--space-4);
+    min-width: 0;
+    margin: var(--space-4) 0 0;
+    padding: var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .title {
+    font-family: var(--font-display);
+    font-size: var(--fs-28);
+    font-weight: 700;
+    line-height: var(--lh-tight);
+    text-wrap: balance;
+  }
+
+  .badge {
+    padding: 0.1rem var(--space-2);
+    border: 1px solid var(--muted);
+    border-radius: 999px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-14);
+    white-space: nowrap;
+  }
+
+  figcaption {
+    max-width: var(--measure);
+    color: var(--muted);
+    font-size: var(--fs-14);
+  }
+
+  @media (max-width: 479px) {
+    .demo {
+      padding: var(--space-3);
+    }
+  }
+</style>

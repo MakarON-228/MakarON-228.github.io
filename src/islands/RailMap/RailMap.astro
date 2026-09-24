@@ -4,6 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { RailwaysFile, StationsFile } from '../../../scripts/stations/format';
+import DemoFigure from '../../components/DemoFigure.astro';
 import { ui } from '../../data/resume';
 import RailMapApp from './RailMap.svelte';
 import { decode, formatDate } from './model';
@@ -24,11 +25,7 @@ const groups = railways.groups.map(({ id, nameEn, stations, halts }) => ({ id, n
 const t = ui.railMap;
 ---
 
-<figure class="railmap" aria-labelledby="railmap-title">
-  <div class="head">
-    <p class="title" id="railmap-title">{t.title}</p>
-    <span class="badge">{t.badge}</span>
-  </div>
+<DemoFigure id="railmap" class="railmap" title={t.title} badge={t.badge} caption={t.caption(formatDate(railways.extracted))}>
   <RailMapApp client:visible groups={groups} stationsUrl="/data/stations.json" landUrl="/data/land.json">
     <svg class="placeholder" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
       <path class="land" d={landPath(land, 'land', f, 1.5, 10)}></path>
@@ -36,48 +33,11 @@ const t = ui.railMap;
       {paths.map((p) => <path class="stations" d={p.d} style={`stroke: var(${roadToken(groups[p.group]!.id)})`} />)}
     </svg>
   </RailMapApp>
-  <figcaption>{t.caption(formatDate(railways.extracted))}</figcaption>
   <!-- Без JS поиск и платформы не работают — их не показываем; список дорог остаётся легендой -->
   <noscript><style is:inline>.railmap .tools { display: none; }</style></noscript>
-</figure>
+</DemoFigure>
 
 <style>
-  .railmap {
-    display: grid;
-    gap: var(--space-4);
-    margin: var(--space-4) 0 0;
-    padding: var(--space-4);
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: var(--radius);
-  }
-
-  .head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-2) var(--space-4);
-  }
-
-  .title {
-    font-family: var(--font-display);
-    font-size: var(--fs-28);
-    font-weight: 700;
-    line-height: var(--lh-tight);
-    text-wrap: balance;
-  }
-
-  .badge {
-    padding: 0.1rem var(--space-2);
-    border: 1px solid var(--muted);
-    border-radius: 999px;
-    color: var(--muted);
-    font-family: var(--font-mono);
-    font-size: var(--fs-14);
-    white-space: nowrap;
-  }
-
   .land {
     fill: var(--map-land);
   }
@@ -90,17 +50,5 @@ const t = ui.railMap;
     fill: none;
     stroke-width: 2.4;
     stroke-linecap: round;
-  }
-
-  figcaption {
-    max-width: var(--measure);
-    color: var(--muted);
-    font-size: var(--fs-14);
-  }
-
-  @media (max-width: 479px) {
-    .railmap {
-      padding: var(--space-3);
-    }
   }
 </style>

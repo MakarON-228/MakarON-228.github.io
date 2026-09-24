@@ -1,0 +1,15 @@
+---
+// Демо PitchStaff (SPEC.md §7.9): нотный стан Score Editor в браузере. До гидратации остров отрисован сервером —
+// тот же стан того же размера, без сдвига вёрстки.
+import DemoFigure from '../../components/DemoFigure.astro';
+import { ui } from '../../data/resume';
+import PitchStaffApp from './PitchStaff.svelte';
+
+const t = ui.pitchStaff;
+---
+
+<DemoFigure id="pitchstaff" class="pitchstaff" title={t.title} badge={t.badge} caption={t.caption}>
+  <PitchStaffApp client:visible />
+  <!-- Без JS ни клик, ни запись не работают — кнопки и подсказку не показываем, остаётся пустой стан -->
+  <noscript><style is:inline>.pitchstaff .controls, .pitchstaff .hint, .pitchstaff .status { display: none; }</style></noscript>
+</DemoFigure>
