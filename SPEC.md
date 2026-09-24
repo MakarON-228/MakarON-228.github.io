@@ -57,7 +57,8 @@ HTML без JavaScript и подгружает JS только для конкр
 │  │  ├─ alumina-reactions.ts       ← граф реакций из БД проекта SIBUR (§7.8)
 │  │  ├─ alumina-warehouse.ts       ← партии склада, тестовые данные команды (§7.8)
 │  │  ├─ alumina-complexity.json    ← оценки шагов моделью CatBoost проекта (§7.8)
-│  │  └─ yandex-agents.ts           ← готов: 16 агентов и статусы платформы из кода (§7.5)
+│  │  ├─ yandex-agents.ts           ← готов: 16 агентов и статусы платформы из кода (§7.5)
+│  │  └─ yandex-proposals.ts        ← SIMULATION: три заявки и ответы агентов (§7.5)
 │  ├─ styles/tokens.css             ← палитра, типографика, отступы (§4)
 │  ├─ layouts/Base.astro
 │  ├─ components/                   ← статичные секции (.astro)
@@ -435,28 +436,44 @@ Repo: `github.com/MakarON-228/Note_redactor`
 
 ### 7.5 AgentPipeline — платформа агентов (Yandex)
 
-Всё в этой демке — **настоящая структура из кода** команды, она уже лежит в `src/data/demo/yandex-agents.ts`:
-16 агентов, кто кого читает и сколько символов, какие оценки вытаскиваются, статусы проекта, роли пользователей.
-Выдуманы только текст заявки и ответы агентов — это симуляция.
+Посетитель играет **ревьюера** платформы команды. Настоящее — из кода `team-ai-bolid`: состав, порядок и
+параллельность 16 агентов, кто чьи выводы читает и сколько символов (`src/data/demo/yandex-agents.ts`), переходы
+статусов проекта и функции, которые разбирают ответы агентов. Выдуманы три заявки и ответы агентов
+(`src/data/demo/yandex-proposals.ts`) — это симуляция.
 
-- **Линия статусов проекта** (зелёная линия Agents): `draft → submitted → under_review → accepted_for_research →
-  deep_research_running → deep_research_completed → on_showcase`; ответвления `revision_requested` (возврат на
-  доработку) и `rejected` (тупик). Решение принимает человек-reviewer — агенты только советуют; это показать явно.
-- **Станция «Review» — панель оценки:** четыре эксперта (Technical Analyst, Market Researcher, Innovator, Risk Assessor)
-  загораются **одновременно** — в коде они идут параллельно в четыре потока; затем Moderator сводит их в балл 0–100 и
-  вердикт APPROVE / REJECT / UNDECIDED.
-- **Станция «Deep research» — цепочка из девяти:** Project Analyst → Research Strategist → Technical Researcher →
-  Architect → Roadmap Manager → HR Specialist → Risk Analyst → Quality Reviewer → Synthesis Manager. Агенты
-  срабатывают **по очереди**, счётчик «3 / 9» как в настоящем UI. Над цепочкой — дуги контекста: кто чьи выводы
-  читает, толщина дуги = лимит символов из кода (например, Architect → Roadmap Manager 6000). Risk Analyst выдаёт
-  GO / GO WITH CONDITIONS / NO-GO и feasibility score, Quality Reviewer — оценки качества и полноты.
-- **Станция «Export»:** два MCP-агента расходятся на Yandex Tracker и SourceCraft.
-- **Станция «Showcase»:** карточка проекта на публичной витрине, кнопка «Write to the project» открывает чат.
-- **Управление:** выбор одной из 2–3 заготовленных заявок; «Run»; «Skip to result»; клик по любому агенту — его роль и
-  что он читает на входе.
-- **Метка:** «Simulation — scripted outputs. Agent roster, order, parallelism and context limits are taken from the
-  team's code.» Модели в подписи: YandexGPT 5.1 Pro, DeepSeek V3.2 as an alternative profile.
-- **Приёмка:** 16 агентов, порядок и параллельность как в коде; при reduced motion сразу финальное состояние.
+- **Порт кода:** `parse.ts` — `compact_text`, `extract_score`, `extract_decision`, `extract_executive_summary`
+  (`deep_research.py`) и `extract_verdict` (`proposal_evaluator.py`) со всеми причудами (REJECT раньше APPROVE, NO-GO
+  раньше GO, первое вхождение метки, обрезка выше 100); `status.ts` — переходы и условия из `src/app/api/projects.py`
+  и `run_jobs_memory.py`; `run.ts` — порядок запусков, `_proposal_body`, входы агентов через `compact_text` с лимитами
+  из промпт-билдеров, разбор итогов в порядке кода (решение — из Risk Analyst, иначе из синтеза).
+- **Линия статусов** (зелёная линия Agents): `draft → submitted → under_review → accepted_for_research →
+  deep_research_running → deep_research_completed → on_showcase`; ответвления `revision_requested` и `rejected`.
+- **Действия ревьюера — по статусу, как разрешает API:** Run evaluation; Approve / Request revision / Reject (решение
+  человека, ни одна кнопка не выделена — агенты только советуют, подпись об этом рядом); после запроса доработки —
+  шаг автора «revises and resubmits» (`draft → submitted`); Run deep research; Publish to showcase; экспорт; Skip to
+  result (мгновенно завершить текущий запуск); Start over. Заявки стартуют в `submitted`.
+- **Вкладка «Review»:** четыре эксперта (Technical Analyst, Market Researcher, Innovator, Risk Assessor) загораются
+  **одновременно** и заканчивают кто когда (`as_completed`), их линии сходятся к Moderator; под ним — вердикт
+  APPROVE / REJECT / UNDECIDED и `confidence N/100`, разобранные из его ответа. Счётчик «N / 5».
+- **Вкладка «Deep research»:** Project Analyst → Research Strategist → Technical Researcher → Architect → Roadmap
+  Manager → HR Specialist → Risk Analyst → Quality Reviewer → Synthesis Manager — **по очереди**, счётчик «3 / 9» и
+  полоса прогресса как в настоящем UI. Дуги контекста — только для работающего или выбранного агента (все 29 сразу —
+  клубок): от кого он читает, толщина = лимит `compact_text` из кода. Итоги появляются, когда отработал агент, из чьего
+  ответа их берёт код: GO / GO WITH CONDITIONS / NO-GO и feasibility — Risk Analyst, quality и completeness — Quality
+  Reviewer, executive summary — синтез.
+- **Вкладка «Export & showcase»:** два MCP-агента расходятся от завершённого deep research на Yandex Tracker (как в
+  платформе, нужна очередь; ответ агента называет её) и SourceCraft; карточка проекта на витрине — как на странице
+  Showcase (бейдж, название, описание). Чата нет: в статичном демо писать некому.
+- **Агент по клику:** роль и таймаут из кода, что читает (лимит и сколько символов пришло в этом запуске, отметка
+  обрезки), что платформа разобрала из ответа, сам ответ.
+- **Заявки:** три, из областей задачи хакатона; модератор советует по ним APPROVE, UNDECIDED и REJECT, deep research
+  приходит к GO WITH CONDITIONS, GO и NO-GO. Одобрить можно любую.
+- **Метка:** «Simulation»; подпись — заявки и ответы выдуманы, состав, порядок, параллельность, лимиты контекста,
+  переходы статусов и парсеры взяты из кода команды; модели YandexGPT 5.1 Pro, DeepSeek V3.2 as an alternative profile.
+- **Приёмка:** 16 агентов, порядок и параллельность как в коде; парсеры совпадают с Python-оригиналом на эталонах
+  (vitest), итоги по заявкам — тоже; переходы и запреты статусов как в API; время запуска на `requestAnimationFrame`,
+  пауза вне экрана и на скрытой вкладке; при reduced motion запуск сразу в итоге; всё с клавиатуры (вкладки — стрелками),
+  события через `aria-live`.
 
 ### 7.6 TwoModels — почему две модели (TMH Hackathon)
 

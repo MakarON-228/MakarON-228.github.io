@@ -1,0 +1,15 @@
+---
+// Демо AgentPipeline (SPEC.md §7.5): платформа агентов команды «AI Болид», посетитель — ревьюер. До гидратации остров
+// отрисован сервером — первая заявка в статусе «Submitted», агенты не запускались; без сдвига вёрстки.
+import DemoFigure from '../../components/DemoFigure.astro';
+import { ui } from '../../data/resume';
+import AgentPipelineApp from './AgentPipeline.svelte';
+
+const t = ui.agentPipeline;
+---
+
+<DemoFigure id="agentpipeline" class="agentpipeline" title={t.title} badge={t.badge} caption={t.caption}>
+  <AgentPipelineApp client:visible />
+  <!-- Без JS ничего не запускается — выбор заявки, действия, вкладки и панель агента не показываем, остаются статусы и агенты -->
+  <noscript><style is:inline>.agentpipeline .picker, .agentpipeline .controls, .agentpipeline .tabs, .agentpipeline .detail { display: none; }</style></noscript>
+</DemoFigure>

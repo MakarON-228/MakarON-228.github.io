@@ -11,6 +11,7 @@ import Footer from '../components/Footer.astro';
 import RailMap from '../islands/RailMap/RailMap.astro';
 import PitchStaff from '../islands/PitchStaff/PitchStaff.astro';
 import RouteFinder from '../islands/RouteFinder/RouteFinder.astro';
+import AgentPipeline from '../islands/AgentPipeline/AgentPipeline.astro';
 import { experience, hackathons, header, projects, sections } from '../data/resume';
 
 const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record<(typeof sections)[number]['id'], string>;
@@ -29,7 +30,7 @@ const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record
 
     <Section id="hackathons" title={title.hackathons}>
       <span slot="aside" class="tally">{hackathons.tally}</span>
-      <div class="entries">{hackathons.items.map((e) => <Entry entry={e} />)}</div>
+      <div class="entries">{hackathons.items.map((e) => <Entry entry={e}>{e.id === 'yandex' && <AgentPipeline />}</Entry>)}</div>
     </Section>
 
     <Section id="projects" title={title.projects}>
