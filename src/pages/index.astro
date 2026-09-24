@@ -10,6 +10,7 @@ import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import RailMap from '../islands/RailMap/RailMap.astro';
 import PitchStaff from '../islands/PitchStaff/PitchStaff.astro';
+import RouteFinder from '../islands/RouteFinder/RouteFinder.astro';
 import { experience, hackathons, header, projects, sections } from '../data/resume';
 
 const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record<(typeof sections)[number]['id'], string>;
@@ -32,7 +33,16 @@ const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record
     </Section>
 
     <Section id="projects" title={title.projects}>
-      <div class="entries">{projects.map((e) => <Entry entry={e}>{e.id === 'score-editor' && <PitchStaff />}</Entry>)}</div>
+      <div class="entries">
+        {
+          projects.map((e) => (
+            <Entry entry={e}>
+              {e.id === 'sibur' && <RouteFinder />}
+              {e.id === 'score-editor' && <PitchStaff />}
+            </Entry>
+          ))
+        }
+      </div>
     </Section>
 
     <Section id="education" title={title.education}>

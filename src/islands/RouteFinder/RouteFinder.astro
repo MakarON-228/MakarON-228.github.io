@@ -1,0 +1,15 @@
+---
+// Демо RouteFinder (SPEC.md §7.8): пайплайн подбора сырья SIBUR в браузере. До гидратации остров отрисован сервером —
+// тот же граф и тот же список по умолчанию, без сдвига вёрстки.
+import DemoFigure from '../../components/DemoFigure.astro';
+import { ui } from '../../data/resume';
+import RouteFinderApp from './RouteFinder.svelte';
+
+const t = ui.routeFinder;
+---
+
+<DemoFigure id="routefinder" class="routefinder" title={t.title} badge={t.badge} caption={t.caption}>
+  <RouteFinderApp client:visible />
+  <!-- Без JS ввод не пересчитывает — управление не показываем, остаётся результат по умолчанию -->
+  <noscript><style is:inline>.routefinder .controls { display: none; }</style></noscript>
+</DemoFigure>

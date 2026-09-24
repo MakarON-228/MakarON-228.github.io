@@ -255,4 +255,48 @@ export const ui = {
     caption:
       "Slot grid, staff steps and the YIN pitch detector are ported from the desktop app's C++: a note lands after three matching 4,096-sample frames, naturals only. Audio stays in your browser.",
   },
+  /** Демо RouteFinder под записью SIBUR (SPEC.md §7.8). Формулы и условия реакций — из данных демо. */
+  routeFinder: {
+    title: 'Synthesis routes from the warehouse',
+    badge: 'Illustrative data',
+    target: 'Target',
+    mass: 'Mass, kg',
+    spec: 'Product spec, %',
+    specHint: 'Written as the pipeline read it: >98, <0.015 or 0.1-0.3.',
+    components: {
+      main_percent: 'Main',
+      fe_percent: 'Fe',
+      si_percent: 'Si',
+      k_percent: 'K',
+      ca_percent: 'Ca',
+      mg_percent: 'Mg',
+      na_percent: 'Na',
+    },
+    presets: 'Presets',
+    notebookSpec: 'Notebook spec',
+    lowIron: 'Low iron',
+    invalidSpec: 'Use >x, <x or a-b, in percent.',
+    invalidMass: 'Enter a mass above 0 kg.',
+    stale: 'Showing the last valid input.',
+    graph: 'Reaction graph',
+    legendStock: 'raw material in stock',
+    legendTarget: 'target',
+    ranked: 'Routes, easiest first',
+    complexity: 'Complexity',
+    complexityNote: 'CatBoost score per reaction, summed over the route',
+    mix: (kg: string, target: string) => `Batch mix for ${kg} kg of ${target}`,
+    batch: (id: number) => `Batch ${id}`,
+    total: 'Total',
+    product: 'Product',
+    allowed: 'Allowed',
+    details: 'Details',
+    dropped: (n: number) => `Dropped — no feasible mix under this spec (${n})`,
+    noRoutes: 'No route has a feasible mix under this spec.',
+    summary: (routes: number, target: string, dropped: number, best: string | null) =>
+      `${routes} ${routes === 1 ? 'route' : 'routes'} to ${target} with a feasible mix` +
+      (dropped ? `, ${dropped} dropped` : '') +
+      (best ? `. Easiest: ${best}.` : '.'),
+    caption:
+      "Reaction graph, route search, LP batch mix and CatBoost complexity scores are ported from the project's code and database; warehouse batches are the team's test data.",
+  },
 } as const;
