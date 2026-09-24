@@ -39,6 +39,11 @@
   --road-other: var(--muted);
   --road-unassigned: var(--muted);
 
+  /* Линии моделей на графике TwoModels (SPEC.md §7.6): синий и янтарный, шаги подобраны под полосу светлоты графиков
+     и проверены валидатором палитры в обеих темах (контраст ≥ 3:1, различимы при дальтонизме). Смесь рисуется --ink. */
+  --chart-a: #2a78d6;
+  --chart-b: #b87a00;
+
   /* Гарнитуры */
   --font-display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif-condensed, sans-serif;
   --font-body: 'Overpass Variable', 'Overpass', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -101,6 +106,8 @@
     --road-east-siberian: #17804f;
     --road-trans-baikal: #c08933;
     --road-far-eastern: #d43131;
+    --chart-a: #3987e5;
+    --chart-b: #c98500;
   }
 }
 
@@ -129,4 +136,6 @@
   --road-east-siberian: #17804f;
   --road-trans-baikal: #c08933;
   --road-far-eastern: #d43131;
+  --chart-a: #3987e5;
+  --chart-b: #c98500;
 }

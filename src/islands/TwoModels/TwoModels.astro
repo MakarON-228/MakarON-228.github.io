@@ -1,0 +1,15 @@
+---
+// Демо TwoModels (SPEC.md §7.6): задумка смешивания двух моделей на синтетике. До гидратации остров отрисован
+// сервером — тот же график при весе по умолчанию, без сдвига вёрстки.
+import DemoFigure from '../../components/DemoFigure.astro';
+import { ui } from '../../data/resume';
+import TwoModelsApp from './TwoModels.svelte';
+
+const t = ui.twoModels;
+---
+
+<DemoFigure id="twomodels" class="twomodels" title={t.title} badge={t.badge} caption={t.caption}>
+  <TwoModelsApp client:visible />
+  <!-- Без JS ползунок ничего не пересчитывает — не показываем его, остаются график и таблица -->
+  <noscript><style is:inline>.twomodels .control { display: none; }</style></noscript>
+</DemoFigure>

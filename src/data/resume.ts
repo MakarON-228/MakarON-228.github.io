@@ -299,6 +299,29 @@ export const ui = {
     caption:
       "Reaction graph, route search, LP batch mix and CatBoost complexity scores are ported from the project's code and database; warehouse batches are the team's test data.",
   },
+  /** Демо TwoModels под записью TMH Hackathon (SPEC.md §7.6). Всё на синтетике, без данных и моделей команды. */
+  twoModels: {
+    title: 'Where each model errs',
+    badge: 'Synthetic data',
+    chart: 'Mean absolute error by decile of true wear',
+    axisX: 'Decile of true wear intensity, low → high',
+    axisY: 'MAE',
+    modelA: 'Model A',
+    modelB: 'Model B',
+    blend: 'Blend',
+    hintA: 'accurate on typical wheels, pulls the extremes towards the mean',
+    hintB: 'keeps the extremes, noisier in the middle',
+    weight: 'Weight of model A',
+    formula: (w: string, rest: string) => `${w} × A + ${rest} × B`,
+    mse: 'MSE',
+    decile: 'Decile',
+    table: 'Show the numbers',
+    describe: (middle: string, edges: string, blend: string) =>
+      `Model A has the lower error in deciles ${middle}, model B in deciles ${edges}. ${blend}`,
+    blendNow: (formula: string, mse: string, a: string, b: string) => `Blend ${formula}: MSE ${mse}; model A ${a}, model B ${b}.`,
+    caption:
+      'Synthetic data — made-up wear values and two made-up models, to show the idea: per-decile error reveals where each model fails, and a weighted blend covers both.',
+  },
   /** Демо AgentPipeline под записью Yandex (SPEC.md §7.5). Имена и роли агентов — из yandex-agents.ts. */
   agentPipeline: {
     title: 'The platform, with you as the reviewer',
