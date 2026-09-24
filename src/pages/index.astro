@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 import Hero from '../components/Hero.astro';
-import DepartureBoard from '../islands/DepartureBoard/DepartureBoard.astro';
 import Section from '../components/Section.astro';
 import Entry from '../components/Entry.astro';
 import Education from '../components/Education.astro';
@@ -18,7 +17,6 @@ const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record
   <SiteNav />
   <main id="content" class="page" tabindex="-1">
     <Hero />
-    <DepartureBoard />
 
     <Section id="experience" title={title.experience}>
       <div class="entries">{experience.map((e) => <Entry entry={e} />)}</div>

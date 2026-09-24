@@ -9,7 +9,7 @@ export interface Link {
 }
 
 export interface Entry {
-  /** Якорь записи: на него ведут станции карты и строки табло. */
+  /** Якорь записи: на него ведут станции карты. */
   id: string;
   line: Line;
   title: string;
@@ -140,24 +140,6 @@ export const projects: readonly Entry[] = [
 /** Все записи с датой — станции карты линий. */
 export const entries: readonly Entry[] = [...experience, ...hackathons.items, ...projects];
 
-export interface BoardRow {
-  value: string;
-  label: string;
-  /** id записи, из текста которой взята цифра. */
-  entry: string;
-}
-
-/** Табло — SPEC.md §7.2. Каждое значение обязано встречаться в тексте своей записи (см. resume.test.ts). */
-export const board: readonly BoardRow[] = [
-  { value: '4,400', label: 'line ETL pipeline', entry: 'tmh-internship' },
-  { value: '16', label: 'Parquet tables', entry: 'tmh-internship' },
-  { value: '209,638', label: 'row search index', entry: 'tmh-internship' },
-  { value: '407,669', label: 'wear records', entry: 'tmh-hackathon' },
-  { value: '0.12', label: 'MSE', entry: 'tmh-hackathon' },
-  { value: '194,849', label: 'researchers served', entry: 'young-scientists' },
-  { value: '16', label: 'AI agents', entry: 'yandex' },
-];
-
 export const education = {
   institution: 'Sirius University of Science and Technology',
   date: '2024 – 2029',
@@ -203,12 +185,5 @@ export const ui = {
     hub: 'Sirius University',
     lines: { rail: 'Rail', science: 'Science', agents: 'Agents', craft: 'Craft' } satisfies Record<Line, string>,
     legend: 'Lines',
-  },
-  board: {
-    title: 'Departures',
-    figure: 'Figure',
-    what: 'What',
-    from: 'From',
-    flip: 'Flip the board',
   },
 } as const;

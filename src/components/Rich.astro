@@ -1,14 +1,17 @@
 ---
 import { parseRich } from '../lib/rich';
+import { hasDigits } from '../lib/flap';
 
 interface Props {
   text: string;
 }
 
 const segments = parseRich(Astro.props.text);
+// Выделенные цифры перещёлкиваются по наведению и тапу (SPEC.md §7.2)
+const flap = (text: string) => (hasDigits(text) ? { 'data-flap': '' } : {});
 ---
 
-{segments.map((s) => (s.kind === 'strong' ? <strong class="figure">{s.text}</strong> : s.kind === 'em' ? <em>{s.text}</em> : s.text))}
+{segments.map((s) => (s.kind === 'strong' ? <strong class="figure" {...flap(s.text)}>{s.text}</strong> : s.kind === 'em' ? <em>{s.text}</em> : s.text))}
 
 <style>
   .figure {
@@ -16,3 +19,9 @@ const segments = parseRich(Astro.props.text);
     font-weight: 700;
   }
 </style>
+
+<script>
+  import { initFlap } from '../lib/flap-client';
+
+  document.querySelectorAll<HTMLElement>('[data-flap]').forEach(initFlap);
+</script>
