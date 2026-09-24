@@ -15,6 +15,30 @@
   --line-agents: #1f8a5b;
   --line-craft: #c98a0e; /* только заливки и линии, не текст */
 
+  /* Карта станций (SPEC.md §7.4): суша, вода и 16 дорог РЖД. Четыре дороги носят цвета линий сайта,
+     остальные двенадцать — их родня; соседние дороги различимы и при дальтонизме (проверено валидатором,
+     src/islands/RailMap/palette.test.ts). Только заливки точек и образцы в легенде, не текст. */
+  --map-water: #dde5ea;
+  --map-land: #f8fafb;
+  --road-oktyabrskaya: var(--line-science);
+  --road-kaliningrad: #6a9544;
+  --road-moscow: var(--line-rail);
+  --road-gorky: #2571ad;
+  --road-northern: #9c8c23;
+  --road-north-caucasus: #c57444;
+  --road-south-eastern: #1590c9;
+  --road-privolzhskaya: #557200;
+  --road-kuybyshev: var(--line-craft);
+  --road-sverdlovsk: var(--line-agents);
+  --road-south-urals: #920036;
+  --road-west-siberian: #3650b0;
+  --road-krasnoyarsk: #983d58;
+  --road-east-siberian: #235e17;
+  --road-trans-baikal: #a2650a;
+  --road-far-eastern: #df6b88;
+  --road-other: var(--muted);
+  --road-unassigned: var(--muted);
+
   /* Гарнитуры */
   --font-display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif-condensed, sans-serif;
   --font-body: 'Overpass Variable', 'Overpass', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -63,6 +87,20 @@
     --line-rail: #f0604f;
     --line-agents: #3cc486;
     --line-craft: #f2b53a;
+    --map-water: #0b131a;
+    --map-land: #16242f;
+    --road-kaliningrad: #429a5f;
+    --road-gorky: #3e6bb9;
+    --road-northern: #bdb21d;
+    --road-north-caucasus: #ac553d;
+    --road-south-eastern: #078fbc;
+    --road-privolzhskaya: #8d9218;
+    --road-south-urals: #c63085;
+    --road-west-siberian: #797bcb;
+    --road-krasnoyarsk: #e989a1;
+    --road-east-siberian: #17804f;
+    --road-trans-baikal: #c08933;
+    --road-far-eastern: #d43131;
   }
 }
 
@@ -77,4 +115,18 @@
   --line-rail: #f0604f;
   --line-agents: #3cc486;
   --line-craft: #f2b53a;
+  --map-water: #0b131a;
+  --map-land: #16242f;
+  --road-kaliningrad: #429a5f;
+  --road-gorky: #3e6bb9;
+  --road-northern: #bdb21d;
+  --road-north-caucasus: #ac553d;
+  --road-south-eastern: #078fbc;
+  --road-privolzhskaya: #8d9218;
+  --road-south-urals: #c63085;
+  --road-west-siberian: #797bcb;
+  --road-krasnoyarsk: #e989a1;
+  --road-east-siberian: #17804f;
+  --road-trans-baikal: #c08933;
+  --road-far-eastern: #d43131;
 }

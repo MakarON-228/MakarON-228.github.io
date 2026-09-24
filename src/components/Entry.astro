@@ -42,6 +42,8 @@ const meta = [entry.role, entry.place, ...(entry.stack ?? [])].filter((m): m is 
         </p>
       )
     }
+    <!-- Демо проекта (SPEC.md §7), если есть -->
+    <slot />
   </div>
 </article>
 

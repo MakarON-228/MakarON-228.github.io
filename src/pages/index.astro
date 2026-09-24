@@ -8,6 +8,7 @@ import Education from '../components/Education.astro';
 import Skills from '../components/Skills.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import RailMap from '../islands/RailMap/RailMap.astro';
 import { experience, hackathons, header, projects, sections } from '../data/resume';
 
 const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record<(typeof sections)[number]['id'], string>;
@@ -19,7 +20,9 @@ const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record
     <Hero />
 
     <Section id="experience" title={title.experience}>
-      <div class="entries">{experience.map((e) => <Entry entry={e} />)}</div>
+      <div class="entries">
+        {experience.map((e) => <Entry entry={e}>{e.id === 'tmh-internship' && <RailMap />}</Entry>)}
+      </div>
     </Section>
 
     <Section id="hackathons" title={title.hackathons}>

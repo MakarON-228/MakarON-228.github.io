@@ -70,10 +70,10 @@ describe('committed station data', () => {
     expect(rows.some((r) => isRoad(r.group))).toBe(true);
   });
 
-  it('dates the extract and fits the 400 KB gzip budget', () => {
+  it('dates the extract and fits the 400 KB gzip budget together with the land layer', () => {
     expect(stations.extracted).toMatch(/^\d{4}-\d{2}-\d{2}T/);
     expect(railways.extracted).toBe(stations.extracted);
-    const gzip = gzipSync(stationsText).length + gzipSync(railwaysText).length;
+    const gzip = [stationsText, railwaysText, read('land.json')].reduce((n, text) => n + gzipSync(text).length, 0);
     expect(gzip).toBeLessThanOrEqual(400 * 1024);
   });
 });
