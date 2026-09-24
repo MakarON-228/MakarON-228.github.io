@@ -1,135 +1,87 @@
 /**
- * Схема превращений кристаллических модификаций оксида алюминия.
- * Перенесено вручную со схемы «Рисунок 1.2.1 — Развернутая схема превращений, приводящих к образованию
- * различных кристаллических модификаций оксида алюминия» (reference/alumina-scheme.png) —
- * реакции, с которыми работала система подбора сырья (SIBUR, Jul 2025).
+ * Граф превращений оксида алюминия — выгрузка таблиц БД проекта SIBUR (github.com/MakarON-228/sibur-ml,
+ * `data/chemicalobjects.csv` и `data/chemicaloperations.csv`), на которых работала система подбора сырья (Jul 2025).
+ * Id, формулы, молярные массы, исходники, температуры и строки условий — как в БД, без правок.
  *
- * Правила переноса:
- * - Одинаково записанные вещества — один узел (θ-Al₂O₃ (H₂O) встречается в четырёх цепочках, γ-AlO(OH) — в двух).
- * - γ-Al₂O₃ из высокотемпературного расплава — отдельный узел от γ-Al₂O₃ (H₂O): на схеме у них разное
- *   происхождение, и из «расплавной» γ дальнейших превращений не нарисовано. Склеивать нельзя — появятся
- *   маршруты, которых на схеме нет.
- * - γ-Al₂O₃ (H₂O) — один узел в цепочках 6 и 7, поэтому прямой переход γ → θ из цепочки 7 доступен и для γ,
- *   полученной из бёмита (маршрут boehmite → γ → θ → α без δ). Это следствие схемы, а не ошибка.
- * - Там, где на схеме условия не указаны (цепочка Al(MOₙ)₃ и первая стрелка расплава с SiO₂), поле пустое.
+ * Сверх БД добавлены только подписи для сайта: `label` — формула в Unicode, `name` — название минерала.
+ * В БД γ(η)-Al₂O₃ записан как `\gamma(n)`; на схеме (reference/alumina-scheme.png) это γ(η).
  *
- * Массовые коэффициенты — кг исходного вещества на 1 кг продукта, по молярным массам
- * Al(OH)₃ = 78.003, AlO(OH) = 59.988, Al₂O₃ = 101.961 г/моль:
- *   2 Al(OH)₃ → Al₂O₃ + 3 H₂O   → 1.5301
- *     Al(OH)₃ → AlO(OH) + H₂O   → 1.3003
- *   2 AlO(OH) → Al₂O₃ + H₂O     → 1.1767
- *   Al₂O₃ → Al₂O₃ (смена модификации) → 1.0  (остаточная вода «(H₂O)» в расчёте не учитывается)
- * Для Al(MOₙ)₃ молярная масса не определена (M и n не заданы) → коэффициент null, масса по такому
- * маршруту не считается.
+ * `formula` оставлена в записи БД: по ней `al_coeff` пайплайна считает атомы Al (символ через три после «Al»).
+ * `sourceCheck` — вещество есть на складе как сырьё; с его реакций начинается поиск цепочек.
  */
-
-export type Family = 'hydroxide' | 'oxyhydroxide' | 'oxide' | 'precursor' | 'melt';
 
 export interface Substance {
-  id: string;
-  label: string;          // как на схеме, с Unicode-индексами
-  family: Family;
-  note?: string;
+  id: number;
+  formula: string; // chemical_formula из БД
+  label: string;
+  name?: string;
+  sourceCheck: boolean;
+  molarMass: number; // г/моль, как в БД
 }
 
-export interface Transition {
-  from: string;
-  to: string;
-  tempC: number | null;   // температура над стрелкой; null — на схеме не указана
-  pressure?: string;      // «70–90 MPa»
-  hydrothermal?: boolean;
-  vacuum?: boolean;
-  process?: string;       // для кристаллизации из расплава
-  massFactor: number | null; // кг исходного на 1 кг продукта
+export interface Reaction {
+  id: number;
+  sources: readonly number[]; // source_id из БД — у реакций 7 и 12 несколько исходников
+  target: number;
+  temperature: number; // °C
+  conditions: string | null; // additional_conditions из БД, как записано
 }
 
-export const substances: Substance[] = [
-  // гидроксиды Al(OH)₃
-  { id: 'bayerite',      label: 'α-Al(OH)₃ (bayerite)',      family: 'hydroxide' },
-  { id: 'gibbsite',      label: 'γ-Al(OH)₃ (gibbsite)',      family: 'hydroxide' },
-  { id: 'nordstrandite', label: 'Al(OH)₃ (nordstrandite)',   family: 'hydroxide' },
-  { id: 'amorphous',     label: 'Al(OH)₃ (amorphous)',       family: 'hydroxide' },
-  // оксигидроксиды AlO(OH)
-  { id: 'boehmite',      label: 'γ-AlO(OH) (boehmite)',      family: 'oxyhydroxide' },
-  { id: 'diaspore',      label: 'α-AlO(OH) (diaspore)',      family: 'oxyhydroxide' },
-  // переходные оксиды
-  { id: 'eta',       label: 'η-Al₂O₃ (H₂O)',              family: 'oxide' },
-  { id: 'chi',       label: 'χ-Al₂O₃ (M⁺, H₂O)',          family: 'oxide', note: 'stabilized by M⁺ microimpurities' },
-  { id: 'kappa',     label: 'κ-Al₂O₃ (M⁺, H₂O)',          family: 'oxide', note: 'stabilized by M⁺ microimpurities' },
-  { id: 'rho',       label: 'ρ-Al₂O₃ (H₂O)',              family: 'oxide' },
-  { id: 'gammaEta',  label: 'γ(η)-Al₂O₃ (H₂O)',           family: 'oxide' },
-  { id: 'gamma',     label: 'γ-Al₂O₃ (H₂O)',              family: 'oxide' },
-  { id: 'delta',     label: 'δ-Al₂O₃ (H₂O)',              family: 'oxide' },
-  { id: 'theta',     label: 'θ-Al₂O₃ (H₂O)',              family: 'oxide' },
-  { id: 'iota',      label: 'i-Al₂O₃',                    family: 'oxide' },
-  { id: 'gammaMelt', label: 'γ-Al₂O₃ (from melt)',        family: 'oxide' },
-  // конечный продукт
-  { id: 'alpha',     label: 'α-Al₂O₃ (corundum)',         family: 'oxide' },
-  // прекурсор и расплавы
-  { id: 'alkoxide',  label: 'Al(MOₙ)₃',                   family: 'precursor' },
-  { id: 'melt',      label: 'Al₂O₃ (melt)',               family: 'melt' },
-  { id: 'htMelt',    label: 'Al₂O₃ (high-temperature melt)', family: 'melt' },
-  { id: 'siMelt',    label: 'Al₂O₃ (melt + SiO₂ microimpurity)', family: 'melt' },
+export const substances: readonly Substance[] = [
+  { id: 1, formula: '\\theta-Al_2O_3 (H_2O)', label: 'θ-Al₂O₃ (H₂O)', sourceCheck: false, molarMass: 102 },
+  { id: 2, formula: '\\alpha-Al_2O_3', label: 'α-Al₂O₃', name: 'corundum', sourceCheck: false, molarMass: 102 },
+  { id: 3, formula: '\\gamma-Al(OH)_3', label: 'γ-Al(OH)₃', name: 'gibbsite', sourceCheck: true, molarMass: 78 },
+  { id: 4, formula: '\\chi-Al_2O_3 (H_2O)', label: 'χ-Al₂O₃ (H₂O)', sourceCheck: false, molarMass: 102 },
+  { id: 5, formula: '\\kappa-Al_2O_3 (H_2O)', label: 'κ-Al₂O₃ (H₂O)', sourceCheck: false, molarMass: 102 },
+  { id: 8, formula: '\\alpha-Al(OH)_3', label: 'α-Al(OH)₃', name: 'bayerite', sourceCheck: true, molarMass: 78 },
+  { id: 9, formula: '\\eta-Al_2O_3 (H_2O)', label: 'η-Al₂O₃ (H₂O)', sourceCheck: false, molarMass: 102 },
+  { id: 11, formula: '\\rho-Al_2O_3 (H_2O)', label: 'ρ-Al₂O₃ (H₂O)', sourceCheck: false, molarMass: 102 },
+  { id: 12, formula: '\\gamma(n)-Al_2O_3 (H_2O)', label: 'γ(η)-Al₂O₃ (H₂O)', sourceCheck: false, molarMass: 102 },
+  {
+    id: 13,
+    formula: 'Al(OH)_3 (amorphous-alumina-hydroxide)',
+    label: 'Al(OH)₃',
+    name: 'amorphous',
+    sourceCheck: true,
+    molarMass: 78,
+  },
+  { id: 14, formula: '\\gamma-AlO(OH)', label: 'γ-AlO(OH)', name: 'boehmite', sourceCheck: true, molarMass: 60 },
+  { id: 15, formula: '\\alpha-AlO(OH)', label: 'α-AlO(OH)', name: 'diaspore', sourceCheck: true, molarMass: 60 },
+  { id: 16, formula: '\\gamma-Al_2O_3 (H_2O)', label: 'γ-Al₂O₃ (H₂O)', sourceCheck: false, molarMass: 102 },
+  { id: 17, formula: '\\delta-Al_2O_3 (H_2O)', label: 'δ-Al₂O₃ (H₂O)', sourceCheck: false, molarMass: 102 },
+  { id: 19, formula: 'Al_2O_3', label: 'Al₂O₃', sourceCheck: true, molarMass: 102 },
+  { id: 20, formula: '\\i-Al_2O_3', label: 'i-Al₂O₃', sourceCheck: false, molarMass: 102 },
+  { id: 10, formula: 'Al(OH)_3 (nordstrandite)', label: 'Al(OH)₃', name: 'nordstrandite', sourceCheck: true, molarMass: 78 },
 ];
 
-const OH3_TO_OXIDE = 1.5301;
-const OH3_TO_OOH = 1.3003;
-const OOH_TO_OXIDE = 1.1767;
-const PHASE = 1.0;
-const HYDRO = { pressure: '70–90 MPa', hydrothermal: true } as const;
-
-export const transitions: Transition[] = [
-  // 1. bayerite → η → θ → α
-  { from: 'bayerite', to: 'eta',   tempC: 230,  massFactor: OH3_TO_OXIDE },
-  { from: 'eta',      to: 'theta', tempC: 850,  massFactor: PHASE },
-  { from: 'theta',    to: 'alpha', tempC: 1200, massFactor: PHASE },
-
-  // 2. gibbsite → χ → κ → α
-  { from: 'gibbsite', to: 'chi',   tempC: 230,  massFactor: OH3_TO_OXIDE },
-  { from: 'chi',      to: 'kappa', tempC: 900,  massFactor: PHASE },
-  { from: 'kappa',    to: 'alpha', tempC: 1200, massFactor: PHASE },
-
-  // 3. {bayerite, gibbsite, nordstrandite} → ρ (вакуум) → γ(η) → θ → α
-  { from: 'bayerite',      to: 'rho', tempC: 230, vacuum: true, massFactor: OH3_TO_OXIDE },
-  { from: 'gibbsite',      to: 'rho', tempC: 230, vacuum: true, massFactor: OH3_TO_OXIDE },
-  { from: 'nordstrandite', to: 'rho', tempC: 230, vacuum: true, massFactor: OH3_TO_OXIDE },
-  { from: 'rho',      to: 'gammaEta', tempC: 850, massFactor: PHASE },
-  { from: 'gammaEta', to: 'theta',    tempC: 750, massFactor: PHASE },
-  // θ → α уже есть в цепочке 1
-
-  // 4. {amorphous, gibbsite} → boehmite (гидротермально) → α (гидротермально)
-  { from: 'amorphous', to: 'boehmite', tempC: 300, ...HYDRO, massFactor: OH3_TO_OOH },
-  { from: 'gibbsite',  to: 'boehmite', tempC: 300, ...HYDRO, massFactor: OH3_TO_OOH },
-  { from: 'boehmite',  to: 'alpha',    tempC: 450, ...HYDRO, massFactor: OOH_TO_OXIDE },
-
-  // 5. diaspore → α
-  { from: 'diaspore', to: 'alpha', tempC: 1200, massFactor: OOH_TO_OXIDE },
-
-  // 6. boehmite → γ → δ → θ → α
-  { from: 'boehmite', to: 'gamma', tempC: 450,  massFactor: OOH_TO_OXIDE },
-  { from: 'gamma',    to: 'delta', tempC: 600,  massFactor: PHASE },
-  { from: 'delta',    to: 'theta', tempC: 1050, massFactor: PHASE },
-
-  // 7. Al(MOₙ)₃ → γ → θ → α — условия на схеме не указаны
-  { from: 'alkoxide', to: 'gamma', tempC: null, massFactor: null },
-  { from: 'gamma',    to: 'theta', tempC: null, massFactor: PHASE },
-
-  // 8–10. расплавы
-  { from: 'melt',   to: 'alpha',     tempC: null, process: 'equilibrium crystallization',    massFactor: PHASE },
-  { from: 'htMelt', to: 'gammaMelt', tempC: null, process: 'nonequilibrium crystallization', massFactor: PHASE },
-  { from: 'siMelt', to: 'iota',      tempC: null, massFactor: PHASE },
-  { from: 'iota',   to: 'alpha',     tempC: 1300, massFactor: PHASE },
+export const reactions: readonly Reaction[] = [
+  { id: 1, sources: [1], target: 2, temperature: 1200, conditions: null },
+  { id: 2, sources: [3], target: 4, temperature: 230, conditions: null },
+  { id: 3, sources: [4], target: 5, temperature: 900, conditions: 'stab. by M+' },
+  { id: 4, sources: [5], target: 2, temperature: 1200, conditions: null },
+  { id: 5, sources: [9], target: 1, temperature: 850, conditions: null },
+  { id: 6, sources: [8], target: 9, temperature: 230, conditions: null },
+  { id: 7, sources: [3, 8, 10], target: 11, temperature: 230, conditions: 'vacuum' },
+  { id: 10, sources: [11], target: 12, temperature: 850, conditions: null },
+  { id: 11, sources: [12], target: 1, temperature: 750, conditions: null },
+  { id: 12, sources: [3, 13], target: 14, temperature: 300, conditions: '70-90MPa, hydrotermal process' },
+  { id: 14, sources: [15], target: 2, temperature: 1200, conditions: null },
+  { id: 15, sources: [14], target: 16, temperature: 450, conditions: null },
+  { id: 16, sources: [16], target: 17, temperature: 600, conditions: null },
+  { id: 17, sources: [17], target: 1, temperature: 1050, conditions: null },
+  { id: 18, sources: [14], target: 2, temperature: 450, conditions: '70-90MPa, hydrotermal process' },
+  { id: 19, sources: [19], target: 16, temperature: 2300, conditions: 'nonequilibrium crystallization' },
+  { id: 20, sources: [19], target: 20, temperature: 2100, conditions: '+SiO_2 microimpurity' },
 ];
 
-/**
- * Склад для демо — ВЫДУМАННЫЙ (Illustrative). Подобран так, чтобы 300 кг корунда закрывались одним
- * источником, а 450 кг требовали комбинации нескольких.
- */
-export const demoStockKg: Record<string, number> = {
-  gibbsite: 500,
-  bayerite: 120,
-  boehmite: 80,
-  diaspore: 40,
-  nordstrandite: 30,
-  amorphous: 60,
+/** Подписи условий для сайта: строки БД с Unicode-индексами и без опечатки `hydrotermal`. */
+export const conditionLabels: Readonly<Record<string, string>> = {
+  'stab. by M+': 'stab. by M⁺',
+  vacuum: 'vacuum',
+  '70-90MPa, hydrotermal process': '70–90 MPa, hydrothermal process',
+  'nonequilibrium crystallization': 'nonequilibrium crystallization',
+  '+SiO_2 microimpurity': '+ SiO₂ microimpurity',
 };
+
+/** Цель по умолчанию — α-Al₂O₃ (корунд), как в запуске ноутбука. */
+export const CORUNDUM = 2;

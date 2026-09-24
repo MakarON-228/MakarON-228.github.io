@@ -24,8 +24,9 @@ CSS custom properties (`src/styles/tokens.css`) · vitest · деплой на G
 5. Без дублей: один факт звучит на странице один раз.
 6. Данных ТМХ на сайте нет. Карта станций — только открытые данные OpenStreetMap с подписью
    «© OpenStreetMap contributors» (SPEC.md §7.4).
-7. Граф реакций SIBUR — `src/data/demo/alumina-reactions.ts`, перенесён со схемы и проверен. Не менять без
-   сверки с `reference/alumina-scheme.png`; картинку схемы на сайт не выкладывать.
+7. Граф реакций SIBUR — `src/data/demo/alumina-reactions.ts`, выгрузка таблиц БД проекта (sibur-ml
+   `data/chemicalobjects.csv`, `data/chemicaloperations.csv`). Не менять без сверки с ними; схему
+   `reference/alumina-scheme.png` на сайт не выкладывать.
 8. Структура агентов Яндекса — `src/data/demo/yandex-agents.ts`, взята из кода команды: не менять состав,
    порядок и параллельность. Ответы агентов в демо — симуляция, подпись об этом обязательна.
 9. Yandex: Makar — капитан команды из трёх и единственный разработчик платформы; не писать «все семь стадий жизненного цикла».
