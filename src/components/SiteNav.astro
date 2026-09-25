@@ -43,7 +43,23 @@ import ThemeToggle from './ThemeToggle.astro';
       </ol>
     </details>
   </nav>
-  <ThemeToggle />
+  <div class="tools">
+    <!-- Терминал-пасхалка (SPEC.md §7.11): окно и загрузчик — src/islands/Terminal -->
+    <button
+      type="button"
+      class="term"
+      data-terminal-open
+      aria-haspopup="dialog"
+      aria-controls="terminal"
+      aria-keyshortcuts="`"
+    >
+      <span aria-hidden="true">›_</span>
+      <span class="visually-hidden">{ui.terminal.open}</span>
+    </button>
+    <ThemeToggle />
+  </div>
+  <!-- Без JS терминал не открыть; место под кнопку остаётся, чтобы ничего не сдвигалось -->
+  <noscript><style is:inline>[data-terminal-open] { visibility: hidden; }</style></noscript>
 </header>
 
 <style>
@@ -65,6 +81,32 @@ import ThemeToggle from './ThemeToggle.astro';
   nav {
     position: relative;
     min-width: 0;
+  }
+
+  .tools {
+    display: flex;
+    flex: none;
+    gap: var(--space-2);
+  }
+
+  .term {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: var(--fs-14);
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .term:hover {
+    border-color: var(--ink);
   }
 
   ol {

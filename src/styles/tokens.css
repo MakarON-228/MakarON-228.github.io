@@ -44,6 +44,9 @@
   --chart-a: #2a78d6;
   --chart-b: #b87a00;
 
+  /* Затемнение страницы под модальным окном (терминал, SPEC.md §7.11) */
+  --scrim: rgb(14 27 38 / 0.45);
+
   /* Гарнитуры */
   --font-display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif-condensed, sans-serif;
   --font-body: 'Overpass Variable', 'Overpass', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -108,6 +111,7 @@
     --road-far-eastern: #d43131;
     --chart-a: #3987e5;
     --chart-b: #c98500;
+    --scrim: rgb(3 7 10 / 0.7);
   }
 }
 
@@ -138,4 +142,5 @@
   --road-far-eastern: #d43131;
   --chart-a: #3987e5;
   --chart-b: #c98500;
+  --scrim: rgb(3 7 10 / 0.7);
 }

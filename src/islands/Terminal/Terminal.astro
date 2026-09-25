@@ -1,0 +1,257 @@
+---
+// Терминал-пасхалка (SPEC.md §7.11). Окно — статичная разметка из сборки: закрытый <dialog> места не занимает.
+// Код окна (terminal.ts) грузится только при первом открытии — клавишей ` или кнопкой ›_ в навигации, —
+// поэтому первый экран за терминал не платит. Модальный <dialog> сам держит фокус внутри, закрывается по Esc
+// и возвращает фокус туда, откуда его открыли.
+import { ui } from '../../data/resume';
+
+const t = ui.terminal;
+---
+
+<dialog id="terminal" class="terminal" aria-labelledby="terminal-title">
+  <div class="bar">
+    <p class="title" id="terminal-title">{t.title}</p>
+    <p class="hint">{t.hint}</p>
+    <button type="button" class="close" data-terminal-close>
+      <span aria-hidden="true">×</span>
+      <span class="visually-hidden">{t.close}</span>
+    </button>
+  </div>
+  <div class="log" role="log" aria-live="polite" aria-label={t.output} tabindex="0" data-terminal-log></div>
+  <form class="input" data-terminal-form>
+    <span class="prompt" aria-hidden="true" data-terminal-prompt><span class="who">{t.user}@{t.host}:</span>{t.cwd}$</span>
+    <input
+      type="text"
+      name="command"
+      aria-label={t.input}
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      enterkeyhint="send"
+    />
+  </form>
+</dialog>
+
+<style>
+  .terminal {
+    width: min(calc(100% - 2 * var(--gutter)), 52rem);
+    max-width: none;
+    height: min(36rem, calc(100dvh - 2 * var(--space-4)));
+    max-height: none;
+    /* Сверху, как консоль: клавиатура телефона снизу окно не закрывает */
+    margin: var(--space-4) auto auto;
+    padding: 0;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    font-family: var(--font-mono);
+    font-size: var(--fs-16);
+    font-variant-ligatures: none;
+    line-height: 1.5;
+  }
+
+  .terminal[open] {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .terminal::backdrop {
+    background: var(--scrim);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .terminal[open] {
+      animation: drop 0.16s ease-out;
+    }
+  }
+
+  @keyframes drop {
+    from {
+      opacity: 0;
+      transform: translateY(-0.75rem);
+    }
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-1) var(--space-1) var(--space-1) var(--space-4);
+    border-bottom: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: var(--fs-14);
+  }
+
+  .title {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .close {
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: auto;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius);
+    font-size: var(--fs-22);
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    background: var(--paper);
+  }
+
+  .log {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .log:focus-visible {
+    outline-offset: -2px;
+  }
+
+  /* Строки вывода создаёт terminal.ts, поэтому стили для них — глобальные внутри лога */
+  .log :global(.line) {
+    min-height: 1.5em;
+    margin: 0;
+    max-width: none;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .log :global(.k-title) {
+    font-weight: 700;
+  }
+
+  .log :global(.k-heading) {
+    color: var(--line-science);
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  /* Выделенные цифры — как в записях на странице */
+  .log :global(.k-strong) {
+    color: var(--line-science);
+    font-weight: 700;
+  }
+
+  .log :global(.k-em) {
+    font-style: italic;
+  }
+
+  .log :global(.k-muted),
+  .log :global(.k-bullet) {
+    color: var(--muted);
+  }
+
+  .log :global(.k-accent) {
+    color: var(--line-science);
+  }
+
+  .log :global(.k-error) {
+    color: var(--line-rail);
+  }
+
+  .input {
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+    padding: var(--space-3) var(--space-4);
+    border-top: 1px solid var(--rule);
+  }
+
+  /* Фокус строки ввода — акцентная линия над ней и каретка */
+  .input:focus-within {
+    border-top-color: var(--line-science);
+    box-shadow: inset 0 1px 0 var(--line-science);
+  }
+
+  .prompt {
+    color: var(--line-science);
+    white-space: nowrap;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    outline: none;
+    color: var(--ink);
+    font: inherit;
+    /* Не мельче 16px — иначе iOS увеличивает страницу при фокусе */
+    font-size: var(--fs-16);
+    caret-color: var(--line-science);
+  }
+
+  @media (max-width: 719px) {
+    .terminal {
+      height: min(36rem, 70dvh);
+    }
+
+    .hint {
+      display: none;
+    }
+
+    .log {
+      padding-inline: var(--space-3);
+      font-size: var(--fs-14);
+    }
+
+    .input {
+      padding-inline: var(--space-3);
+    }
+  }
+
+  @media (max-width: 479px) {
+    .who {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Загрузчик: слушает ` и кнопки [data-terminal-open], код окна подтягивает при первом открытии
+  // (заранее — при наведении или фокусе на кнопку).
+  const dialog = document.querySelector<HTMLDialogElement>('#terminal');
+
+  if (dialog) {
+    let show: Promise<() => void> | undefined;
+    const load = () =>
+      (show ??= import('./terminal').then(
+        (m) => m.mount(dialog),
+        (err: unknown) => {
+          show = undefined; // сеть отвалилась — попробовать ещё раз при следующем открытии
+          throw err;
+        },
+      ));
+    const prefetch = () => void load().catch(() => {});
+    const open = () => void load().then((s) => s(), () => {});
+
+    const typing = (el: EventTarget | null) =>
+      el instanceof HTMLElement && (el.isContentEditable || el.matches('input, textarea, select'));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.defaultPrevented || e.repeat || e.ctrlKey || e.metaKey || e.altKey || dialog.open) return;
+      // code — чтобы работало и на русской раскладке, где на этой клавише «ё»
+      if (e.key !== '`' && e.code !== 'Backquote') return;
+      if (typing(e.target)) return;
+      e.preventDefault();
+      open();
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('[data-terminal-open]').forEach((b) => {
+      b.addEventListener('click', open);
+      b.addEventListener('pointerenter', prefetch, { once: true });
+      b.addEventListener('focus', prefetch, { once: true });
+    });
+  }
+</script>

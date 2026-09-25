@@ -3,7 +3,7 @@
 Полное ТЗ — `SPEC.md`. Этот файл — правила, которые действуют всегда.
 
 ## Стек
-Astro · TypeScript strict · Svelte 5 для UI-островов · Canvas 2D + чистый TS для анимаций и игры ·
+Astro · TypeScript strict · Svelte 5 для UI-островов · Canvas 2D + чистый TS для анимаций и терминала ·
 CSS custom properties (`src/styles/tokens.css`) · vitest · деплой на GitHub Pages.
 
 ## Команды

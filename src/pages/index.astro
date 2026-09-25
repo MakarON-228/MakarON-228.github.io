@@ -14,6 +14,7 @@ import RouteFinder from '../islands/RouteFinder/RouteFinder.astro';
 import AgentPipeline from '../islands/AgentPipeline/AgentPipeline.astro';
 import TwoModels from '../islands/TwoModels/TwoModels.astro';
 import ApiExplorer from '../islands/ApiExplorer/ApiExplorer.astro';
+import Terminal from '../islands/Terminal/Terminal.astro';
 import { experience, hackathons, header, projects, sections } from '../data/resume';
 
 const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record<(typeof sections)[number]['id'], string>;
@@ -71,6 +72,7 @@ const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record
     </Section>
   </main>
   <Footer />
+  <Terminal />
 </Base>
 
 <style>

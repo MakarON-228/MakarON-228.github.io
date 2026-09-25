@@ -29,28 +29,20 @@
 </style>
 
 <script>
-  import { nextTheme, readStored, resolveTheme, writeStored, type Theme } from '../lib/theme';
+  import { THEME_EVENT, applyTheme, currentTheme, nextTheme } from '../lib/theme';
 
-  const root = document.documentElement;
   const media = window.matchMedia('(prefers-color-scheme: dark)');
   const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
 
-  const current = (): Theme => resolveTheme(readStored() ?? root.dataset['theme'], media.matches);
-
   const sync = () => {
-    const dark = current() === 'dark';
+    const dark = currentTheme() === 'dark';
     buttons.forEach((b) => b.setAttribute('aria-pressed', String(dark)));
   };
 
-  buttons.forEach((b) =>
-    b.addEventListener('click', () => {
-      const theme = nextTheme(current());
-      root.dataset['theme'] = theme;
-      writeStored(theme);
-      sync();
-    }),
-  );
+  buttons.forEach((b) => b.addEventListener('click', () => applyTheme(nextTheme(currentTheme()))));
 
+  // Тему меняет и команда терминала `theme` (SPEC.md §7.11)
+  document.addEventListener(THEME_EVENT, sync);
   media.addEventListener('change', sync);
   sync();
 </script>

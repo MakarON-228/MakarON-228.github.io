@@ -32,3 +32,18 @@ export function writeStored(theme: Theme, storage: Pick<Storage, 'setItem'> | un
     // без localStorage тема просто не запоминается
   }
 }
+
+/** Событие на document после смены темы: кнопка темы и терминал меняют её независимо. */
+export const THEME_EVENT = 'themechange';
+
+/** Тема, которая сейчас на странице. */
+export function currentTheme(): Theme {
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return resolveTheme(readStored() ?? document.documentElement.dataset['theme'], systemDark);
+}
+
+export function applyTheme(theme: Theme): void {
+  document.documentElement.dataset['theme'] = theme;
+  writeStored(theme);
+  document.dispatchEvent(new CustomEvent(THEME_EVENT));
+}
