@@ -11,6 +11,7 @@
     "stations": "node scripts/build-stations.ts",
     "land": "node scripts/build-land.ts",
     "complexity": "node scripts/alumina-complexity.ts",
+    "academic": "node scripts/academic-api.ts",
     "astro": "astro"
   },
   "dependencies": {

@@ -58,7 +58,10 @@ HTML без JavaScript и подгружает JS только для конкр
 │  │  ├─ alumina-warehouse.ts       ← партии склада, тестовые данные команды (§7.8)
 │  │  ├─ alumina-complexity.json    ← оценки шагов моделью CatBoost проекта (§7.8)
 │  │  ├─ yandex-agents.ts           ← готов: 16 агентов и статусы платформы из кода (§7.5)
-│  │  └─ yandex-proposals.ts        ← SIMULATION: три заявки и ответы агентов (§7.5)
+│  │  ├─ yandex-proposals.ts        ← SIMULATION: три заявки и ответы агентов (§7.5)
+│  │  ├─ academic-scientists.ts     ← ILLUSTRATIVE: учёные, публикации, пользователи Academic Profile (§7.7)
+│  │  ├─ academic-endpoints.ts      ← 15 эндпоинтов main.py и примеры запросов (§7.7)
+│  │  └─ academic-tfidf.json        ← словарь TF-IDF модели команды (§7.7)
 │  ├─ styles/tokens.css             ← палитра, типографика, отступы (§4)
 │  ├─ layouts/Base.astro
 │  ├─ components/                   ← статичные секции (.astro)
@@ -76,6 +79,7 @@ HTML без JavaScript и подгружает JS только для конкр
 ├─ scripts/build-stations.ts        ← выгрузка станций из OSM (§7.4), логика — scripts/stations/
 ├─ scripts/build-land.ts            ← подложка карты из Natural Earth (§7.4)
 ├─ scripts/alumina-complexity.ts    ← оценки CatBoost для графа реакций (§7.8)
+├─ scripts/academic-api.ts          ← словарь TF-IDF и эталоны бэкенда Academic Profile (§7.7)
 ├─ data/railway-overrides.csv       ← ручные правки дорог (§7.4)
 └─ .github/workflows/deploy.yml
 ```
@@ -500,7 +504,17 @@ Repo: `github.com/MakarON-228/Note_redactor`
 
 ### 7.7 ApiExplorer — бэкенд Academic Profile (Young Scientists)
 
-- **Показывает:** именно твою часть — API. Это Swagger-подобная панель с реальными эндпоинтами из репозитория:
+Показывает именно часть Макара — API, — и не на словах: обработчики бэкенда
+`github.com/brainstorm-sirius/academic-profile` (`backend_academic/app/main.py`, `schemas.py`, `auth.py`) перенесены на
+TypeScript и отвечают прямо в странице, на выдуманной базе в памяти браузера. Рекомендер (`recommender.py`,
+`train_model.py`) — **работа команды**: он тоже перенесён, но подписан как модель команды.
+
+- **Панель в духе Swagger UI:** слева 15 эндпоинтов (метод, путь, название из имени функции, как у FastAPI; замок у
+  `/users/me` и `/knowledge-graph` — только им по коду нужен токен), на узком блоке — выпадающий список. Консоль:
+  параметры пути и запроса, тело JSON с «Reset example», файл для upload («Use sample publications.csv» или свой .csv),
+  Execute (и Ctrl+Enter), curl и Request URL как у Swagger, статус, время, тело ответа с подсветкой, заголовки.
+  Полоса авторизации: вход заранее заполнен выдуманным `demo / demo-password`, токен из успешного `/auth/login`
+  подставляется сам; Log out, Reset data.
 
   | Method | Path |
   |---|---|
@@ -520,13 +534,36 @@ Repo: `github.com/MakarON-228/Note_redactor`
   | POST | `/recommend` |
   | GET | `/knowledge-graph` |
 
-- **UI:** слева список эндпоинтов, по клику — пример запроса и ответа (JSON с подсветкой). Для `/recommend` и
-  `/knowledge-graph` справа рисуется маленький силовой граф учёных и интересов; клик по учёному → «вызов»
-  `/recommend` → подсвечиваются 3 рекомендованных коллеги.
-- **Данные:** 25–40 выдуманных учёных. Рекомендации в демке считаются в браузере косинусной близостью по
-  интересам. Подпись: «Recommender model by the team; the API serving it is Makar's».
-- **Приёмка:** все 15 эндпоинтов в списке; JSON-ответы по формату похожи на реальные схемы из
-  `app/schemas.py` репозитория (Claude Code может их прочитать, если склонировать репо).
+- **Порт (`src/islands/ApiExplorer/`):** `server.ts` — маршруты (404/405), зависимости, проверки и обработчики построчно,
+  включая причуды: `LIKE '%q%'` с шаблонами `%` и `_`, `IN` по индексу в порядке author_id, id как rowid SQLite,
+  username и analytics профиля (`round` как в Python), Жаккар + оценка модели и top-100 в knowledge-graph, интересы
+  без токена, неиспользуемый `column_mapping` в upload; `validate.ts` — схемы и ошибки 422 Pydantic v2, EmailStr с
+  сообщениями email-validator; `jwt.ts` — HS256 через WebCrypto, байт в байт как python-jose; `csv.ts` — `pd.read_csv`
+  и `iterrows` (NaN-значения, «2021.0» у целых с пропуском); `tfidf.ts` + `recommender.ts` — `transform` обученного
+  TF-IDF команды и `recommend()` (отбор top_k по сходству до сортировки по итоговой оценке).
+- **Странности кода — как есть, но примеры их не выпячивают:** пример файла — колонки, которые обработчик узнаёт; пример
+  регистрации — без `interests_list`, который обработчик не сохраняет.
+- **Граф знаний** рядом с `/recommend` и `/knowledge-graph` — это ответ `GET /knowledge-graph` (сначала — для
+  демо-пользователя, посчитан при сборке), силовая раскладка без тригонометрии, одинаковая на сервере и в браузере.
+  Выбор учёного (клик, Enter; стрелки ходят по учёным) вызывает `POST /recommend` с его интересами и
+  `num_recommendations: 4`; подсвечены три коллеги — сам учёный в ответе есть, на графе скрыт.
+- **Данные:** `src/data/demo/academic-scientists.ts` — 30 выдуманных учёных с метками интересов из датасета команды,
+  их публикации, три пользователя; `src/data/demo/academic-tfidf.json` — словарь, частоты документов и стоп-слова
+  `vectorizer.pkl` команды (грузится отдельным чанком при первом вызове модели). Выгрузка и эталоны —
+  `npm run academic -- <клон>/backend_academic` (`scripts/academic-api.ts` + `.py`, venv по requirements клона в
+  `.cache/academic-venv`): настоящий `app` через FastAPI TestClient на тех же данных прогоняет сценарий
+  `scenario.ts`, ответы — в `golden.json`.
+- **Отступления, согласованные с автором:** пароли — SHA-256 вместо bcrypt_sha256; секрет JWT случайный на загрузку;
+  .xlsx не разбирается (ответ 501 с объяснением); SQLite заменена таблицами в памяти; у битого JSON позиция и текст
+  ошибки от парсера браузера; KNN по 30 выдуманным учёным вместо 194 849 настоящих людей; адрес в curl —
+  `http://localhost:8000` из README.
+- **Метка:** «Illustrative data»; подпись — выдуманные исследователи, эндпоинты, проверки и ошибки перенесены из
+  FastAPI-бэкенда и отвечают в странице, ничего не уходит из браузера; «Recommender model by the team; the API serving
+  it is Makar's».
+- **Приёмка:** все 15 эндпоинтов в списке; ответы порта на сценарий совпадают с настоящим бэкендом (vitest, float до
+  1e-9, токены — по субъекту); TF-IDF совпадает с sklearn, JWT — с python-jose, EmailStr — с pydantic; раскладка графа
+  детерминирована и подписи интересов не налезают; до гидратации — тот же пример ответа и граф, без сдвига; всё с
+  клавиатуры, статус ответа — через `aria-live`; остров с чанком словаря ≤ 40 КБ gzip.
 
 ### 7.8 RouteFinder — маршруты синтеза (SIBUR)
 

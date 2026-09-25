@@ -1,0 +1,3988 @@
+{
+ "responses": [
+  {
+   "status": 200,
+   "body": {
+    "status": "healthy",
+    "authors_count": 30,
+    "model_loaded": true
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "recommendations": [
+     {
+      "author_id": "f20eae610ef8",
+      "author_name": "Zhou Y.",
+      "total_score": 0.7540954740062823,
+      "similarity_score": 0.5901591233438038,
+      "productivity_score": 1,
+      "diversity_score": 1,
+      "articles_count": 3,
+      "interests_count": 3,
+      "main_interest": "Radiology"
+     },
+     {
+      "author_id": "7f697378650f",
+      "author_name": "Holm EK.",
+      "total_score": 0.47099390836467475,
+      "similarity_score": 0.34054540283001355,
+      "productivity_score": 0.6666666666666666,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 2,
+      "interests_count": 2,
+      "main_interest": "Machine Learning"
+     },
+     {
+      "author_id": "48a935f04d2c",
+      "author_name": "Kaur P.",
+      "total_score": 0.41533310026797005,
+      "similarity_score": 0.3866662782243946,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Machine Learning"
+     }
+    ],
+    "processing_time": 0.015489339828491211
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "recommendations": [
+     {
+      "author_id": "84426fdf4ae5",
+      "author_name": "Nakamura H.",
+      "total_score": 0.6351970553904748,
+      "similarity_score": 0.7531062034285692,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Other"
+     },
+     {
+      "author_id": "606361074aa6",
+      "author_name": "Olsen JH.",
+      "total_score": 0.4083755842608693,
+      "similarity_score": 0.2361815293236711,
+      "productivity_score": 0.6666666666666666,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 2,
+      "interests_count": 2,
+      "main_interest": "Other"
+     },
+     {
+      "author_id": "87301786c66f",
+      "author_name": "Grant EJ.",
+      "total_score": 0.3813941008097099,
+      "similarity_score": 0.19121239023840553,
+      "productivity_score": 0.6666666666666666,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 2,
+      "interests_count": 2,
+      "main_interest": "Other"
+     },
+     {
+      "author_id": "a7e868ac3baa",
+      "author_name": "Rahman T.",
+      "total_score": 0.361131217329405,
+      "similarity_score": 0.21299647332678606,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 1,
+      "articles_count": 1,
+      "interests_count": 3,
+      "main_interest": "Data Science"
+     },
+     {
+      "author_id": "354001b546c1",
+      "author_name": "Richter FW.",
+      "total_score": 0.3227758134990283,
+      "similarity_score": 0.23240413360949164,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Data Science"
+     }
+    ],
+    "processing_time": 0.013435602188110352
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "recommendations": [
+     {
+      "author_id": "aadc2baaccdb",
+      "author_name": "Moreau LA.",
+      "total_score": 0.6854119915245765,
+      "similarity_score": 0.5590199858742944,
+      "productivity_score": 1,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 3,
+      "interests_count": 2,
+      "main_interest": "Machine Learning"
+     },
+     {
+      "author_id": "f20eae610ef8",
+      "author_name": "Zhou Y.",
+      "total_score": 0.6318875139752443,
+      "similarity_score": 0.38647918995874053,
+      "productivity_score": 1,
+      "diversity_score": 1,
+      "articles_count": 3,
+      "interests_count": 3,
+      "main_interest": "Radiology"
+     },
+     {
+      "author_id": "7f697378650f",
+      "author_name": "Holm EK.",
+      "total_score": 0.6104322901297102,
+      "similarity_score": 0.5729427057717393,
+      "productivity_score": 0.6666666666666666,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 2,
+      "interests_count": 2,
+      "main_interest": "Machine Learning"
+     },
+     {
+      "author_id": "48a935f04d2c",
+      "author_name": "Kaur P.",
+      "total_score": 0.5736559543445858,
+      "similarity_score": 0.6505377016854208,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Machine Learning"
+     },
+     {
+      "author_id": "05b352afa2cb",
+      "author_name": "Iyer AK.",
+      "total_score": 0.5131142820251031,
+      "similarity_score": 0.41074602559739415,
+      "productivity_score": 0.6666666666666666,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 2,
+      "interests_count": 2,
+      "main_interest": "Machine Learning"
+     },
+     {
+      "author_id": "ff03d4271348",
+      "author_name": "Varga LT.",
+      "total_score": 0.490860927397041,
+      "similarity_score": 0.3736571012172907,
+      "productivity_score": 0.6666666666666666,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 2,
+      "interests_count": 2,
+      "main_interest": "Radiology"
+     }
+    ],
+    "processing_time": 0.01292276382446289
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "recommendations": [
+     {
+      "author_id": "d5895002d82f",
+      "author_name": "Kowalczyk B.",
+      "total_score": 0.6279910130302339,
+      "similarity_score": 0.7410961328281676,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Clinical Research"
+     },
+     {
+      "author_id": "652c179ef130",
+      "author_name": "Weber AL.",
+      "total_score": 0.42242987031989665,
+      "similarity_score": 0.39849422831093895,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Clinical Research"
+     },
+     {
+      "author_id": "ecf1c6721fd6",
+      "author_name": "Silva RM.",
+      "total_score": 0.40892846225953167,
+      "similarity_score": 0.3759918815436639,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Clinical Research"
+     },
+     {
+      "author_id": "0874fc5aa1e4",
+      "author_name": "Castellano GM.",
+      "total_score": 0.3709391055918578,
+      "similarity_score": 0.3126762870975408,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Clinical Research"
+     }
+    ],
+    "processing_time": 0.012903451919555664
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "recommendations": [],
+    "processing_time": 0.012537717819213867
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "recommendations": [
+     {
+      "author_id": "f20eae610ef8",
+      "author_name": "Zhou Y.",
+      "total_score": 0.5886729675993294,
+      "similarity_score": 0.31445494599888235,
+      "productivity_score": 1,
+      "diversity_score": 1,
+      "articles_count": 3,
+      "interests_count": 3,
+      "main_interest": "Radiology"
+     },
+     {
+      "author_id": "c41cc3fdd176",
+      "author_name": "Petrova DV.",
+      "total_score": 0.4384574916705539,
+      "similarity_score": 0.28631804167314545,
+      "productivity_score": 0.6666666666666666,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 2,
+      "interests_count": 2,
+      "main_interest": "Radiology"
+     },
+     {
+      "author_id": "b537f80cf850",
+      "author_name": "Hakimi S.",
+      "total_score": 0.35562020086245744,
+      "similarity_score": 0.28714477921520687,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Radiology"
+     },
+     {
+      "author_id": "30b3e65b03ec",
+      "author_name": "Takeda R.",
+      "total_score": 0.3242592977821589,
+      "similarity_score": 0.23487660741470928,
+      "productivity_score": 0.3333333333333333,
+      "diversity_score": 0.6666666666666666,
+      "articles_count": 1,
+      "interests_count": 2,
+      "main_interest": "Radiology"
+     }
+    ],
+    "processing_time": 0.012787818908691406
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "list_type",
+      "loc": [
+       "body",
+       "interests"
+      ],
+      "msg": "Input should be a valid list",
+      "input": "Radiology"
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "greater_than_equal",
+      "loc": [
+       "body",
+       "num_recommendations"
+      ],
+      "msg": "Input should be greater than or equal to 1",
+      "input": 0,
+      "ctx": {
+       "ge": 1
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "less_than_equal",
+      "loc": [
+       "body",
+       "num_recommendations"
+      ],
+      "msg": "Input should be less than or equal to 100",
+      "input": 101,
+      "ctx": {
+       "le": 100
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "string_type",
+      "loc": [
+       "body",
+       "interests",
+       1
+      ],
+      "msg": "Input should be a valid string",
+      "input": 5
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "int_from_float",
+      "loc": [
+       "body",
+       "num_recommendations"
+      ],
+      "msg": "Input should be a valid integer, got a number with a fractional part",
+      "input": 2.5
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "missing",
+      "loc": [
+       "body",
+       "interests"
+      ],
+      "msg": "Field required",
+      "input": {
+       "publications": null
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "model_attributes_type",
+      "loc": [
+       "body"
+      ],
+      "msg": "Input should be a valid dictionary or object to extract fields from",
+      "input": [
+       1,
+       2
+      ]
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "json_invalid",
+      "loc": [
+       "body",
+       15
+      ],
+      "msg": "JSON decode error",
+      "input": {},
+      "ctx": {
+       "error": "Expecting value"
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "missing",
+      "loc": [
+       "body"
+      ],
+      "msg": "Field required",
+      "input": null
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 401,
+   "body": {
+    "detail": "Not authenticated"
+   },
+   "www_authenticate": "Bearer"
+  },
+  {
+   "status": 401,
+   "body": {
+    "detail": "Invalid or expired token. Please login again."
+   },
+   "www_authenticate": "Bearer"
+  },
+  {
+   "status": 401,
+   "body": {
+    "detail": "Not authenticated. Please provide a valid Bearer token in the Authorization header."
+   },
+   "www_authenticate": "Bearer"
+  },
+  {
+   "status": 401,
+   "body": {
+    "detail": "Invalid credentials"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "missing",
+      "loc": [
+       "body",
+       "password"
+      ],
+      "msg": "Field required",
+      "input": {
+       "login_or_email": "demo"
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzkwMzI3OTQ2fQ.yKy12FQSSyPh8LZO0FBvIdt6aPsRtTVsKXHkpTb0GD4",
+    "token_type": "bearer"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "login": "demo",
+    "email": "demo@example.org",
+    "first_name": "Demo",
+    "last_name": "User",
+    "google_scholar_id": null,
+    "scopus_id": null,
+    "wos_id": null,
+    "rsci_id": null,
+    "orcid_id": null,
+    "interests_list": "Machine Learning, Radiology, Data Science",
+    "id": 1
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "interests": [
+     {
+      "id": 1,
+      "name": "Bioinformatics",
+      "scientist_count": 3
+     },
+     {
+      "id": 2,
+      "name": "Cancer Research",
+      "scientist_count": 3
+     },
+     {
+      "id": 3,
+      "name": "Clinical Research",
+      "scientist_count": 5
+     },
+     {
+      "id": 4,
+      "name": "Computational Biology",
+      "scientist_count": 4
+     },
+     {
+      "id": 5,
+      "name": "Data Science",
+      "scientist_count": 7
+     },
+     {
+      "id": 6,
+      "name": "Drug Discovery",
+      "scientist_count": 4
+     },
+     {
+      "id": 7,
+      "name": "Epidemiology",
+      "scientist_count": 5
+     },
+     {
+      "id": 8,
+      "name": "Genomics",
+      "scientist_count": 3
+     },
+     {
+      "id": 9,
+      "name": "Global Health",
+      "scientist_count": 3
+     },
+     {
+      "id": 10,
+      "name": "Immunology",
+      "scientist_count": 4
+     },
+     {
+      "id": 11,
+      "name": "Machine Learning",
+      "scientist_count": 8
+     },
+     {
+      "id": 12,
+      "name": "Neurology",
+      "scientist_count": 4
+     },
+     {
+      "id": 13,
+      "name": "Pediatrics",
+      "scientist_count": 4
+     },
+     {
+      "id": 14,
+      "name": "Pharmacology",
+      "scientist_count": 2
+     },
+     {
+      "id": 15,
+      "name": "Public Health",
+      "scientist_count": 4
+     },
+     {
+      "id": 16,
+      "name": "Radiology",
+      "scientist_count": 7
+     }
+    ],
+    "scientists": [
+     {
+      "id": 100020,
+      "name": "Zhou Y.",
+      "username": "ZhouY",
+      "interests": [
+       11,
+       16,
+       5
+      ]
+     },
+     {
+      "id": 2,
+      "name": "Lea Moreau",
+      "username": "l.moreau",
+      "interests": [
+       11,
+       5
+      ]
+     },
+     {
+      "id": 100001,
+      "name": "Varga LT.",
+      "username": "VargaLT",
+      "interests": [
+       16,
+       11
+      ]
+     },
+     {
+      "id": 100004,
+      "name": "Moreau LA.",
+      "username": "MoreaLA",
+      "interests": [
+       11,
+       5
+      ]
+     },
+     {
+      "id": 100009,
+      "name": "Brennan SO.",
+      "username": "BrennSO",
+      "interests": [
+       15,
+       5
+      ]
+     },
+     {
+      "id": 100023,
+      "name": "Rahman T.",
+      "username": "RahmaT",
+      "interests": [
+       7,
+       9,
+       5
+      ]
+     },
+     {
+      "id": 100017,
+      "name": "Holm EK.",
+      "username": "HolmEK",
+      "interests": [
+       12,
+       11
+      ]
+     },
+     {
+      "id": 100015,
+      "name": "Richter FW.",
+      "username": "RichtFW",
+      "interests": [
+       5,
+       7
+      ]
+     },
+     {
+      "id": 100010,
+      "name": "Iyer AK.",
+      "username": "IyerAK",
+      "interests": [
+       11,
+       4
+      ]
+     },
+     {
+      "id": 100026,
+      "name": "Kaur P.",
+      "username": "KaurP",
+      "interests": [
+       11,
+       6
+      ]
+     },
+     {
+      "id": 100019,
+      "name": "Laurent CB.",
+      "username": "LaureCB",
+      "interests": [
+       16
+      ]
+     },
+     {
+      "id": 100005,
+      "name": "Takeda R.",
+      "username": "TakedR",
+      "interests": [
+       12,
+       16
+      ]
+     },
+     {
+      "id": 100012,
+      "name": "Petrova DV.",
+      "username": "PetroDV",
+      "interests": [
+       16,
+       2
+      ]
+     },
+     {
+      "id": 100029,
+      "name": "Hakimi S.",
+      "username": "HakimS",
+      "interests": [
+       16,
+       13
+      ]
+     },
+     {
+      "id": 3,
+      "name": "Rita Silva",
+      "username": "r.silva",
+      "interests": [
+       3,
+       12
+      ]
+     },
+     {
+      "id": 100002,
+      "name": "Okafor CN.",
+      "username": "OkafoCN",
+      "interests": [
+       9,
+       15,
+       7
+      ]
+     },
+     {
+      "id": 100003,
+      "name": "Lindqvist AE.",
+      "username": "LindqAE",
+      "interests": [
+       4,
+       8,
+       1
+      ]
+     },
+     {
+      "id": 100006,
+      "name": "Haddad YF.",
+      "username": "HaddaYF",
+      "interests": [
+       6,
+       14
+      ]
+     },
+     {
+      "id": 100007,
+      "name": "Ferreira IC.",
+      "username": "FerreIC",
+      "interests": [
+       2,
+       10
+      ]
+     },
+     {
+      "id": 100008,
+      "name": "Kowalczyk B.",
+      "username": "KowalB",
+      "interests": [
+       13,
+       3
+      ]
+     },
+     {
+      "id": 100011,
+      "name": "Castellano GM.",
+      "username": "CasteGM",
+      "interests": [
+       3,
+       6
+      ]
+     },
+     {
+      "id": 100013,
+      "name": "Nakamura H.",
+      "username": "NakamH",
+      "interests": [
+       8,
+       7
+      ]
+     },
+     {
+      "id": 100014,
+      "name": "Mensah KO.",
+      "username": "MensaKO",
+      "interests": [
+       9,
+       10
+      ]
+     },
+     {
+      "id": 100016,
+      "name": "Duarte MP.",
+      "username": "DuartMP",
+      "interests": [
+       1,
+       10
+      ]
+     },
+     {
+      "id": 100018,
+      "name": "Qureshi NA.",
+      "username": "QuresNA",
+      "interests": [
+       14,
+       13
+      ]
+     },
+     {
+      "id": 100021,
+      "name": "Eze UC.",
+      "username": "EzeUC",
+      "interests": [
+       15,
+       13
+      ]
+     },
+     {
+      "id": 100022,
+      "name": "Novak MS.",
+      "username": "NovakMS",
+      "interests": [
+       4,
+       6
+      ]
+     },
+     {
+      "id": 100024,
+      "name": "Olsen JH.",
+      "username": "OlsenJH",
+      "interests": [
+       2,
+       8
+      ]
+     },
+     {
+      "id": 100025,
+      "name": "Silva RM.",
+      "username": "SilvaRM",
+      "interests": [
+       3,
+       12
+      ]
+     },
+     {
+      "id": 100027,
+      "name": "Weber AL.",
+      "username": "WeberAL",
+      "interests": [
+       10,
+       3
+      ]
+     },
+     {
+      "id": 100028,
+      "name": "Ortega JC.",
+      "username": "OrtegJC",
+      "interests": [
+       1,
+       4
+      ]
+     },
+     {
+      "id": 100030,
+      "name": "Grant EJ.",
+      "username": "GrantEJ",
+      "interests": [
+       15,
+       7
+      ]
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 201,
+   "body": {
+    "login": "new_scientist",
+    "email": "new.scientist@example.org",
+    "first_name": "Nova",
+    "last_name": "Reyes",
+    "google_scholar_id": null,
+    "scopus_id": null,
+    "wos_id": null,
+    "rsci_id": null,
+    "orcid_id": "0000-0002-5555-0042",
+    "interests_list": null,
+    "id": 4
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 400,
+   "body": {
+    "detail": "Login already taken"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 400,
+   "body": {
+    "detail": "Email already registered"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "string_too_short",
+      "loc": [
+       "body",
+       "login"
+      ],
+      "msg": "String should have at least 3 characters",
+      "input": "ab",
+      "ctx": {
+       "min_length": 3
+      }
+     },
+     {
+      "type": "value_error",
+      "loc": [
+       "body",
+       "email"
+      ],
+      "msg": "value is not a valid email address: An email address must have an @-sign.",
+      "input": "not-an-email",
+      "ctx": {
+       "reason": "An email address must have an @-sign."
+      }
+     },
+     {
+      "type": "missing",
+      "loc": [
+       "body",
+       "last_name"
+      ],
+      "msg": "Field required",
+      "input": {
+       "login": "ab",
+       "email": "not-an-email",
+       "first_name": "A",
+       "password": "short"
+      }
+     },
+     {
+      "type": "string_too_short",
+      "loc": [
+       "body",
+       "password"
+      ],
+      "msg": "String should have at least 8 characters",
+      "input": "short",
+      "ctx": {
+       "min_length": 8
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "string_too_long",
+      "loc": [
+       "body",
+       "login"
+      ],
+      "msg": "String should have at most 255 characters",
+      "input": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "ctx": {
+       "max_length": 255
+      }
+     },
+     {
+      "type": "value_error",
+      "loc": [
+       "body",
+       "email"
+      ],
+      "msg": "value is not a valid email address: The part after the @-sign is not valid. It should have a period.",
+      "input": "a@b",
+      "ctx": {
+       "reason": "The part after the @-sign is not valid. It should have a period."
+      }
+     },
+     {
+      "type": "string_type",
+      "loc": [
+       "body",
+       "first_name"
+      ],
+      "msg": "Input should be a valid string",
+      "input": 7
+     },
+     {
+      "type": "string_type",
+      "loc": [
+       "body",
+       "last_name"
+      ],
+      "msg": "Input should be a valid string",
+      "input": null
+     },
+     {
+      "type": "string_type",
+      "loc": [
+       "body",
+       "password"
+      ],
+      "msg": "Input should be a valid string",
+      "input": 12345678
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 201,
+   "body": {
+    "login": "MixedCase",
+    "email": "Mixed.Case@example.org",
+    "first_name": "Mia",
+    "last_name": "Case",
+    "google_scholar_id": null,
+    "scopus_id": null,
+    "wos_id": null,
+    "rsci_id": null,
+    "orcid_id": null,
+    "interests_list": null,
+    "id": 5
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0IiwiZXhwIjoxNzkwMzI3OTQ3fQ.Q0qFWXZ1VaAhPC46E2ERo3Zfbua1BH2_mGPUTSOvTLs",
+    "token_type": "bearer"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "login": "new_scientist",
+    "email": "new.scientist@example.org",
+    "first_name": "Nova",
+    "last_name": "Reyes",
+    "google_scholar_id": null,
+    "scopus_id": null,
+    "wos_id": null,
+    "rsci_id": null,
+    "orcid_id": "0000-0002-5555-0042",
+    "interests_list": null,
+    "id": 4
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "interests": [
+     {
+      "id": 1,
+      "name": "Bioinformatics",
+      "scientist_count": 3
+     },
+     {
+      "id": 2,
+      "name": "Cancer Research",
+      "scientist_count": 3
+     },
+     {
+      "id": 3,
+      "name": "Clinical Research",
+      "scientist_count": 5
+     },
+     {
+      "id": 4,
+      "name": "Computational Biology",
+      "scientist_count": 4
+     },
+     {
+      "id": 5,
+      "name": "Data Science",
+      "scientist_count": 7
+     },
+     {
+      "id": 6,
+      "name": "Drug Discovery",
+      "scientist_count": 4
+     },
+     {
+      "id": 7,
+      "name": "Epidemiology",
+      "scientist_count": 5
+     },
+     {
+      "id": 8,
+      "name": "Genomics",
+      "scientist_count": 3
+     },
+     {
+      "id": 9,
+      "name": "Global Health",
+      "scientist_count": 3
+     },
+     {
+      "id": 10,
+      "name": "Immunology",
+      "scientist_count": 4
+     },
+     {
+      "id": 11,
+      "name": "Machine Learning",
+      "scientist_count": 8
+     },
+     {
+      "id": 12,
+      "name": "Neurology",
+      "scientist_count": 4
+     },
+     {
+      "id": 13,
+      "name": "Pediatrics",
+      "scientist_count": 4
+     },
+     {
+      "id": 14,
+      "name": "Pharmacology",
+      "scientist_count": 2
+     },
+     {
+      "id": 15,
+      "name": "Public Health",
+      "scientist_count": 4
+     },
+     {
+      "id": 16,
+      "name": "Radiology",
+      "scientist_count": 7
+     }
+    ],
+    "scientists": [
+     {
+      "id": 1,
+      "name": "Demo User",
+      "username": "demo",
+      "interests": [
+       11,
+       16,
+       5
+      ]
+     },
+     {
+      "id": 2,
+      "name": "Lea Moreau",
+      "username": "l.moreau",
+      "interests": [
+       11,
+       5
+      ]
+     },
+     {
+      "id": 3,
+      "name": "Rita Silva",
+      "username": "r.silva",
+      "interests": [
+       3,
+       12
+      ]
+     },
+     {
+      "id": 5,
+      "name": "Mia Case",
+      "username": "MixedCase",
+      "interests": []
+     },
+     {
+      "id": 100001,
+      "name": "Varga LT.",
+      "username": "VargaLT",
+      "interests": [
+       16,
+       11
+      ]
+     },
+     {
+      "id": 100002,
+      "name": "Okafor CN.",
+      "username": "OkafoCN",
+      "interests": [
+       9,
+       15,
+       7
+      ]
+     },
+     {
+      "id": 100003,
+      "name": "Lindqvist AE.",
+      "username": "LindqAE",
+      "interests": [
+       4,
+       8,
+       1
+      ]
+     },
+     {
+      "id": 100004,
+      "name": "Moreau LA.",
+      "username": "MoreaLA",
+      "interests": [
+       11,
+       5
+      ]
+     },
+     {
+      "id": 100005,
+      "name": "Takeda R.",
+      "username": "TakedR",
+      "interests": [
+       12,
+       16
+      ]
+     },
+     {
+      "id": 100006,
+      "name": "Haddad YF.",
+      "username": "HaddaYF",
+      "interests": [
+       6,
+       14
+      ]
+     },
+     {
+      "id": 100007,
+      "name": "Ferreira IC.",
+      "username": "FerreIC",
+      "interests": [
+       2,
+       10
+      ]
+     },
+     {
+      "id": 100008,
+      "name": "Kowalczyk B.",
+      "username": "KowalB",
+      "interests": [
+       13,
+       3
+      ]
+     },
+     {
+      "id": 100009,
+      "name": "Brennan SO.",
+      "username": "BrennSO",
+      "interests": [
+       15,
+       5
+      ]
+     },
+     {
+      "id": 100010,
+      "name": "Iyer AK.",
+      "username": "IyerAK",
+      "interests": [
+       11,
+       4
+      ]
+     },
+     {
+      "id": 100011,
+      "name": "Castellano GM.",
+      "username": "CasteGM",
+      "interests": [
+       3,
+       6
+      ]
+     },
+     {
+      "id": 100012,
+      "name": "Petrova DV.",
+      "username": "PetroDV",
+      "interests": [
+       16,
+       2
+      ]
+     },
+     {
+      "id": 100013,
+      "name": "Nakamura H.",
+      "username": "NakamH",
+      "interests": [
+       8,
+       7
+      ]
+     },
+     {
+      "id": 100014,
+      "name": "Mensah KO.",
+      "username": "MensaKO",
+      "interests": [
+       9,
+       10
+      ]
+     },
+     {
+      "id": 100015,
+      "name": "Richter FW.",
+      "username": "RichtFW",
+      "interests": [
+       5,
+       7
+      ]
+     },
+     {
+      "id": 100016,
+      "name": "Duarte MP.",
+      "username": "DuartMP",
+      "interests": [
+       1,
+       10
+      ]
+     },
+     {
+      "id": 100017,
+      "name": "Holm EK.",
+      "username": "HolmEK",
+      "interests": [
+       12,
+       11
+      ]
+     },
+     {
+      "id": 100018,
+      "name": "Qureshi NA.",
+      "username": "QuresNA",
+      "interests": [
+       14,
+       13
+      ]
+     },
+     {
+      "id": 100019,
+      "name": "Laurent CB.",
+      "username": "LaureCB",
+      "interests": [
+       16
+      ]
+     },
+     {
+      "id": 100020,
+      "name": "Zhou Y.",
+      "username": "ZhouY",
+      "interests": [
+       11,
+       16,
+       5
+      ]
+     },
+     {
+      "id": 100021,
+      "name": "Eze UC.",
+      "username": "EzeUC",
+      "interests": [
+       15,
+       13
+      ]
+     },
+     {
+      "id": 100022,
+      "name": "Novak MS.",
+      "username": "NovakMS",
+      "interests": [
+       4,
+       6
+      ]
+     },
+     {
+      "id": 100023,
+      "name": "Rahman T.",
+      "username": "RahmaT",
+      "interests": [
+       7,
+       9,
+       5
+      ]
+     },
+     {
+      "id": 100024,
+      "name": "Olsen JH.",
+      "username": "OlsenJH",
+      "interests": [
+       2,
+       8
+      ]
+     },
+     {
+      "id": 100025,
+      "name": "Silva RM.",
+      "username": "SilvaRM",
+      "interests": [
+       3,
+       12
+      ]
+     },
+     {
+      "id": 100026,
+      "name": "Kaur P.",
+      "username": "KaurP",
+      "interests": [
+       11,
+       6
+      ]
+     },
+     {
+      "id": 100027,
+      "name": "Weber AL.",
+      "username": "WeberAL",
+      "interests": [
+       10,
+       3
+      ]
+     },
+     {
+      "id": 100028,
+      "name": "Ortega JC.",
+      "username": "OrtegJC",
+      "interests": [
+       1,
+       4
+      ]
+     },
+     {
+      "id": 100029,
+      "name": "Hakimi S.",
+      "username": "HakimS",
+      "interests": [
+       16,
+       13
+      ]
+     },
+     {
+      "id": 100030,
+      "name": "Grant EJ.",
+      "username": "GrantEJ",
+      "interests": [
+       15,
+       7
+      ]
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "login": "new_scientist",
+    "email": "new.scientist@example.org",
+    "first_name": "Nova",
+    "last_name": "Reyes",
+    "google_scholar_id": null,
+    "scopus_id": null,
+    "wos_id": null,
+    "rsci_id": null,
+    "orcid_id": "0000-0002-5555-0042",
+    "interests_list": "Genomics, Machine Learning, Quantum Biology",
+    "id": 4
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "interests": [
+     {
+      "id": 1,
+      "name": "Bioinformatics",
+      "scientist_count": 3
+     },
+     {
+      "id": 2,
+      "name": "Cancer Research",
+      "scientist_count": 3
+     },
+     {
+      "id": 3,
+      "name": "Clinical Research",
+      "scientist_count": 5
+     },
+     {
+      "id": 4,
+      "name": "Computational Biology",
+      "scientist_count": 4
+     },
+     {
+      "id": 5,
+      "name": "Data Science",
+      "scientist_count": 7
+     },
+     {
+      "id": 6,
+      "name": "Drug Discovery",
+      "scientist_count": 4
+     },
+     {
+      "id": 7,
+      "name": "Epidemiology",
+      "scientist_count": 5
+     },
+     {
+      "id": 8,
+      "name": "Genomics",
+      "scientist_count": 4
+     },
+     {
+      "id": 9,
+      "name": "Global Health",
+      "scientist_count": 3
+     },
+     {
+      "id": 10,
+      "name": "Immunology",
+      "scientist_count": 4
+     },
+     {
+      "id": 11,
+      "name": "Machine Learning",
+      "scientist_count": 9
+     },
+     {
+      "id": 12,
+      "name": "Neurology",
+      "scientist_count": 4
+     },
+     {
+      "id": 13,
+      "name": "Pediatrics",
+      "scientist_count": 4
+     },
+     {
+      "id": 14,
+      "name": "Pharmacology",
+      "scientist_count": 2
+     },
+     {
+      "id": 15,
+      "name": "Public Health",
+      "scientist_count": 4
+     },
+     {
+      "id": 16,
+      "name": "Quantum Biology",
+      "scientist_count": 1
+     },
+     {
+      "id": 17,
+      "name": "Radiology",
+      "scientist_count": 7
+     }
+    ],
+    "scientists": [
+     {
+      "id": 100004,
+      "name": "Moreau LA.",
+      "username": "MoreaLA",
+      "interests": [
+       11,
+       5
+      ]
+     },
+     {
+      "id": 100020,
+      "name": "Zhou Y.",
+      "username": "ZhouY",
+      "interests": [
+       11,
+       17,
+       5
+      ]
+     },
+     {
+      "id": 100003,
+      "name": "Lindqvist AE.",
+      "username": "LindqAE",
+      "interests": [
+       4,
+       8,
+       1
+      ]
+     },
+     {
+      "id": 100017,
+      "name": "Holm EK.",
+      "username": "HolmEK",
+      "interests": [
+       12,
+       11
+      ]
+     },
+     {
+      "id": 100010,
+      "name": "Iyer AK.",
+      "username": "IyerAK",
+      "interests": [
+       11,
+       4
+      ]
+     },
+     {
+      "id": 100028,
+      "name": "Ortega JC.",
+      "username": "OrtegJC",
+      "interests": [
+       1,
+       4
+      ]
+     },
+     {
+      "id": 100024,
+      "name": "Olsen JH.",
+      "username": "OlsenJH",
+      "interests": [
+       2,
+       8
+      ]
+     },
+     {
+      "id": 100001,
+      "name": "Varga LT.",
+      "username": "VargaLT",
+      "interests": [
+       17,
+       11
+      ]
+     },
+     {
+      "id": 100026,
+      "name": "Kaur P.",
+      "username": "KaurP",
+      "interests": [
+       11,
+       6
+      ]
+     },
+     {
+      "id": 100013,
+      "name": "Nakamura H.",
+      "username": "NakamH",
+      "interests": [
+       8,
+       7
+      ]
+     },
+     {
+      "id": 2,
+      "name": "Lea Moreau",
+      "username": "l.moreau",
+      "interests": [
+       11,
+       5
+      ]
+     },
+     {
+      "id": 1,
+      "name": "Demo User",
+      "username": "demo",
+      "interests": [
+       11,
+       17,
+       5
+      ]
+     },
+     {
+      "id": 3,
+      "name": "Rita Silva",
+      "username": "r.silva",
+      "interests": [
+       3,
+       12
+      ]
+     },
+     {
+      "id": 5,
+      "name": "Mia Case",
+      "username": "MixedCase",
+      "interests": []
+     },
+     {
+      "id": 100002,
+      "name": "Okafor CN.",
+      "username": "OkafoCN",
+      "interests": [
+       9,
+       15,
+       7
+      ]
+     },
+     {
+      "id": 100005,
+      "name": "Takeda R.",
+      "username": "TakedR",
+      "interests": [
+       12,
+       17
+      ]
+     },
+     {
+      "id": 100006,
+      "name": "Haddad YF.",
+      "username": "HaddaYF",
+      "interests": [
+       6,
+       14
+      ]
+     },
+     {
+      "id": 100007,
+      "name": "Ferreira IC.",
+      "username": "FerreIC",
+      "interests": [
+       2,
+       10
+      ]
+     },
+     {
+      "id": 100008,
+      "name": "Kowalczyk B.",
+      "username": "KowalB",
+      "interests": [
+       13,
+       3
+      ]
+     },
+     {
+      "id": 100009,
+      "name": "Brennan SO.",
+      "username": "BrennSO",
+      "interests": [
+       15,
+       5
+      ]
+     },
+     {
+      "id": 100011,
+      "name": "Castellano GM.",
+      "username": "CasteGM",
+      "interests": [
+       3,
+       6
+      ]
+     },
+     {
+      "id": 100012,
+      "name": "Petrova DV.",
+      "username": "PetroDV",
+      "interests": [
+       17,
+       2
+      ]
+     },
+     {
+      "id": 100014,
+      "name": "Mensah KO.",
+      "username": "MensaKO",
+      "interests": [
+       9,
+       10
+      ]
+     },
+     {
+      "id": 100015,
+      "name": "Richter FW.",
+      "username": "RichtFW",
+      "interests": [
+       5,
+       7
+      ]
+     },
+     {
+      "id": 100016,
+      "name": "Duarte MP.",
+      "username": "DuartMP",
+      "interests": [
+       1,
+       10
+      ]
+     },
+     {
+      "id": 100018,
+      "name": "Qureshi NA.",
+      "username": "QuresNA",
+      "interests": [
+       14,
+       13
+      ]
+     },
+     {
+      "id": 100019,
+      "name": "Laurent CB.",
+      "username": "LaureCB",
+      "interests": [
+       17
+      ]
+     },
+     {
+      "id": 100021,
+      "name": "Eze UC.",
+      "username": "EzeUC",
+      "interests": [
+       15,
+       13
+      ]
+     },
+     {
+      "id": 100022,
+      "name": "Novak MS.",
+      "username": "NovakMS",
+      "interests": [
+       4,
+       6
+      ]
+     },
+     {
+      "id": 100023,
+      "name": "Rahman T.",
+      "username": "RahmaT",
+      "interests": [
+       7,
+       9,
+       5
+      ]
+     },
+     {
+      "id": 100025,
+      "name": "Silva RM.",
+      "username": "SilvaRM",
+      "interests": [
+       3,
+       12
+      ]
+     },
+     {
+      "id": 100027,
+      "name": "Weber AL.",
+      "username": "WeberAL",
+      "interests": [
+       10,
+       3
+      ]
+     },
+     {
+      "id": 100029,
+      "name": "Hakimi S.",
+      "username": "HakimS",
+      "interests": [
+       17,
+       13
+      ]
+     },
+     {
+      "id": 100030,
+      "name": "Grant EJ.",
+      "username": "GrantEJ",
+      "interests": [
+       15,
+       7
+      ]
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 404,
+   "body": {
+    "detail": "Пользователь с login 'nobody' не найден"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "login": "r.silva",
+    "email": "rita.silva@example.org",
+    "first_name": "Rita",
+    "last_name": "Silva",
+    "google_scholar_id": null,
+    "scopus_id": null,
+    "wos_id": null,
+    "rsci_id": null,
+    "orcid_id": null,
+    "interests_list": null,
+    "id": 3
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "string_too_short",
+      "loc": [
+       "body",
+       "login"
+      ],
+      "msg": "String should have at least 3 characters",
+      "input": "r.",
+      "ctx": {
+       "min_length": 3
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "list_type",
+      "loc": [
+       "body",
+       "interests_list"
+      ],
+      "msg": "Input should be a valid list",
+      "input": "Genomics"
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": [
+    {
+     "title": "Weak labels from radiology reports for chest X-ray triage",
+     "coauthors": "Moreau L, Zhou Y",
+     "citations": "4",
+     "journal": "Imaging Methods Review",
+     "publication_year": "2024",
+     "author_name": "Demo User",
+     "id": 1,
+     "user_id": 1
+    },
+    {
+     "title": "A reproducible benchmark for readmission models",
+     "coauthors": "Moreau L",
+     "citations": "1",
+     "journal": "Computational Health Letters",
+     "publication_year": "2025",
+     "author_name": "Demo User",
+     "id": 2,
+     "user_id": 1
+    }
+   ],
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "message": "Successfully imported 2 publications",
+    "imported_count": 2,
+    "failed_count": 0,
+    "publications": [
+     {
+      "title": "Weak labels from radiology reports for chest X-ray triage",
+      "coauthors": "Moreau L, Zhou Y",
+      "citations": "4",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 1,
+      "user_id": 1
+     },
+     {
+      "title": "A reproducible benchmark for readmission models",
+      "coauthors": "Moreau L",
+      "citations": "1",
+      "journal": "Computational Health Letters",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 2,
+      "user_id": 1
+     },
+     {
+      "title": "Transformer summaries of radiology reports",
+      "coauthors": "Zhou Y, Varga LT",
+      "citations": "3",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 3,
+      "user_id": 1
+     },
+     {
+      "title": "Active learning for rare findings on chest X-rays",
+      "coauthors": "Moreau L",
+      "citations": "0",
+      "journal": "Computational Health Letters",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 4,
+      "user_id": 1
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "message": "Successfully imported 2 publications",
+    "imported_count": 2,
+    "failed_count": 1,
+    "publications": [
+     {
+      "title": "Weak labels from radiology reports for chest X-ray triage",
+      "coauthors": "Moreau L, Zhou Y",
+      "citations": "4",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 1,
+      "user_id": 1
+     },
+     {
+      "title": "A reproducible benchmark for readmission models",
+      "coauthors": "Moreau L",
+      "citations": "1",
+      "journal": "Computational Health Letters",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 2,
+      "user_id": 1
+     },
+     {
+      "title": "Transformer summaries of radiology reports",
+      "coauthors": "Zhou Y, Varga LT",
+      "citations": "3",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 3,
+      "user_id": 1
+     },
+     {
+      "title": "Active learning for rare findings on chest X-rays",
+      "coauthors": "Moreau L",
+      "citations": "0",
+      "journal": "Computational Health Letters",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 4,
+      "user_id": 1
+     },
+     {
+      "title": "Heart rate variability after long flights",
+      "coauthors": "Moreau L",
+      "citations": "2.0",
+      "journal": null,
+      "publication_year": null,
+      "author_name": null,
+      "id": 5,
+      "user_id": 1
+     },
+     {
+      "title": "Wearable sensors in cardiac rehabilitation",
+      "coauthors": null,
+      "citations": null,
+      "journal": null,
+      "publication_year": null,
+      "author_name": null,
+      "id": 6,
+      "user_id": 1
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 400,
+   "body": {
+    "detail": "Unsupported file format. Please upload Excel (.xlsx, .xls) or CSV (.csv) file"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 400,
+   "body": {
+    "detail": "Required column 'Название статьи' (or 'Title') not found in file"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 500,
+   "body": {
+    "detail": "Error processing file: No columns to parse from file"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "message": "Successfully imported 0 publications",
+    "imported_count": 0,
+    "failed_count": 0,
+    "publications": [
+     {
+      "title": "Weak labels from radiology reports for chest X-ray triage",
+      "coauthors": "Moreau L, Zhou Y",
+      "citations": "4",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 1,
+      "user_id": 1
+     },
+     {
+      "title": "A reproducible benchmark for readmission models",
+      "coauthors": "Moreau L",
+      "citations": "1",
+      "journal": "Computational Health Letters",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 2,
+      "user_id": 1
+     },
+     {
+      "title": "Transformer summaries of radiology reports",
+      "coauthors": "Zhou Y, Varga LT",
+      "citations": "3",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 3,
+      "user_id": 1
+     },
+     {
+      "title": "Active learning for rare findings on chest X-rays",
+      "coauthors": "Moreau L",
+      "citations": "0",
+      "journal": "Computational Health Letters",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 4,
+      "user_id": 1
+     },
+     {
+      "title": "Heart rate variability after long flights",
+      "coauthors": "Moreau L",
+      "citations": "2.0",
+      "journal": null,
+      "publication_year": null,
+      "author_name": null,
+      "id": 5,
+      "user_id": 1
+     },
+     {
+      "title": "Wearable sensors in cardiac rehabilitation",
+      "coauthors": null,
+      "citations": null,
+      "journal": null,
+      "publication_year": null,
+      "author_name": null,
+      "id": 6,
+      "user_id": 1
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "message": "Successfully imported 2 publications",
+    "imported_count": 2,
+    "failed_count": 2,
+    "publications": [
+     {
+      "title": "Weak labels from radiology reports for chest X-ray triage",
+      "coauthors": "Moreau L, Zhou Y",
+      "citations": "4",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 1,
+      "user_id": 1
+     },
+     {
+      "title": "A reproducible benchmark for readmission models",
+      "coauthors": "Moreau L",
+      "citations": "1",
+      "journal": "Computational Health Letters",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 2,
+      "user_id": 1
+     },
+     {
+      "title": "Transformer summaries of radiology reports",
+      "coauthors": "Zhou Y, Varga LT",
+      "citations": "3",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 3,
+      "user_id": 1
+     },
+     {
+      "title": "Active learning for rare findings on chest X-rays",
+      "coauthors": "Moreau L",
+      "citations": "0",
+      "journal": "Computational Health Letters",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 4,
+      "user_id": 1
+     },
+     {
+      "title": "Heart rate variability after long flights",
+      "coauthors": "Moreau L",
+      "citations": "2.0",
+      "journal": null,
+      "publication_year": null,
+      "author_name": null,
+      "id": 5,
+      "user_id": 1
+     },
+     {
+      "title": "Wearable sensors in cardiac rehabilitation",
+      "coauthors": null,
+      "citations": null,
+      "journal": null,
+      "publication_year": null,
+      "author_name": null,
+      "id": 6,
+      "user_id": 1
+     },
+     {
+      "title": "Quoted, title",
+      "coauthors": null,
+      "citations": null,
+      "journal": "J",
+      "publication_year": "2020.0",
+      "author_name": "A",
+      "id": 7,
+      "user_id": 1
+     },
+     {
+      "title": "3.5",
+      "coauthors": null,
+      "citations": null,
+      "journal": "True",
+      "publication_year": "1e-05",
+      "author_name": null,
+      "id": 8,
+      "user_id": 1
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 404,
+   "body": {
+    "detail": "User with id 99 not found"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "int_parsing",
+      "loc": [
+       "path",
+       "user_id"
+      ],
+      "msg": "Input should be a valid integer, unable to parse string as an integer",
+      "input": "abc"
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "missing",
+      "loc": [
+       "body",
+       "file"
+      ],
+      "msg": "Field required",
+      "input": null
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "message": "Publication deleted successfully"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 404,
+   "body": {
+    "detail": "Publication not found"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 404,
+   "body": {
+    "detail": "Publication not found"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "message": "Publication deleted successfully"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "message": "Successfully imported 2 publications",
+    "imported_count": 2,
+    "failed_count": 0,
+    "publications": [
+     {
+      "title": "Weak labels from radiology reports for chest X-ray triage",
+      "coauthors": "Moreau L, Zhou Y",
+      "citations": "4",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 1,
+      "user_id": 1
+     },
+     {
+      "title": "Transformer summaries of radiology reports",
+      "coauthors": "Zhou Y, Varga LT",
+      "citations": "3",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 3,
+      "user_id": 1
+     },
+     {
+      "title": "Active learning for rare findings on chest X-rays",
+      "coauthors": "Moreau L",
+      "citations": "0",
+      "journal": "Computational Health Letters",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 4,
+      "user_id": 1
+     },
+     {
+      "title": "Heart rate variability after long flights",
+      "coauthors": "Moreau L",
+      "citations": "2.0",
+      "journal": null,
+      "publication_year": null,
+      "author_name": null,
+      "id": 5,
+      "user_id": 1
+     },
+     {
+      "title": "Wearable sensors in cardiac rehabilitation",
+      "coauthors": null,
+      "citations": null,
+      "journal": null,
+      "publication_year": null,
+      "author_name": null,
+      "id": 6,
+      "user_id": 1
+     },
+     {
+      "title": "Quoted, title",
+      "coauthors": null,
+      "citations": null,
+      "journal": "J",
+      "publication_year": "2020.0",
+      "author_name": "A",
+      "id": 7,
+      "user_id": 1
+     },
+     {
+      "title": "Transformer summaries of radiology reports",
+      "coauthors": "Zhou Y, Varga LT",
+      "citations": "3",
+      "journal": "Imaging Methods Review",
+      "publication_year": "2025",
+      "author_name": "Demo User",
+      "id": 8,
+      "user_id": 1
+     },
+     {
+      "title": "Active learning for rare findings on chest X-rays",
+      "coauthors": "Moreau L",
+      "citations": "0",
+      "journal": "Computational Health Letters",
+      "publication_year": "2024",
+      "author_name": "Demo User",
+      "id": 9,
+      "user_id": 1
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": [
+    {
+     "title": "Weak labels from radiology reports for chest X-ray triage",
+     "coauthors": "Moreau L, Zhou Y",
+     "citations": "4",
+     "journal": "Imaging Methods Review",
+     "publication_year": "2024",
+     "author_name": "Demo User",
+     "id": 1,
+     "user_id": 1
+    },
+    {
+     "title": "Transformer summaries of radiology reports",
+     "coauthors": "Zhou Y, Varga LT",
+     "citations": "3",
+     "journal": "Imaging Methods Review",
+     "publication_year": "2025",
+     "author_name": "Demo User",
+     "id": 3,
+     "user_id": 1
+    },
+    {
+     "title": "Active learning for rare findings on chest X-rays",
+     "coauthors": "Moreau L",
+     "citations": "0",
+     "journal": "Computational Health Letters",
+     "publication_year": "2024",
+     "author_name": "Demo User",
+     "id": 4,
+     "user_id": 1
+    },
+    {
+     "title": "Heart rate variability after long flights",
+     "coauthors": "Moreau L",
+     "citations": "2.0",
+     "journal": null,
+     "publication_year": null,
+     "author_name": null,
+     "id": 5,
+     "user_id": 1
+    },
+    {
+     "title": "Wearable sensors in cardiac rehabilitation",
+     "coauthors": null,
+     "citations": null,
+     "journal": null,
+     "publication_year": null,
+     "author_name": null,
+     "id": 6,
+     "user_id": 1
+    },
+    {
+     "title": "Quoted, title",
+     "coauthors": null,
+     "citations": null,
+     "journal": "J",
+     "publication_year": "2020.0",
+     "author_name": "A",
+     "id": 7,
+     "user_id": 1
+    },
+    {
+     "title": "Transformer summaries of radiology reports",
+     "coauthors": "Zhou Y, Varga LT",
+     "citations": "3",
+     "journal": "Imaging Methods Review",
+     "publication_year": "2025",
+     "author_name": "Demo User",
+     "id": 8,
+     "user_id": 1
+    },
+    {
+     "title": "Active learning for rare findings on chest X-rays",
+     "coauthors": "Moreau L",
+     "citations": "0",
+     "journal": "Computational Health Letters",
+     "publication_year": "2024",
+     "author_name": "Demo User",
+     "id": 9,
+     "user_id": 1
+    }
+   ],
+   "www_authenticate": null
+  },
+  {
+   "status": 404,
+   "body": {
+    "detail": "User with id 99 not found"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "int_parsing",
+      "loc": [
+       "path",
+       "user_id"
+      ],
+      "msg": "Input should be a valid integer, unable to parse string as an integer",
+      "input": "x"
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "registered_users": [
+     {
+      "login": "l.moreau",
+      "email": "lea.moreau@example.org",
+      "first_name": "Lea",
+      "last_name": "Moreau",
+      "google_scholar_id": null,
+      "scopus_id": "aadc2baaccdb",
+      "wos_id": null,
+      "rsci_id": null,
+      "orcid_id": "0000-0002-5555-0001",
+      "interests_list": "Machine Learning, Data Science",
+      "id": 2
+     }
+    ],
+    "unregistered_authors": [
+     {
+      "id": 6,
+      "pmid": null,
+      "title": "Gradient boosting for hospital readmission forecasting",
+      "authors_original": "Moreau LA",
+      "citation": null,
+      "journal_book": "Computational Health Letters",
+      "publication_year": "2021",
+      "create_date": "2021/07/16",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2021.006",
+      "author_name": "Moreau LA.",
+      "author_id": "aadc2baaccdb"
+     },
+     {
+      "id": 7,
+      "pmid": null,
+      "title": "Calibration of clinical risk scores across hospitals",
+      "authors_original": "Moreau LA",
+      "citation": null,
+      "journal_book": "Computational Health Letters",
+      "publication_year": "2023",
+      "create_date": "2023/08/17",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2023.007",
+      "author_name": "Moreau LA.",
+      "author_id": "aadc2baaccdb"
+     },
+     {
+      "id": 8,
+      "pmid": null,
+      "title": "Feature drift in electronic health records",
+      "authors_original": "Moreau LA, Richter FW",
+      "citation": null,
+      "journal_book": "Clinical Data Review",
+      "publication_year": "2024",
+      "create_date": "2024/09/18",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2024.008",
+      "author_name": "Moreau LA.",
+      "author_id": "aadc2baaccdb"
+     }
+    ],
+    "author_interests": [
+     {
+      "id": 4,
+      "author_id": "aadc2baaccdb",
+      "author_name": "Moreau LA.",
+      "interests_list": "Machine Learning,Data Science",
+      "keywords_list": "gradient,boosting,hospital,readmission,forecasting,calibration,clinical,risk,scores,across,hospitals,feature,drift,electronic,health,records",
+      "interests_count": 2,
+      "articles_count": 3,
+      "main_interest": "Machine Learning",
+      "cluster": 3
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "registered_users": [],
+    "unregistered_authors": [
+     {
+      "id": 12,
+      "pmid": null,
+      "title": "Tumour infiltrating lymphocytes in triple negative breast cancer",
+      "authors_original": "Ferreira IC",
+      "citation": null,
+      "journal_book": "Oncology Practice Notes",
+      "publication_year": "2022",
+      "create_date": "2022/04/12",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2022.012",
+      "author_name": "Ferreira IC.",
+      "author_id": "b605731d10c2"
+     },
+     {
+      "id": 13,
+      "pmid": null,
+      "title": "Checkpoint inhibitor response and the gut microbiome",
+      "authors_original": "Ferreira IC",
+      "citation": null,
+      "journal_book": "Immune Response Reports",
+      "publication_year": "2024",
+      "create_date": "2024/05/13",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2024.013",
+      "author_name": "Ferreira IC.",
+      "author_id": "b605731d10c2"
+     },
+     {
+      "id": 17,
+      "pmid": null,
+      "title": "Protein language models for enzyme function prediction",
+      "authors_original": "Iyer AK",
+      "citation": null,
+      "journal_book": "Computational Health Letters",
+      "publication_year": "2024",
+      "create_date": "2024/09/17",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2024.017",
+      "author_name": "Iyer AK.",
+      "author_id": "05b352afa2cb"
+     }
+    ],
+    "author_interests": [
+     {
+      "id": 10,
+      "author_id": "05b352afa2cb",
+      "author_name": "Iyer AK.",
+      "interests_list": "Machine Learning,Computational Biology",
+      "keywords_list": "protein,language,models,enzyme,function,prediction,graph,neural,networks,metabolic,pathways",
+      "interests_count": 2,
+      "articles_count": 2,
+      "main_interest": "Machine Learning",
+      "cluster": 3
+     },
+     {
+      "id": 7,
+      "author_id": "b605731d10c2",
+      "author_name": "Ferreira IC.",
+      "interests_list": "Cancer Research,Immunology",
+      "keywords_list": "tumour,infiltrating,lymphocytes,triple,negative,breast,cancer,checkpoint,inhibitor,response,gut,microbiome",
+      "interests_count": 2,
+      "articles_count": 2,
+      "main_interest": "Other",
+      "cluster": 0
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "registered_users": [
+     {
+      "login": "l.moreau",
+      "email": "lea.moreau@example.org",
+      "first_name": "Lea",
+      "last_name": "Moreau",
+      "google_scholar_id": null,
+      "scopus_id": "aadc2baaccdb",
+      "wos_id": null,
+      "rsci_id": null,
+      "orcid_id": "0000-0002-5555-0001",
+      "interests_list": "Machine Learning, Data Science",
+      "id": 2
+     }
+    ],
+    "unregistered_authors": [
+     {
+      "id": 6,
+      "pmid": null,
+      "title": "Gradient boosting for hospital readmission forecasting",
+      "authors_original": "Moreau LA",
+      "citation": null,
+      "journal_book": "Computational Health Letters",
+      "publication_year": "2021",
+      "create_date": "2021/07/16",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2021.006",
+      "author_name": "Moreau LA.",
+      "author_id": "aadc2baaccdb"
+     },
+     {
+      "id": 7,
+      "pmid": null,
+      "title": "Calibration of clinical risk scores across hospitals",
+      "authors_original": "Moreau LA",
+      "citation": null,
+      "journal_book": "Computational Health Letters",
+      "publication_year": "2023",
+      "create_date": "2023/08/17",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2023.007",
+      "author_name": "Moreau LA.",
+      "author_id": "aadc2baaccdb"
+     },
+     {
+      "id": 8,
+      "pmid": null,
+      "title": "Feature drift in electronic health records",
+      "authors_original": "Moreau LA, Richter FW",
+      "citation": null,
+      "journal_book": "Clinical Data Review",
+      "publication_year": "2024",
+      "create_date": "2024/09/18",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2024.008",
+      "author_name": "Moreau LA.",
+      "author_id": "aadc2baaccdb"
+     },
+     {
+      "id": 22,
+      "pmid": null,
+      "title": "Polygenic risk and type 2 diabetes in East Asian cohorts",
+      "authors_original": "Nakamura H",
+      "citation": null,
+      "journal_book": "Epidemiology Data Reports",
+      "publication_year": "2022",
+      "create_date": "2022/05/12",
+      "pmcid": null,
+      "nihms_id": null,
+      "doi": "10.5555/demo.2022.022",
+      "author_name": "Nakamura H.",
+      "author_id": "84426fdf4ae5"
+     }
+    ],
+    "author_interests": [
+     {
+      "id": 13,
+      "author_id": "84426fdf4ae5",
+      "author_name": "Nakamura H.",
+      "interests_list": "Genomics,Epidemiology",
+      "keywords_list": "polygenic,risk,type,diabetes,east,asian,cohorts",
+      "interests_count": 2,
+      "articles_count": 1,
+      "main_interest": "Other",
+      "cluster": 0
+     },
+     {
+      "id": 4,
+      "author_id": "aadc2baaccdb",
+      "author_name": "Moreau LA.",
+      "interests_list": "Machine Learning,Data Science",
+      "keywords_list": "gradient,boosting,hospital,readmission,forecasting,calibration,clinical,risk,scores,across,hospitals,feature,drift,electronic,health,records",
+      "interests_count": 2,
+      "articles_count": 3,
+      "main_interest": "Machine Learning",
+      "cluster": 3
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "string_too_short",
+      "loc": [
+       "query",
+       "query"
+      ],
+      "msg": "String should have at least 2 characters",
+      "input": "a",
+      "ctx": {
+       "min_length": 2
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "greater_than_equal",
+      "loc": [
+       "query",
+       "limit"
+      ],
+      "msg": "Input should be greater than or equal to 1",
+      "input": "0",
+      "ctx": {
+       "ge": 1
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "int_parsing",
+      "loc": [
+       "query",
+       "limit"
+      ],
+      "msg": "Input should be a valid integer, unable to parse string as an integer",
+      "input": "abc"
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "missing",
+      "loc": [
+       "query",
+       "query"
+      ],
+      "msg": "Field required",
+      "input": null
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": [
+    {
+     "login": "r.silva",
+     "email": "rita.silva@example.org",
+     "first_name": "Rita",
+     "last_name": "Silva",
+     "google_scholar_id": null,
+     "scopus_id": null,
+     "wos_id": null,
+     "rsci_id": null,
+     "orcid_id": null,
+     "interests_list": null,
+     "id": 3
+    }
+   ],
+   "www_authenticate": null
+  },
+  {
+   "status": 422,
+   "body": {
+    "detail": [
+     {
+      "type": "string_too_short",
+      "loc": [
+       "query",
+       "username"
+      ],
+      "msg": "String should have at least 2 characters",
+      "input": "e",
+      "ctx": {
+       "min_length": 2
+      }
+     },
+     {
+      "type": "less_than_equal",
+      "loc": [
+       "query",
+       "limit"
+      ],
+      "msg": "Input should be less than or equal to 100",
+      "input": "200",
+      "ctx": {
+       "le": 100
+      }
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": [
+    {
+     "id": 33,
+     "pmid": null,
+     "title": "Federated learning for mammography screening",
+     "authors_original": "Zhou Y",
+     "citation": null,
+     "journal_book": "Imaging Methods Review",
+     "publication_year": "2024",
+     "create_date": "2024/07/13",
+     "pmcid": null,
+     "nihms_id": null,
+     "doi": "10.5555/demo.2024.033",
+     "author_name": "Zhou Y.",
+     "author_id": "f20eae610ef8"
+    },
+    {
+     "id": 34,
+     "pmid": null,
+     "title": "Label noise in radiology report mining",
+     "authors_original": "Zhou Y",
+     "citation": null,
+     "journal_book": "Computational Health Letters",
+     "publication_year": "2023",
+     "create_date": "2023/08/14",
+     "pmcid": null,
+     "nihms_id": null,
+     "doi": "10.5555/demo.2023.034",
+     "author_name": "Zhou Y.",
+     "author_id": "f20eae610ef8"
+    },
+    {
+     "id": 35,
+     "pmid": null,
+     "title": "Self supervised pretraining on chest CT",
+     "authors_original": "Zhou Y, Varga LT",
+     "citation": null,
+     "journal_book": "Imaging Methods Review",
+     "publication_year": "2022",
+     "create_date": "2022/09/15",
+     "pmcid": null,
+     "nihms_id": null,
+     "doi": "10.5555/demo.2022.035",
+     "author_name": "Zhou Y.",
+     "author_id": "f20eae610ef8"
+    }
+   ],
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": [
+    {
+     "id": 15,
+     "pmid": null,
+     "title": "Air quality alerts and asthma admissions",
+     "authors_original": "Brennan SO",
+     "citation": null,
+     "journal_book": "Public Health Data Review",
+     "publication_year": "2023",
+     "create_date": "2023/07/15",
+     "pmcid": null,
+     "nihms_id": null,
+     "doi": "10.5555/demo.2023.015",
+     "author_name": "Brennan SO.",
+     "author_id": "cc5c0387cd8b"
+    },
+    {
+     "id": 16,
+     "pmid": null,
+     "title": "Open dashboards for regional mortality data",
+     "authors_original": "Brennan SO",
+     "citation": null,
+     "journal_book": "Public Health Data Review",
+     "publication_year": "2024",
+     "create_date": "2024/08/16",
+     "pmcid": null,
+     "nihms_id": null,
+     "doi": "10.5555/demo.2024.016",
+     "author_name": "Brennan SO.",
+     "author_id": "cc5c0387cd8b"
+    }
+   ],
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "id": 20,
+    "author_id": "f20eae610ef8",
+    "author_name": "Zhou Y.",
+    "interests_list": "Machine Learning,Radiology,Data Science",
+    "keywords_list": "federated,learning,mammography,screening,label,noise,radiology,report,mining,self,supervised,pretraining,chest",
+    "interests_count": 3,
+    "articles_count": 3,
+    "main_interest": "Radiology",
+    "cluster": 1
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 404,
+   "body": {
+    "detail": "Научные интересы для автора с ID unknown не найдены"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "scientist": {
+     "username": "l.moreau",
+     "name": "Moreau LA.",
+     "affiliation": "N/A",
+     "orcid": "0000-0002-5555-0001",
+     "metrics": [
+      {
+       "label": "H-Index",
+       "value": "N/A"
+      },
+      {
+       "label": "Citations",
+       "value": "N/A"
+      },
+      {
+       "label": "Publications",
+       "value": "3"
+      }
+     ]
+    },
+    "analytics": {
+     "index": 1,
+     "average": 1.1,
+     "performance": "Overall Performance"
+    },
+    "topicDistribution": [
+     {
+      "label": "Machine Learning",
+      "value": 2,
+      "color": "#5BC0F8"
+     },
+     {
+      "label": "Data Science",
+      "value": 1,
+      "color": "#7C3AED"
+     }
+    ],
+    "publications": [
+     {
+      "id": 1,
+      "title": "Gradient boosting for hospital readmission forecasting",
+      "journal": "Computational Health Letters",
+      "year": 2021,
+      "citations": "N/A",
+      "summary": "Gradient boosting for hospital readmission forecasting"
+     },
+     {
+      "id": 2,
+      "title": "Calibration of clinical risk scores across hospitals",
+      "journal": "Computational Health Letters",
+      "year": 2023,
+      "citations": "N/A",
+      "summary": "Calibration of clinical risk scores across hospitals"
+     },
+     {
+      "id": 3,
+      "title": "Feature drift in electronic health records",
+      "journal": "Clinical Data Review",
+      "year": 2024,
+      "citations": "N/A",
+      "summary": "Feature drift in electronic health records"
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "scientist": {
+     "username": "ZhouY",
+     "name": "Zhou Y.",
+     "affiliation": "N/A",
+     "orcid": "N/A",
+     "metrics": [
+      {
+       "label": "H-Index",
+       "value": "N/A"
+      },
+      {
+       "label": "Citations",
+       "value": "N/A"
+      },
+      {
+       "label": "Publications",
+       "value": "3"
+      }
+     ]
+    },
+    "analytics": {
+     "index": 1.2,
+     "average": 1.4,
+     "performance": "Overall Performance"
+    },
+    "topicDistribution": [
+     {
+      "label": "Machine Learning",
+      "value": 1,
+      "color": "#5BC0F8"
+     },
+     {
+      "label": "Radiology",
+      "value": 1,
+      "color": "#7C3AED"
+     },
+     {
+      "label": "Data Science",
+      "value": 1,
+      "color": "#F2A541"
+     }
+    ],
+    "publications": [
+     {
+      "id": 1,
+      "title": "Federated learning for mammography screening",
+      "journal": "Imaging Methods Review",
+      "year": 2024,
+      "citations": "N/A",
+      "summary": "Federated learning for mammography screening"
+     },
+     {
+      "id": 2,
+      "title": "Label noise in radiology report mining",
+      "journal": "Computational Health Letters",
+      "year": 2023,
+      "citations": "N/A",
+      "summary": "Label noise in radiology report mining"
+     },
+     {
+      "id": 3,
+      "title": "Self supervised pretraining on chest CT",
+      "journal": "Imaging Methods Review",
+      "year": 2022,
+      "citations": "N/A",
+      "summary": "Self supervised pretraining on chest CT"
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "scientist": {
+     "username": "OkaforCN",
+     "name": "Okafor CN.",
+     "affiliation": "N/A",
+     "orcid": "N/A",
+     "metrics": [
+      {
+       "label": "H-Index",
+       "value": "N/A"
+      },
+      {
+       "label": "Citations",
+       "value": "N/A"
+      },
+      {
+       "label": "Publications",
+       "value": "1"
+      }
+     ]
+    },
+    "analytics": {
+     "index": 0.8,
+     "average": 0.9,
+     "performance": "Overall Performance"
+    },
+    "topicDistribution": [
+     {
+      "label": "Global Health",
+      "value": 1,
+      "color": "#5BC0F8"
+     },
+     {
+      "label": "Public Health",
+      "value": 1,
+      "color": "#7C3AED"
+     },
+     {
+      "label": "Epidemiology",
+      "value": 1,
+      "color": "#F2A541"
+     }
+    ],
+    "publications": [
+     {
+      "id": 1,
+      "title": "Measles vaccination coverage after community health worker visits",
+      "journal": "Global Health Field Notes",
+      "year": 2022,
+      "citations": "N/A",
+      "summary": "Measles vaccination coverage after community health worker visits"
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 404,
+   "body": {
+    "detail": "Автор с ID nope не найден"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 401,
+   "body": {
+    "detail": "Invalid or expired token. Please login again."
+   },
+   "www_authenticate": "Bearer"
+  },
+  {
+   "status": 200,
+   "body": {
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzkwMzI3OTQ3fQ.1BxGcdWXiwrC2srzaAe4jKY0laCTJGxlsXwfW2mT3lM",
+    "token_type": "bearer"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 200,
+   "body": {
+    "interests": [
+     {
+      "id": 1,
+      "name": "Bioinformatics",
+      "scientist_count": 3
+     },
+     {
+      "id": 2,
+      "name": "Cancer Research",
+      "scientist_count": 3
+     },
+     {
+      "id": 3,
+      "name": "Clinical Research",
+      "scientist_count": 4
+     },
+     {
+      "id": 4,
+      "name": "Computational Biology",
+      "scientist_count": 4
+     },
+     {
+      "id": 5,
+      "name": "Data Science",
+      "scientist_count": 7
+     },
+     {
+      "id": 6,
+      "name": "Drug Discovery",
+      "scientist_count": 4
+     },
+     {
+      "id": 7,
+      "name": "Epidemiology",
+      "scientist_count": 5
+     },
+     {
+      "id": 8,
+      "name": "Genomics",
+      "scientist_count": 4
+     },
+     {
+      "id": 9,
+      "name": "Global Health",
+      "scientist_count": 3
+     },
+     {
+      "id": 10,
+      "name": "Immunology",
+      "scientist_count": 4
+     },
+     {
+      "id": 11,
+      "name": "Machine Learning",
+      "scientist_count": 9
+     },
+     {
+      "id": 12,
+      "name": "Neurology",
+      "scientist_count": 3
+     },
+     {
+      "id": 13,
+      "name": "Pediatrics",
+      "scientist_count": 4
+     },
+     {
+      "id": 14,
+      "name": "Pharmacology",
+      "scientist_count": 2
+     },
+     {
+      "id": 15,
+      "name": "Public Health",
+      "scientist_count": 4
+     },
+     {
+      "id": 16,
+      "name": "Quantum Biology",
+      "scientist_count": 1
+     },
+     {
+      "id": 17,
+      "name": "Radiology",
+      "scientist_count": 7
+     }
+    ],
+    "scientists": [
+     {
+      "id": 100020,
+      "name": "Zhou Y.",
+      "username": "ZhouY",
+      "interests": [
+       11,
+       17,
+       5
+      ]
+     },
+     {
+      "id": 2,
+      "name": "Lea Moreau",
+      "username": "l.moreau",
+      "interests": [
+       11,
+       5
+      ]
+     },
+     {
+      "id": 100001,
+      "name": "Varga LT.",
+      "username": "VargaLT",
+      "interests": [
+       17,
+       11
+      ]
+     },
+     {
+      "id": 100004,
+      "name": "Moreau LA.",
+      "username": "MoreaLA",
+      "interests": [
+       11,
+       5
+      ]
+     },
+     {
+      "id": 100009,
+      "name": "Brennan SO.",
+      "username": "BrennSO",
+      "interests": [
+       15,
+       5
+      ]
+     },
+     {
+      "id": 100023,
+      "name": "Rahman T.",
+      "username": "RahmaT",
+      "interests": [
+       7,
+       9,
+       5
+      ]
+     },
+     {
+      "id": 100017,
+      "name": "Holm EK.",
+      "username": "HolmEK",
+      "interests": [
+       12,
+       11
+      ]
+     },
+     {
+      "id": 100015,
+      "name": "Richter FW.",
+      "username": "RichtFW",
+      "interests": [
+       5,
+       7
+      ]
+     },
+     {
+      "id": 100010,
+      "name": "Iyer AK.",
+      "username": "IyerAK",
+      "interests": [
+       11,
+       4
+      ]
+     },
+     {
+      "id": 100026,
+      "name": "Kaur P.",
+      "username": "KaurP",
+      "interests": [
+       11,
+       6
+      ]
+     },
+     {
+      "id": 100019,
+      "name": "Laurent CB.",
+      "username": "LaureCB",
+      "interests": [
+       17
+      ]
+     },
+     {
+      "id": 100005,
+      "name": "Takeda R.",
+      "username": "TakedR",
+      "interests": [
+       12,
+       17
+      ]
+     },
+     {
+      "id": 100012,
+      "name": "Petrova DV.",
+      "username": "PetroDV",
+      "interests": [
+       17,
+       2
+      ]
+     },
+     {
+      "id": 100029,
+      "name": "Hakimi S.",
+      "username": "HakimS",
+      "interests": [
+       17,
+       13
+      ]
+     },
+     {
+      "id": 4,
+      "name": "Nova Reyes",
+      "username": "new_scientist",
+      "interests": [
+       8,
+       11,
+       16
+      ]
+     },
+     {
+      "id": 3,
+      "name": "Rita Silva",
+      "username": "r.silva",
+      "interests": []
+     },
+     {
+      "id": 5,
+      "name": "Mia Case",
+      "username": "MixedCase",
+      "interests": []
+     },
+     {
+      "id": 100002,
+      "name": "Okafor CN.",
+      "username": "OkafoCN",
+      "interests": [
+       9,
+       15,
+       7
+      ]
+     },
+     {
+      "id": 100003,
+      "name": "Lindqvist AE.",
+      "username": "LindqAE",
+      "interests": [
+       4,
+       8,
+       1
+      ]
+     },
+     {
+      "id": 100006,
+      "name": "Haddad YF.",
+      "username": "HaddaYF",
+      "interests": [
+       6,
+       14
+      ]
+     },
+     {
+      "id": 100007,
+      "name": "Ferreira IC.",
+      "username": "FerreIC",
+      "interests": [
+       2,
+       10
+      ]
+     },
+     {
+      "id": 100008,
+      "name": "Kowalczyk B.",
+      "username": "KowalB",
+      "interests": [
+       13,
+       3
+      ]
+     },
+     {
+      "id": 100011,
+      "name": "Castellano GM.",
+      "username": "CasteGM",
+      "interests": [
+       3,
+       6
+      ]
+     },
+     {
+      "id": 100013,
+      "name": "Nakamura H.",
+      "username": "NakamH",
+      "interests": [
+       8,
+       7
+      ]
+     },
+     {
+      "id": 100014,
+      "name": "Mensah KO.",
+      "username": "MensaKO",
+      "interests": [
+       9,
+       10
+      ]
+     },
+     {
+      "id": 100016,
+      "name": "Duarte MP.",
+      "username": "DuartMP",
+      "interests": [
+       1,
+       10
+      ]
+     },
+     {
+      "id": 100018,
+      "name": "Qureshi NA.",
+      "username": "QuresNA",
+      "interests": [
+       14,
+       13
+      ]
+     },
+     {
+      "id": 100021,
+      "name": "Eze UC.",
+      "username": "EzeUC",
+      "interests": [
+       15,
+       13
+      ]
+     },
+     {
+      "id": 100022,
+      "name": "Novak MS.",
+      "username": "NovakMS",
+      "interests": [
+       4,
+       6
+      ]
+     },
+     {
+      "id": 100024,
+      "name": "Olsen JH.",
+      "username": "OlsenJH",
+      "interests": [
+       2,
+       8
+      ]
+     },
+     {
+      "id": 100025,
+      "name": "Silva RM.",
+      "username": "SilvaRM",
+      "interests": [
+       3,
+       12
+      ]
+     },
+     {
+      "id": 100027,
+      "name": "Weber AL.",
+      "username": "WeberAL",
+      "interests": [
+       10,
+       3
+      ]
+     },
+     {
+      "id": 100028,
+      "name": "Ortega JC.",
+      "username": "OrtegJC",
+      "interests": [
+       1,
+       4
+      ]
+     },
+     {
+      "id": 100030,
+      "name": "Grant EJ.",
+      "username": "GrantEJ",
+      "interests": [
+       15,
+       7
+      ]
+     }
+    ]
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 404,
+   "body": {
+    "detail": "Not Found"
+   },
+   "www_authenticate": null
+  },
+  {
+   "status": 405,
+   "body": {
+    "detail": "Method Not Allowed"
+   },
+   "www_authenticate": null
+  }
+ ],
+ "emails": [
+  {
+   "input": "demo@example.org",
+   "ok": "demo@example.org"
+  },
+  {
+   "input": "Mixed.Case@Example.ORG",
+   "ok": "Mixed.Case@example.org"
+  },
+  {
+   "input": "not-an-email",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: An email address must have an @-sign.",
+    "input": "not-an-email",
+    "ctx": {
+     "reason": "An email address must have an @-sign."
+    }
+   }
+  },
+  {
+   "input": "@example.org",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: There must be something before the @-sign.",
+    "input": "@example.org",
+    "ctx": {
+     "reason": "There must be something before the @-sign."
+    }
+   }
+  },
+  {
+   "input": "user@",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: There must be something after the @-sign.",
+    "input": "user@",
+    "ctx": {
+     "reason": "There must be something after the @-sign."
+    }
+   }
+  },
+  {
+   "input": "a@b",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: The part after the @-sign is not valid. It should have a period.",
+    "input": "a@b",
+    "ctx": {
+     "reason": "The part after the @-sign is not valid. It should have a period."
+    }
+   }
+  },
+  {
+   "input": "a b@example.org",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: The email address contains invalid characters before the @-sign: SPACE.",
+    "input": "a b@example.org",
+    "ctx": {
+     "reason": "The email address contains invalid characters before the @-sign: SPACE."
+    }
+   }
+  },
+  {
+   "input": "user@exa mple.org",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: The part after the @-sign contains invalid characters: SPACE.",
+    "input": "user@exa mple.org",
+    "ctx": {
+     "reason": "The part after the @-sign contains invalid characters: SPACE."
+    }
+   }
+  },
+  {
+   "input": "user@@example.org",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: The part after the @-sign contains invalid characters: '@'.",
+    "input": "user@@example.org",
+    "ctx": {
+     "reason": "The part after the @-sign contains invalid characters: '@'."
+    }
+   }
+  },
+  {
+   "input": "user.@example.org",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: An email address cannot have a period immediately before the @-sign.",
+    "input": "user.@example.org",
+    "ctx": {
+     "reason": "An email address cannot have a period immediately before the @-sign."
+    }
+   }
+  },
+  {
+   "input": ".user@example.org",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: An email address cannot start with a period.",
+    "input": ".user@example.org",
+    "ctx": {
+     "reason": "An email address cannot start with a period."
+    }
+   }
+  },
+  {
+   "input": "us..er@example.org",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: An email address cannot have two periods in a row.",
+    "input": "us..er@example.org",
+    "ctx": {
+     "reason": "An email address cannot have two periods in a row."
+    }
+   }
+  },
+  {
+   "input": "user@example..org",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: An email address cannot have two periods in a row.",
+    "input": "user@example..org",
+    "ctx": {
+     "reason": "An email address cannot have two periods in a row."
+    }
+   }
+  },
+  {
+   "input": "user@-example.org",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: An email address cannot have a hyphen immediately after the @-sign.",
+    "input": "user@-example.org",
+    "ctx": {
+     "reason": "An email address cannot have a hyphen immediately after the @-sign."
+    }
+   }
+  },
+  {
+   "input": "user@example.org.",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: An email address cannot end with a period.",
+    "input": "user@example.org.",
+    "ctx": {
+     "reason": "An email address cannot end with a period."
+    }
+   }
+  },
+  {
+   "input": "user@localhost",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: The part after the @-sign is not valid. It should have a period.",
+    "input": "user@localhost",
+    "ctx": {
+     "reason": "The part after the @-sign is not valid. It should have a period."
+    }
+   }
+  },
+  {
+   "input": "user@example.test",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: The part after the @-sign is a special-use or reserved name that cannot be used with email.",
+    "input": "user@example.test",
+    "ctx": {
+     "reason": "The part after the @-sign is a special-use or reserved name that cannot be used with email."
+    }
+   }
+  },
+  {
+   "input": "",
+   "error": {
+    "type": "value_error",
+    "loc": [],
+    "msg": "value is not a valid email address: An email address must have an @-sign.",
+    "input": "",
+    "ctx": {
+     "reason": "An email address must have an @-sign."
+    }
+   }
+  }
+ ],
+ "tfidf": [
+  {
+   "input": "Machine Learning Radiology",
+   "vector": {
+    "457": 0.34315458240540103,
+    "469": 0.7749296700749837,
+    "494": 0.3431704609750453,
+    "495": 0.3431704609750453,
+    "704": 0.21493489349103345
+   }
+  },
+  {
+   "input": "machine learning for chest radiographs, radiology and data science",
+   "vector": {
+    "211": 0.36909555625542084,
+    "212": 0.36928466388268477,
+    "457": 0.3036186438131861,
+    "494": 0.3036326929619612,
+    "495": 0.3036326929619612,
+    "704": 0.1901715559572025,
+    "714": 0.5276014428870827,
+    "821": 0.36918680745689647
+   }
+  },
+  {
+   "input": "The of and",
+   "vector": {}
+  },
+  {
+   "input": "Genomics,Epidemiology polygenic,risk,type,diabetes,east,asian,cohorts Other",
+   "vector": {
+    "233": 0.502395959992993,
+    "303": 0.4327867904590911,
+    "354": 0.3828170767365815,
+    "807": 0.4331011816047603,
+    "962": 0.4755715988557944
+   }
+  },
+  {
+   "input": "Émigré naïve café — 42 x",
+   "vector": {}
+  },
+  {
+   "input": "",
+   "vector": {}
+  }
+ ],
+ "jwt": {
+  "secret": "golden-secret",
+  "claims": {
+   "sub": "1",
+   "exp": 1790000000
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzkwMDAwMDAwfQ.2W1w1XLBthMfP6zPb_nRZDhcQLh8wNdB-zLdli4AunI"
+ }
+}

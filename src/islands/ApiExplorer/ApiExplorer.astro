@@ -1,0 +1,29 @@
+---
+// Демо ApiExplorer (SPEC.md §7.7): бэкенд Academic Profile, перенесённый в браузер. До гидратации остров отрисован
+// сервером: пример ответа /recommend и граф знаний демо-пользователя посчитаны при сборке тем же портом, поэтому
+// живая версия встаёт на место без сдвига.
+import DemoFigure from '../../components/DemoFigure.astro';
+import { endpoints } from '../../data/demo/academic-endpoints';
+import { DEMO_LOGIN } from '../../data/demo/academic-scientists';
+import { ui } from '../../data/resume';
+import ApiExplorerApp from './ApiExplorer.svelte';
+import type { GraphData } from './graph';
+import { initialForm, prepare } from './http';
+import { Backend } from './server';
+
+const t = ui.apiExplorer;
+const backend = new Backend({ secret: 'build-time', model: () => import('../../data/demo/academic-tfidf.json').then((m) => m.default) });
+const recommendEp = endpoints.find((e) => e.id === 'recommend')!;
+const prepared = prepare(recommendEp, initialForm(recommendEp), null, null);
+const recommend = { url: prepared.url, curl: prepared.curl, res: await backend.handle(prepared.req), ms: null };
+
+const login = await backend.handle({ method: 'POST', path: '/auth/login', body: JSON.stringify(DEMO_LOGIN) });
+const token = (login.body as { access_token: string }).access_token;
+const graph = await backend.handle({ method: 'GET', path: '/knowledge-graph', authorization: `Bearer ${token}` });
+---
+
+<DemoFigure id="apiexplorer" class="apiexplorer" title={t.title} badge={t.badge} caption={t.caption}>
+  <ApiExplorerApp client:visible initial={{ recommend, graph: graph.body as GraphData, graphAs: DEMO_LOGIN.login_or_email }} />
+  <!-- Без JS запросы не отправить — прячем кнопки и поля ввода, остаются список эндпоинтов, пример запроса и ответа -->
+  <noscript><style is:inline>.apiexplorer .auth, .apiexplorer .actions, .apiexplorer .field button, .apiexplorer .picker { display: none; }</style></noscript>
+</DemoFigure>
