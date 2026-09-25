@@ -46,10 +46,13 @@ HTML без JavaScript и подгружает JS только для конкр
 ├─ SPEC.md, CLAUDE.md
 ├─ reference/                       ← только для сверки, на сайт не выкладывать:
 │  ├─ alumina-scheme.png            ←   исходная схема реакций SIBUR
-│  └─ tmh-map-original.png          ←   как выглядела карта в ТМХ
+│  ├─ tmh-map-original.png          ←   как выглядела карта в ТМХ
+│  ├─ makar-photo-original.jpg      ←   исходное фото, из него вырезан портрет hero
+│  └─ sirius-logo-original.svg      ←   логотип университета, на сайте только эмблема
 ├─ public/
 │  ├─ Makar_Glazachev_CV.pdf        ← текущий PDF из CV
-│  ├─ og.png                        ← превью для соцсетей 1200×630
+│  ├─ og.png                        ← превью для соцсетей 1200×630, `npm run og`
+│  ├─ apple-touch-icon.png          ← иконка iOS 180×180, `npm run og`
 │  └─ favicon.svg
 ├─ src/
 │  ├─ data/resume.ts                ← ВСЕ факты из §6, одним объектом; компоненты берут текст только отсюда
@@ -62,6 +65,7 @@ HTML без JavaScript и подгружает JS только для конкр
 │  │  ├─ academic-scientists.ts     ← ILLUSTRATIVE: учёные, публикации, пользователи Academic Profile (§7.7)
 │  │  ├─ academic-endpoints.ts      ← 15 эндпоинтов main.py и примеры запросов (§7.7)
 │  │  └─ academic-tfidf.json        ← словарь TF-IDF модели команды (§7.7)
+│  ├─ assets/makar-portrait.jpg     ← портрет hero 300×300 (astro:assets → AVIF/WebP)
 │  ├─ styles/tokens.css             ← палитра, типографика, отступы (§4)
 │  ├─ layouts/Base.astro
 │  ├─ components/                   ← статичные секции (.astro)
@@ -79,6 +83,7 @@ HTML без JavaScript и подгружает JS только для конкр
 ├─ scripts/build-land.ts            ← подложка карты из Natural Earth (§7.4)
 ├─ scripts/alumina-complexity.ts    ← оценки CatBoost для графа реакций (§7.8)
 ├─ scripts/academic-api.ts          ← словарь TF-IDF и эталоны бэкенда Academic Profile (§7.7)
+├─ scripts/build-og.ts              ← og.png и apple-touch-icon.png через headless Chromium (этап 5)
 ├─ data/railway-overrides.csv       ← ручные правки дорог (§7.4)
 └─ .github/workflows/deploy.yml
 ```
@@ -636,8 +641,8 @@ TypeScript и отвечают прямо в странице, на выдума
 - **Узкий экран:** стан не уже 560 px и прокручивается внутри блока; страница вбок не едет.
 - **Подпись:** «Slot grid, staff steps and the YIN pitch detector are ported from the desktop app's C++: a note lands
   after three matching 4,096-sample frames, naturals only. Audio stays in your browser.»
-- **Растяжка (опционально, этап 5):** скомпилировать *тот же* C++ `PitchDetector` в WebAssembly через Emscripten и
-  подписать «this is the same C++ code as the desktop app».
+- **Растяжка — отложена:** скомпилировать *тот же* C++ `PitchDetector` в WebAssembly через Emscripten и подписать
+  «this is the same C++ code as the desktop app». На этапе 5 решено не делать: TS-порт уже сверен с C++ тестами.
 - **Приёмка:** синтезированные A4 = 440 Hz и C5 распознаются с ошибкой < 5 центов, порт совпадает с C++ на тех же
   сигналах; сетка, шаги, добавочные линии, штили, свободное место и переход на второй стан покрыты vitest; отказ
   микрофона не ломает демо; звук стартует только по клику.
@@ -698,13 +703,20 @@ RailMap — два захода: сначала скрипт выгрузки с
 **Этап 4 — терминал.** §7.11. Игра §7.10 снята.
 
 **Этап 5 — полировка.** OG-картинка, favicon, 404, мета-теги, финальный прогон Lighthouse по бюджету §3,
-проверка на реальном телефоне, опционально WASM-версия YIN и русская версия сайта.
-- **Фото в hero:** через `astro:assets` (AVIF/WebP + `srcset`), фиксированные размеры — без CLS. Фото может стать
-  LCP-элементом — уложиться в бюджет §3 (LCP ≤ 1.8 s, ≤ 350 КБ). Вёрстка на 360px рядом с вертикальной картой.
-- **Лого Sirius в Education:** сначала проверить права на использование знака; монохромная версия в цветах токенов,
-  не спорит с метафорой «Сириус — пересадочный узел» (§4).
-- **CLS в hero:** кнопка «Copy» у почты рендерится с `hidden` и появляется из скрипта — строка контактов переносится,
-  на 1280px CLS 0.098 при бюджете < 0.05 (найдено на этапе 3a). Место под кнопку держать с первой отрисовки.
+проверка на реальном телефоне. WASM-версия YIN отложена (§7.9), русская версия — отдельным этапом позже (§10).
+- **Фото в hero:** портрет 300×300, вырезанный вокруг фигуры из исходника 640×640, — круг-станция (зазор `--surface`,
+  обводка `--line-science`) в одной строке с именем: две колонки, так что имя переносится само и на фото не наезжает.
+  Размер `clamp(72px, 12vw, 176px)`, `<Picture>` из `astro:assets` (AVIF/WebP/JPEG, `srcset`, `width`/`height`) —
+  без CLS; LCP не становится — меньше текста. Кнопка CV на 360×740 остаётся на первом экране.
+- **Лого Sirius в Education:** публичного брендбука с правилами использования знака не нашлось; по решению автора —
+  только эмблема без русской надписи (`SiriusEmblem.astro`), один цвет `currentColor` = `--ink`, у названия
+  университета. Схема «узел Сириуса» не тронута.
+- **CLS в hero:** место под кнопку «Copy» держится с первой отрисовки (`visibility`, а не `hidden`) — на 1280px CLS
+  0.098 → 0.012. На телефоне остаётся 0.035 от подмены Barlow 700 — в бюджете, поэтому без preload второго начертания.
+- **Мета-теги:** Open Graph и Twitter card с абсолютным `og:image`, `apple-touch-icon`, JSON-LD `Person` на главной —
+  всё из `resume.ts`. У 404 — `noindex` без canonical.
+- **404:** «Station not found» — линия обрывается у пустой станции, ссылка на главную; без навигации по якорям.
+- **Встраивание CSS в HTML** (`build.inlineStylesheets: 'always'`) проверено A/B — выигрыша в LCP не дало, не включено.
 
 ---
 
@@ -726,4 +738,4 @@ OSM, без данных ТМХ (§7.4).
 | # | Вопрос | Нужно к этапу |
 |---|---|---|
 | 1 | Адрес: `makaron-228.github.io` или свой домен | 0 |
-| 3 | Русская версия сейчас или позже | 5 |
+| 3 | Русская версия: решено делать позже, отдельным этапом после 5 | 6 |

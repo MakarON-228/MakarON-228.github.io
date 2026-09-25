@@ -1,5 +1,6 @@
 ---
 import { education } from '../data/resume';
+import SiriusEmblem from './SiriusEmblem.astro';
 
 const lines = ['rail', 'science', 'agents', 'craft'] as const;
 ---
@@ -11,7 +12,10 @@ const lines = ['rail', 'science', 'agents', 'craft'] as const;
     <rect x="96" y="8" width="48" height="80" rx="24" />
   </svg>
   <div class="text">
-    <h3>{education.institution}</h3>
+    <div class="institution">
+      <SiriusEmblem class="emblem" />
+      <h3>{education.institution}</h3>
+    </div>
     <p class="when"><time>{education.date}</time></p>
     <p class="programme">
       <strong>{education.programme}</strong> — {education.programmeNote}
@@ -48,6 +52,19 @@ const lines = ['rail', 'science', 'agents', 'craft'] as const;
   .text {
     display: grid;
     gap: var(--space-3);
+  }
+
+  .institution {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .institution :global(.emblem) {
+    flex: none;
+    width: auto;
+    height: 2.75rem;
+    color: var(--ink);
   }
 
   h3 {

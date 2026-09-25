@@ -15,12 +15,32 @@ import AgentPipeline from '../islands/AgentPipeline/AgentPipeline.astro';
 import TwoModels from '../islands/TwoModels/TwoModels.astro';
 import ApiExplorer from '../islands/ApiExplorer/ApiExplorer.astro';
 import Terminal from '../islands/Terminal/Terminal.astro';
-import { experience, hackathons, header, projects, sections } from '../data/resume';
+import { getImage } from 'astro:assets';
+import { education, experience, hackathons, header, projects, sections } from '../data/resume';
+import portrait from '../assets/makar-portrait.jpg';
 
 const title = Object.fromEntries(sections.map((s) => [s.id, s.label])) as Record<(typeof sections)[number]['id'], string>;
+
+// Структурированные данные для поисковиков — те же факты из resume.ts
+const photo = await getImage({ src: portrait, width: 300, format: 'jpg' });
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: header.name,
+  jobTitle: header.role,
+  description: header.summary,
+  url: Astro.site?.href,
+  image: new URL(photo.src, Astro.site).href,
+  email: `mailto:${header.email}`,
+  sameAs: [header.github.href, header.telegram.href],
+  affiliation: { '@type': 'CollegeOrUniversity', name: education.institution },
+};
+// `<` в JSON экранируется, чтобы строка не закрыла тег script
+const personJson = JSON.stringify(person).replaceAll('<', '\\u003c');
 ---
 
 <Base title={`${header.name} — ${header.role}`} description={header.summary}>
+  <script is:inline type="application/ld+json" slot="head" set:html={personJson} />
   <SiteNav />
   <main id="content" class="page" tabindex="-1">
     <Hero />

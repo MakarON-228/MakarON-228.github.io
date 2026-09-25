@@ -1,10 +1,28 @@
 ---
+import { Picture } from 'astro:assets';
 import { header, ui } from '../data/resume';
 import TransitMap from '../islands/TransitMap/TransitMap.astro';
+import portrait from '../assets/makar-portrait.jpg';
+
+// Размер круга с фото — он же в CSS (--photo): от телефона до широкого экрана.
+const photoSize = 'clamp(72px, 12vw, 176px)';
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <h1 id="hero-title">{header.name}</h1>
+  <!-- Имя и фото — две колонки: на узком экране имя переносится само и на фото не наезжает -->
+  <div class="name">
+    <h1 id="hero-title">{header.name}</h1>
+    <Picture
+      src={portrait}
+      alt={ui.photoAlt}
+      formats={['avif', 'webp']}
+      widths={[72, 144, 176, 300]}
+      sizes={photoSize}
+      loading="eager"
+      decoding="async"
+      class="photo"
+    />
+  </div>
   <div class="intro">
     <p class="role">{header.role}</p>
     <p class="summary">{header.summary}</p>
@@ -13,7 +31,8 @@ import TransitMap from '../islands/TransitMap/TransitMap.astro';
       <li class="email">
         <span class="label">{ui.email}</span>
         <a href={`mailto:${header.email}`}>{header.email}</a>
-        <button type="button" class="copy" data-copy={header.email} hidden>{ui.copy}</button>
+        <!-- Место под кнопку занято с первой отрисовки; видимой её делает скрипт, если есть буфер обмена -->
+        <button type="button" class="copy" data-copy={header.email} data-pending>{ui.copy}</button>
         <span class="status" role="status" aria-live="polite" data-copied={ui.copied} data-failed={ui.copyFailed}></span>
       </li>
       <li>
@@ -46,6 +65,25 @@ import TransitMap from '../islands/TransitMap/TransitMap.astro';
     margin-top: var(--space-6);
   }
 
+  .name {
+    --photo: clamp(72px, 12vw, 176px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--photo);
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  /* Фото — станция: круг с зазором цвета поверхности и обводкой цветом линии */
+  .name :global(.photo) {
+    width: var(--photo);
+    height: var(--photo);
+    padding: 3px;
+    background: var(--surface);
+    border: 4px solid var(--line-science);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
   .intro {
     display: grid;
     gap: var(--space-4);
@@ -60,7 +98,7 @@ import TransitMap from '../islands/TransitMap/TransitMap.astro';
       column-gap: var(--space-12);
     }
 
-    h1 {
+    .name {
       grid-column: 1 / -1;
     }
 
@@ -140,6 +178,10 @@ import TransitMap from '../islands/TransitMap/TransitMap.astro';
     border-color: var(--ink);
   }
 
+  .copy[data-pending] {
+    visibility: hidden;
+  }
+
   .status:empty {
     display: none;
   }
@@ -178,7 +220,7 @@ import TransitMap from '../islands/TransitMap/TransitMap.astro';
   document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((button) => {
     if (!navigator.clipboard) return;
     const status = button.parentElement?.querySelector<HTMLElement>('.status');
-    button.hidden = false;
+    delete button.dataset['pending'];
     button.addEventListener('click', async () => {
       if (!status) return;
       try {

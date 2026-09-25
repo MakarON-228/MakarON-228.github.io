@@ -169,6 +169,13 @@ export const ui = {
   sectionsMenu: 'Sections',
   navLabel: 'Sections',
   downloadCv: 'Download CV',
+  photoAlt: 'Makar Glazachev on a wide flight of outdoor stairs',
+  /** Страница 404: адрес, которого нет на схеме. */
+  notFound: {
+    title: 'Station not found',
+    text: 'There is no stop at this address — the line ends here.',
+    home: 'Back to the main line',
+  },
   copy: 'Copy',
   copied: 'Email copied',
   copyFailed: 'Copy failed — select the address instead',
