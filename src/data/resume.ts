@@ -193,6 +193,11 @@ export const ui = {
     lines: { rail: 'Rail', science: 'Science', agents: 'Agents', craft: 'Craft' } satisfies Record<Line, string>,
     legend: 'Lines',
   },
+  demoDisclosure: {
+    label: 'Interactive demonstration',
+    open: 'Open demo',
+    close: 'Hide demo',
+  },
   /** Демо RailMap под записью TMH (SPEC.md §7.4). Названия дорог и станций — из данных OSM. */
   railMap: {
     title: 'Every railway station in Russia, by railway',
